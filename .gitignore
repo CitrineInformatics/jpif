@@ -1,0 +1,7 @@
+out
+target
+pom.xml.versionsBackup
+*.iml
+.idea/tasks.xml
+.idea/workspace.xml
+.idea/libraries
