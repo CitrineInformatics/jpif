@@ -1,5 +1,6 @@
 package io.citrine.jpif.object.core.general;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -29,22 +30,13 @@ public abstract class Rcl extends Pio {
      * Add a reference where information about this item is published.
      *
      * @param reference {@link Reference} object with the reference to add for this item.
+     * @return This object.
      */
-    public void addReference(final Reference reference) {
+    public Rcl addReference(final Reference reference) {
         if (this.references == null) {
             this.references = new ArrayList<>();
         }
         this.references.add(reference);
-    }
-
-    /**
-     * Add a reference where information about this item is published.
-     *
-     * @param reference {@link Reference} object with the reference to add for this item.
-     * @return This object.
-     */
-    public Rcl withReference(final Reference reference) {
-        this.addReference(reference);
         return this;
     }
 
@@ -53,8 +45,7 @@ public abstract class Rcl extends Pio {
      *
      * @return Number of references for this item.
      */
-    @JsonIgnore
-    public int getNumReferences() {
+    public int numReferences() {
         return (this.references == null) ? 0 : this.references.size();
     }
 
@@ -69,7 +60,7 @@ public abstract class Rcl extends Pio {
     public Reference getReference(final int index) {
         if (this.references == null) {
             throw new IndexOutOfBoundsException("Attempting to access reference " + index + " of "
-                    + this.getNumReferences());
+                    + this.numReferences());
         }
         return this.references.get(index);
     }
@@ -107,22 +98,13 @@ public abstract class Rcl extends Pio {
      * Add a person to contact for information about this item.
      *
      * @param contact {@link Person} object with the contact to add.
+     * @return This object.
      */
-    public void addContact(final Person contact) {
+    public Rcl addContact(final Person contact) {
         if (this.contacts == null) {
             this.contacts = new ArrayList<>();
         }
         this.contacts.add(contact);
-    }
-
-    /**
-     * Add a person to contact for information about this item.
-     *
-     * @param contact {@link Person} object with the contact to add.
-     * @return This object.
-     */
-    public Rcl withContact(final Person contact) {
-        this.addContact(contact);
         return this;
     }
 
@@ -131,8 +113,7 @@ public abstract class Rcl extends Pio {
      *
      * @return Number of contacts for this item..
      */
-    @JsonIgnore
-    public int getNumContacts() {
+    public int numContacts() {
         return (this.contacts == null) ? 0 : this.contacts.size();
     }
 
@@ -147,7 +128,7 @@ public abstract class Rcl extends Pio {
     public Person getContact(final int index) {
         if (this.contacts == null) {
             throw new IndexOutOfBoundsException("Attempting to access contact " + index + " of "
-                    + this.getNumContacts());
+                    + this.numContacts());
         }
         return this.contacts.get(index);
     }
@@ -185,22 +166,13 @@ public abstract class Rcl extends Pio {
      * Add a license for this item.
      *
      * @param license {@link License} object with the license to add.
+     * @return This object.
      */
-    public void addLicense(final License license) {
+    public Rcl addLicense(final License license) {
         if (this.licenses == null) {
             this.licenses = new ArrayList<>();
         }
         this.licenses.add(license);
-    }
-
-    /**
-     * Add a license for this item.
-     *
-     * @param license {@link License} object with the license to add.
-     * @return This object.
-     */
-    public Rcl withLicense(final License license) {
-        this.addLicense(license);
         return this;
     }
 
@@ -210,7 +182,7 @@ public abstract class Rcl extends Pio {
      * @return Number of licenses for this item..
      */
     @JsonIgnore
-    public int getNumLicenses() {
+    public int numLicenses() {
         return (this.licenses == null) ? 0 : this.licenses.size();
     }
 
@@ -225,7 +197,7 @@ public abstract class Rcl extends Pio {
     public License getLicense(final int index) {
         if (this.licenses == null) {
             throw new IndexOutOfBoundsException("Attempting to access license " + index + " of "
-                    + this.getNumLicenses());
+                    + this.numLicenses());
         }
         return this.licenses.get(index);
     }
@@ -247,6 +219,13 @@ public abstract class Rcl extends Pio {
     @JsonGetter
     private List<License> getLicenses() { // Private since only Jackson should use it
         return this.licenses;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Rcl addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** List of references for the item. */

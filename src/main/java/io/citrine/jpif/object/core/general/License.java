@@ -1,6 +1,5 @@
 package io.citrine.jpif.object.core.general;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
@@ -14,20 +13,10 @@ public class License extends Pio {
      * Set the name of the license.
      *
      * @param name String with the name of the license.
-     */
-    @JsonSetter
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    /**
-     * Set the name of the license.
-     *
-     * @param name String with the name of the license.
      * @return This object.
      */
-    public License withName(final String name) {
-        this.setName(name);
+    public License setName(final String name) {
+        this.name = name;
         return this;
     }
 
@@ -36,7 +25,6 @@ public class License extends Pio {
      *
      * @return String with the name of the license.
      */
-    @JsonGetter
     public String getName() {
         return this.name;
     }
@@ -45,20 +33,10 @@ public class License extends Pio {
      * Set the description of the license.
      *
      * @param description String with the description of the license.
-     */
-    @JsonSetter
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
-    /**
-     * Set the description of the license.
-     *
-     * @param description String with the description of the license.
      * @return This object.
      */
-    public License withDescription(final String description) {
-        this.setDescription(description);
+    public License setDescription(final String description) {
+        this.description = description;
         return this;
     }
 
@@ -67,7 +45,6 @@ public class License extends Pio {
      *
      * @return String with the description of the license.
      */
-    @JsonGetter
     public String getDescription() {
         return this.description;
     }
@@ -76,20 +53,10 @@ public class License extends Pio {
      * Set the URL to the license.
      *
      * @param url String with the URL to the license.
-     */
-    @JsonSetter
-    public void setUrl(final String url) {
-        this.url = url;
-    }
-
-    /**
-     * Set the URL to the license.
-     *
-     * @param url String with the URL to the license.
      * @return This object.
      */
-    public License withUrl(final String url) {
-        this.setUrl(url);
+    public License setUrl(final String url) {
+        this.url = url;
         return this;
     }
 
@@ -98,23 +65,23 @@ public class License extends Pio {
      *
      * @return String with the URL to the license.
      */
-    @JsonGetter
     public String getUrl() {
         return this.url;
     }
 
     @Override
-    public License withUnsupportedField(final String key, final Object value) {
-        super.withUnsupportedField(key, value);
+    @JsonSetter
+    public License addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
         return this;
     }
 
     /** Name of the license. */
-    protected String name;
+    private String name;
 
     /** Description of the license. */
-    protected String description;
+    private String description;
 
     /** URL to the license. */
-    protected String url;
+    private String url;
 }

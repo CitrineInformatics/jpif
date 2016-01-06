@@ -1,9 +1,6 @@
 package io.citrine.jpif.object.core.general;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
-
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 /**
  * Information about a person.
@@ -16,20 +13,10 @@ public class Person extends Pio {
      * Set the name of the person.
      *
      * @param name {@link Name} object for the person.
-     */
-    @JsonSetter
-    public void setName(final Name name) {
-        this.name = name;
-    }
-
-    /**
-     * Set the name of the person.
-     *
-     * @param name {@link Name} object of the person.
      * @return This object.
      */
-    public Person withName(final Name name) {
-        this.setName(name);
+    public Person setName(final Name name) {
+        this.name = name;
         return this;
     }
 
@@ -38,7 +25,6 @@ public class Person extends Pio {
      *
      * @return {@link Name} object for the person.
      */
-    @JsonGetter
     public Name getName() {
         return this.name;
     }
@@ -47,20 +33,10 @@ public class Person extends Pio {
      * Set the email address of the person.
      *
      * @param email String with the email address of the person.
-     */
-    @JsonSetter
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    /**
-     * Set the email address of the person.
-     *
-     * @param email String with the email address of the person.
      * @return This object.
      */
-    public Person withEmail(final String email) {
-        this.setEmail(email);
+    public Person setEmail(final String email) {
+        this.email = email;
         return this;
     }
 
@@ -69,7 +45,6 @@ public class Person extends Pio {
      *
      * @return String with the email address of the person.
      */
-    @JsonGetter
     public String getEmail() {
         return this.email;
     }
@@ -78,19 +53,9 @@ public class Person extends Pio {
      * Set the <a href="http://orcid.org">ORCID</a> identifier of the person.
      *
      * @param orcid String with the OCRID identifier of the person.
-     */
-    @JsonSetter
-    public void setOrcid(final String orcid) {
-        this.orcid = orcid;
-    }
-
-    /**
-     * Set the <a href="http://orcid.org">ORCID</a> identifier of the person.
-     *
-     * @param orcid String with the Orcid identifier of the person.
      * @return This object.
      */
-    public Person withOrcid(final String orcid) {
+    public Person setOrcid(final String orcid) {
         this.orcid = orcid;
         return this;
     }
@@ -100,23 +65,23 @@ public class Person extends Pio {
      *
      * @return String with the ORCID identifier of the person.
      */
-    @JsonGetter
     public String getOrcid() {
         return this.orcid;
     }
 
     @Override
-    public Person withUnsupportedField(final String key, final Object value) {
-        super.withUnsupportedField(key, value);
+    @JsonAnySetter
+    public Person addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
         return this;
     }
 
     /** Name of the person. */
-    protected Name name;
+    private Name name;
 
     /** Email address of the person. */
-    protected String email;
+    private String email;
 
     /** ORCID identifier of the person. */
-    protected String orcid;
+    private String orcid;
 }

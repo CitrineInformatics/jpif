@@ -20,24 +20,14 @@ public class Pio {
      *
      * @param key String with the key of the field.
      * @param value Object with the value of the field.
+     * @return This object.
      */
     @JsonAnySetter
-    public void putUnsupportedField(final String key, final Object value) {
+    public Pio addUnsupportedField(final String key, final Object value) {
         if (this.unsupportedFields == null) {
             this.unsupportedFields = new HashMap<>();
         }
         this.unsupportedFields.put(key, value);
-    }
-
-    /**
-     * Add an unsupported field to this object.
-     *
-     * @param key String with the key of the field.
-     * @param value Object with the value of the field.
-     * @return This object.
-     */
-    public Pio withUnsupportedField(final String key, final Object value) {
-        this.putUnsupportedField(key, value);
         return this;
     }
 
@@ -56,8 +46,7 @@ public class Pio {
      *
      * @return Number of unsupported fields.
      */
-    @JsonIgnore
-    public int getNumUnsupportedFields() {
+    public int numUnsupportedFields() {
         return (this.unsupportedFields == null) ? 0 : this.unsupportedFields.size();
     }
 
@@ -67,7 +56,7 @@ public class Pio {
      * @param key Key to check whether in unsupported fields.
      * @return True if the key exists in the unsupported fields.
      */
-    public boolean hasUnsupportedFieldKey(final String key) {
+    public boolean containsUnsupportedFieldKey(final String key) {
         return (this.unsupportedFields != null) && this.unsupportedFields.containsKey(key);
     }
 

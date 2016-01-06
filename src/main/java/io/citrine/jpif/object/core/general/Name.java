@@ -1,7 +1,6 @@
 package io.citrine.jpif.object.core.general;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 /**
  * Representation of the first and last name of a person.
@@ -14,20 +13,10 @@ public class Name extends Pio {
      * Set the given (first) name of a person.
      *
      * @param given String with the given name of the person.
-     */
-    @JsonSetter
-    public void setGiven(final String given) {
-        this.given = given;
-    }
-
-    /**
-     * Set the given (first) name of a person.
-     *
-     * @param given String with the given name of the person.
      * @return This object.
      */
-    public Name withGiven(final String given) {
-        this.setGiven(given);
+    public Name setGiven(final String given) {
+        this.given = given;
         return this;
     }
 
@@ -36,7 +25,6 @@ public class Name extends Pio {
      *
      * @return String with the given name of the person.
      */
-    @JsonGetter
     public String getGiven() {
         return this.given;
     }
@@ -45,20 +33,10 @@ public class Name extends Pio {
      * Set the family (last) name of a person.
      *
      * @param family String with the family name of the person.
-     */
-    @JsonSetter
-    public void setFamily(final String family) {
-        this.family = family;
-    }
-
-    /**
-     * Set the family (last) name of a person.
-     *
-     * @param family String with the family name of the person.
      * @return This object.
      */
-    public Name withFamily(final String family) {
-        this.setFamily(family);
+    public Name setFamily(final String family) {
+        this.family = family;
         return this;
     }
 
@@ -67,20 +45,20 @@ public class Name extends Pio {
      *
      * @return String with the family name of a person.
      */
-    @JsonGetter
     public String getFamily() {
         return this.family;
     }
 
     @Override
-    public Name withUnsupportedField(final String key, final Object value) {
-        super.withUnsupportedField(key, value);
+    @JsonAnySetter
+    public Name addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
         return this;
     }
 
     /** Given name of the person. */
-    protected String given;
+    private String given;
 
     /** Family name of the person. */
-    protected String family;
+    private String family;
 }

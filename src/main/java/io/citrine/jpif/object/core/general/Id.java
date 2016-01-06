@@ -1,7 +1,6 @@
 package io.citrine.jpif.object.core.general;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 /**
  * Information about a generic identifier.
@@ -14,20 +13,10 @@ public class Id extends Pio {
      * Set the name of the identifier.
      *
      * @param name String with the name of the identifier.
-     */
-    @JsonSetter
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    /**
-     * Set the name of the identifier.
-     *
-     * @param name String with the name of the identifier.
      * @return This object.
      */
-    public Id withName(final String name) {
-        this.setName(name);
+    public Id setName(final String name) {
+        this.name = name;
         return this;
     }
 
@@ -36,7 +25,6 @@ public class Id extends Pio {
      *
      * @return String with the name of the identifier.
      */
-    @JsonGetter
     public String getName() {
         return this.name;
     }
@@ -45,20 +33,10 @@ public class Id extends Pio {
      * Set the value of the identifier.
      *
      * @param value String with the value of the identifier.
-     */
-    @JsonSetter
-    public void setValue(final String value) {
-        this.value = value;
-    }
-
-    /**
-     * Set the value of the identifier.
-     *
-     * @param value String with the value of the identifier.
      * @return This object.
      */
-    public Id withValue(final String value) {
-        this.setValue(value);
+    public Id setValue(final String value) {
+        this.value = value;
         return this;
     }
 
@@ -67,20 +45,20 @@ public class Id extends Pio {
      *
      * @return String with the value of the identifier.
      */
-    @JsonGetter
     public String getValue() {
         return this.value;
     }
 
     @Override
-    public Id withUnsupportedField(final String key, final Object value) {
-        super.withUnsupportedField(key, value);
+    @JsonAnySetter
+    public Id addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
         return this;
     }
 
     /** Name of the identifier. */
-    protected String name;
+    private String name;
 
     /** Value of the identifier. */
-    protected String value;
+    private String value;
 }
