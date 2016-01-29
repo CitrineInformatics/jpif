@@ -1,9 +1,9 @@
-package io.citrine.jpif.object.core.general;
+package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +21,7 @@ public abstract class Rcl extends Pio {
      *
      * @param references List of {@link Reference} objects with the references for this item.
      */
-    @JsonSetter
+    @JsonSetter(value = "references")
     private void setReferences(final List<Reference> references) { // Private since only Jackson should use it
         this.references = references;
     }
@@ -79,7 +79,7 @@ public abstract class Rcl extends Pio {
      *
      * @return List of {@link Reference} objects with references for this item.
      */
-    @JsonGetter
+    @JsonGetter(value = "references")
     private List<Reference> getReferences() { // Private since only Jackson should use it
         return this.references;
     }
@@ -89,7 +89,8 @@ public abstract class Rcl extends Pio {
      *
      * @param contacts List of {@link Person} objects with the contacts for this item.
      */
-    @JsonSetter
+    @JsonSetter(value = "contacts")
+    @JsonDeserialize(using = Person.Deserializer.class)
     private void setContacts(final List<Person> contacts) { // Private since only Jackson should use it
         this.contacts = contacts;
     }
@@ -147,7 +148,7 @@ public abstract class Rcl extends Pio {
      *
      * @return List of {@link Person} objects with contacts for this item.
      */
-    @JsonGetter
+    @JsonGetter(value = "contacts")
     private List<Person> getContacts() { // Private since only Jackson should use it
         return this.contacts;
     }
@@ -157,7 +158,8 @@ public abstract class Rcl extends Pio {
      *
      * @param licenses List of {@link License} objects with licenses for this item.
      */
-    @JsonSetter
+    @JsonSetter(value = "licenses")
+    @JsonDeserialize(using = License.Deserializer.class)
     private void setLicenses(final List<License> licenses) { // Private since only Jackson should use it
         this.licenses = licenses;
     }
@@ -216,16 +218,9 @@ public abstract class Rcl extends Pio {
      *
      * @return List of {@link License} objects with licenses for this item.
      */
-    @JsonGetter
+    @JsonGetter(value = "licenses")
     private List<License> getLicenses() { // Private since only Jackson should use it
         return this.licenses;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Rcl addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
     }
 
     /** List of references for the item. */

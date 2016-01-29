@@ -23,8 +23,16 @@
         <processorPath useClasspath="true" />
         <module name="pif" />
       </profile>
+      <profile default="false" name="Annotation profile for jpif" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="jpif" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jpif" target="1.8" />
       <module name="pif" target="1.8" />
     </bytecodeTargetLevel>
   </component>

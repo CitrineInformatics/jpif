@@ -1,8 +1,12 @@
-package io.citrine.jpif.object.core.general;
+package io.citrine.jpif.obj.common;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -80,6 +84,39 @@ public class Pio {
         return (this.unsupportedFields == null) ? null : this.unsupportedFields.get(key);
     }
 
+    /**
+     * Remove a single unsupported field by its key value (if present).
+     *
+     * @param key String with the key of the unsupported field to remove.
+     * @return This object.
+     */
+    public Pio removeUnsupportedField(final String key) {
+        if (this.unsupportedFields != null) {
+            this.unsupportedFields.remove(key);
+        }
+        return this;
+    }
+
+    /**
+     * Remove all unsupported fields.
+     *
+     * @return This object.
+     */
+    public Pio clearUnsupportedFields() {
+        if (this.unsupportedFields != null) {
+            this.unsupportedFields.clear();
+        }
+        return this;
+    }
+
     /** Map of unsupported field names to their values. */
     private Map<String, Object> unsupportedFields;
+
+    /** Object mapper for serialization and deserialization of Pio-derived objects. */
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    static {
+        OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
+                .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    }
 }
