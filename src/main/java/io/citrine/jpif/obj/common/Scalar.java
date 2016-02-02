@@ -1,7 +1,6 @@
 package io.citrine.jpif.obj.common;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -26,6 +25,7 @@ public class Scalar extends Pio {
      * Set the exact value.
      *
      * @param value String with the exact value.
+     * @return This object.
      */
     @JsonSetter(value = "value")
     public Scalar setValue(final String value) {
@@ -69,6 +69,7 @@ public class Scalar extends Pio {
      * Set whether the minimum value is inclusive.
      *
      * @param inclusiveMinimum True if the minimum value is inclusive.
+     * @return This object.
      */
     @JsonSetter(value = "inclusiveMinimum")
     public Scalar setInclusiveMinimum(final Boolean inclusiveMinimum) {

@@ -82,6 +82,19 @@ public class Pages extends Pio {
     }
 
     /**
+     * Generate a {@link Pages} object from an input integer. This function assumes that the number represents the
+     * first page.
+     *
+     * @param input Integer representing the first page.
+     * @return New {@link Pages} object with the input number as the first page.
+     */
+    public static Pages valueOf(final Integer input) {
+        return (input == null)
+                ? null
+                : new Pages().setStart(input.toString());
+    }
+
+    /**
      * Generate a {@link Pages} object from an input string. This function tries to break the input by spaces or
      * hyphens to determine start and end pages. If only a single page is found, it is assumed as the start page.
      *
@@ -135,6 +148,8 @@ public class Pages extends Pio {
                 throws IOException {
             final JsonToken jsonToken = jsonParser.getCurrentToken();
             switch (jsonToken) {
+                case VALUE_NUMBER_INT:
+                    return Pages.valueOf(jsonParser.getIntValue());
                 case VALUE_STRING:
                     return Pages.valueOf(jsonParser.getValueAsString());
                 case START_OBJECT:

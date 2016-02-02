@@ -1,8 +1,10 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +23,7 @@ public class Reference extends Pio {
      * @param doi String with DOI of the published work.
      * @return This object.
      */
+    @JsonSetter(value = "doi")
     public Reference setDoi(final String doi) {
         this.doi = doi;
         return this;
@@ -31,6 +34,7 @@ public class Reference extends Pio {
      *
      * @return String with the DOI of the published work.
      */
+    @JsonGetter(value = "doi")
     public String getDoi() {
         return this.doi;
     }
@@ -41,6 +45,7 @@ public class Reference extends Pio {
      * @param isbn String with the ISBN of the published work.
      * @return This object.
      */
+    @JsonSetter(value = "isbn")
     public Reference setIsbn(final String isbn) {
         this.isbn = isbn;
         return this;
@@ -51,6 +56,7 @@ public class Reference extends Pio {
      *
      * @return String with the ISBN of the published work.
      */
+    @JsonGetter(value = "isbn")
     public String getIsbn() {
         return this.isbn;
     }
@@ -61,6 +67,7 @@ public class Reference extends Pio {
      * @param issn String with the ISSN of the published work.
      * @return This object.
      */
+    @JsonSetter(value = "issn")
     public Reference setIssn(final String issn) {
         this.issn = issn;
         return this;
@@ -71,6 +78,7 @@ public class Reference extends Pio {
      *
      * @return String with the ISSN of the published work.
      */
+    @JsonGetter(value = "issn")
     public String getIssn() {
         return this.issn;
     }
@@ -81,6 +89,7 @@ public class Reference extends Pio {
      * @param url String with the URL to the published work.
      * @return This object.
      */
+    @JsonSetter(value = "url")
     public Reference setUrl(final String url) {
         this.url = url;
         return this;
@@ -91,6 +100,7 @@ public class Reference extends Pio {
      *
      * @return String with the URL to the published work.
      */
+    @JsonGetter(value = "url")
     public String getUrl() {
         return this.url;
     }
@@ -101,6 +111,7 @@ public class Reference extends Pio {
      * @param title String with the title of the published work.
      * @return This object.
      */
+    @JsonSetter(value = "title")
     public Reference setTitle(final String title) {
         this.title = title;
         return this;
@@ -111,6 +122,7 @@ public class Reference extends Pio {
      *
      * @return String with the title of the published work.
      */
+    @JsonGetter(value = "title")
     public String getTitle() {
         return this.title;
     }
@@ -121,6 +133,7 @@ public class Reference extends Pio {
      * @param publisher String with the publisher of the work.
      * @return This object.
      */
+    @JsonSetter(value = "publisher")
     public Reference setPublisher(final String publisher) {
         this.publisher = publisher;
         return this;
@@ -131,6 +144,7 @@ public class Reference extends Pio {
      *
      * @return String with the publisher of the work.
      */
+    @JsonGetter(value = "publisher")
     public String getPublisher() {
         return this.publisher;
     }
@@ -141,6 +155,7 @@ public class Reference extends Pio {
      * @param journal String with the journal in which the work was published.
      * @return This object.
      */
+    @JsonSetter(value = "journal")
     public Reference setJournal(final String journal) {
         this.journal = journal;
         return this;
@@ -151,6 +166,7 @@ public class Reference extends Pio {
      *
      * @return String with the journal in which the work was published.
      */
+    @JsonGetter(value = "journal")
     public String getJournal() {
         return this.journal;
     }
@@ -161,6 +177,7 @@ public class Reference extends Pio {
      * @param volume String with the volume in which the work was published.
      * @return This object.
      */
+    @JsonSetter(value = "volume")
     public Reference setVolume(final String volume) {
         this.volume = volume;
         return this;
@@ -171,6 +188,7 @@ public class Reference extends Pio {
      *
      * @return String with the volume in which the work was published.
      */
+    @JsonGetter(value = "volume")
     public String getVolume() {
         return this.volume;
     }
@@ -181,6 +199,7 @@ public class Reference extends Pio {
      * @param issue String with the issue in which the work was published.
      * @return This object.
      */
+    @JsonSetter(value = "issue")
     public Reference setIssue(final String issue) {
         this.issue = issue;
         return this;
@@ -191,6 +210,7 @@ public class Reference extends Pio {
      *
      * @return String with the issue in which the work was published.
      */
+    @JsonGetter(value = "issue")
     public String getIssue() {
         return this.issue;
     }
@@ -201,6 +221,7 @@ public class Reference extends Pio {
      * @param year String with the year in which the work was published.
      * @return This object.
      */
+    @JsonSetter(value = "year")
     public Reference setYear(final String year) {
         this.year = year;
         return this;
@@ -211,6 +232,7 @@ public class Reference extends Pio {
      *
      * @return String with the year in which the work was published.
      */
+    @JsonGetter(value = "year")
     public String getYear() {
         return this.year;
     }
@@ -221,6 +243,8 @@ public class Reference extends Pio {
      * @param pages {@link Pages} object with the starting and ending pages for the published work.
      * @return This object.
      */
+    @JsonSetter(value = "pages")
+    @JsonDeserialize(using = Pages.Deserializer.class)
     public Reference setPages(final Pages pages) {
         this.pages = pages;
         return this;
@@ -231,6 +255,7 @@ public class Reference extends Pio {
      *
      * @return {@link Pages} object with the starting and ending pages for the published work.
      */
+    @JsonGetter(value = "pages")
     public Pages getPages() {
         return this.pages;
     }
@@ -240,7 +265,8 @@ public class Reference extends Pio {
      *
      * @param authors List of {@link Name} objects with the authors.
      */
-    @JsonSetter
+    @JsonSetter(value = "authors")
+    @JsonDeserialize(contentUsing = Name.Deserializer.class)
     private void setAuthors(final List<Name> authors) { // Private since only Jackson should use it
         this.authors = authors;
     }
@@ -297,7 +323,7 @@ public class Reference extends Pio {
      *
      * @return List of {@link Name} objects with the authors.
      */
-    @JsonGetter
+    @JsonGetter(value = "authors")
     private List<Name> getAuthors() { // Private since only Jackson should use it
         return this.authors;
     }
@@ -307,7 +333,8 @@ public class Reference extends Pio {
      *
      * @param editors List of {@link Name} objects with the editors.
      */
-    @JsonSetter
+    @JsonSetter(value = "editors")
+    @JsonDeserialize(contentUsing = Name.Deserializer.class)
     private void setEditors(final List<Name> editors) { // Private since only Jackson should use it
         this.editors = editors;
     }
@@ -331,7 +358,6 @@ public class Reference extends Pio {
      *
      * @return Number of editors.
      */
-    @JsonIgnore
     public int numEditors() {
         return (this.editors == null) ? 0 : this.editors.size();
     }
@@ -365,7 +391,7 @@ public class Reference extends Pio {
      *
      * @return List of {@link Name} objects with the editors.
      */
-    @JsonGetter
+    @JsonGetter(value = "editors")
     private List<Name> getEditors() { // Private since only Jackson should use it
         return this.editors;
     }
@@ -375,7 +401,7 @@ public class Reference extends Pio {
      *
      * @param references List of {@link Reference} objects for the references cited by this work.
      */
-    @JsonSetter
+    @JsonSetter(value = "references")
     private void setReferences(final List<Reference> references) { // Private since only Jackson should use it
         this.references = references;
     }
@@ -399,8 +425,7 @@ public class Reference extends Pio {
      *
      * @return Number of references cited by this work.
      */
-    @JsonIgnore
-    public int getNumReferences() {
+    public int numReferences() {
         return (this.references == null) ? 0 : this.references.size();
     }
 
@@ -415,7 +440,7 @@ public class Reference extends Pio {
     public Reference getReference(final int index) {
         if (this.references == null) {
             throw new IndexOutOfBoundsException("Attempting to access reference " + index + " of "
-                    + this.getNumReferences());
+                    + this.numReferences());
         }
         return this.references.get(index);
     }
@@ -434,9 +459,28 @@ public class Reference extends Pio {
      *
      * @return List of {@link Reference} objects for references cited by this work.
      */
-    @JsonGetter
+    @JsonGetter(value = "references")
     private List<Reference> getReferences() { // Private since only Jackson should use it
         return this.references;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Reference addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
+    }
+
+    @Override
+    public Reference removeUnsupportedField(final String key) {
+        super.removeUnsupportedField(key);
+        return this;
+    }
+
+    @Override
+    public Reference clearUnsupportedFields() {
+        super.clearUnsupportedFields();
+        return this;
     }
 
     /** DOI of the published work. */
