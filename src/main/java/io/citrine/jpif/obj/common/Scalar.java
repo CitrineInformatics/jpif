@@ -83,7 +83,7 @@ public class Scalar extends Pio {
      * @return True if the value in inclusive.
      */
     @JsonGetter(value = "inclusiveMinimum")
-    private Boolean getInclusiveMinimum() { // Private since only Jackson should use it
+    protected Boolean getInclusiveMinimum() { // Private since only Jackson should use it
         return this.inclusiveMinimum;
     }
 
@@ -137,7 +137,7 @@ public class Scalar extends Pio {
      * @return True if the value of the maximum is inclusive.
      */
     @JsonGetter(value = "inclusiveMaximum")
-    private Boolean getInclusiveMaximum() { // Private since only Jackson should use it
+    protected Boolean getInclusiveMaximum() { // Private since only Jackson should use it
         return this.inclusiveMaximum;
     }
 

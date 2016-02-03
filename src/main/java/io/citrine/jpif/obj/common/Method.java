@@ -44,7 +44,7 @@ public class Method extends Pio {
      * @param instruments List of {@link Instrument} objects for the method.
      */
     @JsonSetter(value = "instruments")
-    private void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
+    protected void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
         this.instruments = instruments;
     }
 
@@ -102,7 +102,7 @@ public class Method extends Pio {
      * @return List of {@link Instrument} objects with instruments used in the method.
      */
     @JsonGetter(value = "instruments")
-    private List<Instrument> getInstruments() { // Private since only Jackson should use it
+    protected List<Instrument> getInstruments() { // Private since only Jackson should use it
         return this.instruments;
     }
 
@@ -112,7 +112,7 @@ public class Method extends Pio {
      * @param software List of {@link Software} objects for software packages used in the method.
      */
     @JsonSetter(value = "software")
-    private void setSoftware(final List<Software> software) { // Private since only Jackson should use it
+    protected void setSoftware(final List<Software> software) { // Private since only Jackson should use it
         this.software = software;
     }
 
@@ -170,7 +170,7 @@ public class Method extends Pio {
      * @return List of {@link Software} objects used in the method.
      */
     @JsonGetter(value = "software")
-    private List<Software> getSoftware() { // Private since only Jackson should use it
+    protected List<Software> getSoftware() { // Private since only Jackson should use it
         return this.software;
     }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,7 +40,7 @@ public class Pio {
      * @return Map of strings to objects with the unsupported fields.
      */
     @JsonAnyGetter
-    private Map<String, Object> getUnsupportedFields() { // Private since only Jackson should use it
+    protected Map<String, Object> getUnsupportedFields() { // Private since only Jackson should use it
         return this.unsupportedFields;
     }
 

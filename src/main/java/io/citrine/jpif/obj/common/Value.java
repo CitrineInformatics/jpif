@@ -52,7 +52,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "scalars")
     @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
-    private void setScalars(final List<Scalar> scalars) { // Private since only Jackson should use it
+    protected void setScalars(final List<Scalar> scalars) { // Private since only Jackson should use it
         this.scalars = scalars;
     }
 
@@ -109,7 +109,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} objects stored in this value.
      */
     @JsonGetter(value = "scalars")
-    private List<Scalar> getScalars() { // Private since only Jackson should use it
+    protected List<Scalar> getScalars() { // Private since only Jackson should use it
         return this.scalars;
     }
 
@@ -120,7 +120,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "vectors")
     @JsonDeserialize(using = VectorsDeserializer.class)
-    private void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
+    protected void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
         this.vectors = vectors;
     }
 
@@ -177,7 +177,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} arrays with the vectors stored by this value.
      */
     @JsonGetter(value = "vectors")
-    private List<Scalar[]> getVectors() { // Private since only Jackson should use it
+    protected List<Scalar[]> getVectors() { // Private since only Jackson should use it
         return this.vectors;
     }
 
@@ -188,7 +188,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "matrices")
     @JsonDeserialize(using = MatricesDeserializer.class)
-    private void setMatrices(final List<Scalar[][]> matrices) { // Private since only Jackson should use it
+    protected void setMatrices(final List<Scalar[][]> matrices) { // Private since only Jackson should use it
         this.matrices = matrices;
     }
 
@@ -246,7 +246,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} arrays of arrays, each being a single matrix stored by this value.
      */
     @JsonGetter(value = "matrices")
-    private List<Scalar[][]> getMatrices() { // Private since only Jackson should use it
+    protected List<Scalar[][]> getMatrices() { // Private since only Jackson should use it
         return this.matrices;
     }
 

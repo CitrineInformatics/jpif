@@ -267,7 +267,7 @@ public class Reference extends Pio {
      */
     @JsonSetter(value = "authors")
     @JsonDeserialize(contentUsing = Name.Deserializer.class)
-    private void setAuthors(final List<Name> authors) { // Private since only Jackson should use it
+    protected void setAuthors(final List<Name> authors) { // Private since only Jackson should use it
         this.authors = authors;
     }
 
@@ -324,7 +324,7 @@ public class Reference extends Pio {
      * @return List of {@link Name} objects with the authors.
      */
     @JsonGetter(value = "authors")
-    private List<Name> getAuthors() { // Private since only Jackson should use it
+    protected List<Name> getAuthors() { // Private since only Jackson should use it
         return this.authors;
     }
 
@@ -335,7 +335,7 @@ public class Reference extends Pio {
      */
     @JsonSetter(value = "editors")
     @JsonDeserialize(contentUsing = Name.Deserializer.class)
-    private void setEditors(final List<Name> editors) { // Private since only Jackson should use it
+    protected void setEditors(final List<Name> editors) { // Private since only Jackson should use it
         this.editors = editors;
     }
 
@@ -392,7 +392,7 @@ public class Reference extends Pio {
      * @return List of {@link Name} objects with the editors.
      */
     @JsonGetter(value = "editors")
-    private List<Name> getEditors() { // Private since only Jackson should use it
+    protected List<Name> getEditors() { // Private since only Jackson should use it
         return this.editors;
     }
 
@@ -402,7 +402,7 @@ public class Reference extends Pio {
      * @param references List of {@link Reference} objects for the references cited by this work.
      */
     @JsonSetter(value = "references")
-    private void setReferences(final List<Reference> references) { // Private since only Jackson should use it
+    protected void setReferences(final List<Reference> references) { // Private since only Jackson should use it
         this.references = references;
     }
 
@@ -460,7 +460,7 @@ public class Reference extends Pio {
      * @return List of {@link Reference} objects for references cited by this work.
      */
     @JsonGetter(value = "references")
-    private List<Reference> getReferences() { // Private since only Jackson should use it
+    protected List<Reference> getReferences() { // Private since only Jackson should use it
         return this.references;
     }
 

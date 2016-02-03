@@ -44,7 +44,7 @@ public class ProcessStep extends Pio {
      * @param details List of {@link Value} objects describing this process step.
      */
     @JsonSetter(value = "details")
-    private void setDetails(final List<Value> details) { // Private since only Jackson should use it
+    protected void setDetails(final List<Value> details) { // Private since only Jackson should use it
         this.details = details;
     }
 
@@ -102,7 +102,7 @@ public class ProcessStep extends Pio {
      * @return List of {@link Value} objects with details of the process step.
      */
     @JsonGetter(value = "details")
-    private List<Value> getDetails() { // Private since only Jackson should use it
+    protected List<Value> getDetails() { // Private since only Jackson should use it
         return this.details;
     }
 

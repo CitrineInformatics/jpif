@@ -30,7 +30,7 @@ public class Property extends Value {
      * @param conditions List of {@link Value} objects with the conditions for this property.
      */
     @JsonSetter(value = "conditions")
-    private void setConditions(final List<Value> conditions) { // Private since only Jackson should use it
+    protected void setConditions(final List<Value> conditions) { // Private since only Jackson should use it
         this.conditions = conditions;
     }
 
@@ -88,7 +88,7 @@ public class Property extends Value {
      * @return List of {@link Value} objects with conditions for this property.
      */
     @JsonGetter(value = "conditions")
-    private List<Value> getConditions() { // Private since only Jackson should use it
+    protected List<Value> getConditions() { // Private since only Jackson should use it
         return this.conditions;
     }
 
@@ -142,7 +142,7 @@ public class Property extends Value {
      * @param references List of {@link Reference} objects with the references for this item.
      */
     @JsonSetter(value = "references")
-    private void setReferences(final List<Reference> references) { // Private since only Jackson should use it
+    protected void setReferences(final List<Reference> references) { // Private since only Jackson should use it
         this.rcl.setReferences(references);
     }
 
@@ -193,7 +193,7 @@ public class Property extends Value {
      * @return List of {@link Reference} objects with references for this item.
      */
     @JsonGetter(value = "references")
-    private List<Reference> getReferences() { // Private since only Jackson should use it
+    protected List<Reference> getReferences() { // Private since only Jackson should use it
         return this.rcl.getReferences();
     }
 
@@ -204,7 +204,7 @@ public class Property extends Value {
      */
     @JsonSetter(value = "contacts")
     @JsonDeserialize(using = Person.Deserializer.class)
-    private void setContacts(final List<Person> contacts) { // Private since only Jackson should use it
+    protected void setContacts(final List<Person> contacts) { // Private since only Jackson should use it
         this.rcl.setContacts(contacts);
     }
 
@@ -266,7 +266,7 @@ public class Property extends Value {
      */
     @JsonSetter(value = "licenses")
     @JsonDeserialize(using = License.Deserializer.class)
-    private void setLicenses(final List<License> licenses) { // Private since only Jackson should use it
+    protected void setLicenses(final List<License> licenses) { // Private since only Jackson should use it
         this.rcl.setLicenses(licenses);
     }
 
@@ -318,7 +318,7 @@ public class Property extends Value {
      * @return List of {@link License} objects with licenses for this item.
      */
     @JsonGetter(value = "licenses")
-    private List<License> getLicenses() { // Private since only Jackson should use it
+    protected List<License> getLicenses() { // Private since only Jackson should use it
         return this.rcl.getLicenses();
     }
 
