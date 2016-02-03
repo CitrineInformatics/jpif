@@ -224,13 +224,13 @@ public class Scalar extends Pio {
      */
     protected static Scalar decomposeString(final String input) {
         Scalar res;
-        if (((res = asPlusMinus(input)) != null) ||
-                ((res = asParentheses(input)) != null) ||
-                ((res = asBoundedRange(input)) != null) ||
-                ((res = asMinimum(input)) != null) ||
-                ((res = asInclusiveMinimum(input)) != null) ||
-                ((res = asMaximum(input)) != null) ||
-                ((res = asInclusiveMaximum(input)) != null)) {
+        if (((res = asPlusMinus(input)) != null)
+                || ((res = asParentheses(input)) != null)
+                || ((res = asBoundedRange(input)) != null)
+                || ((res = asMinimum(input)) != null)
+                || ((res = asInclusiveMinimum(input)) != null)
+                || ((res = asMaximum(input)) != null)
+                || ((res = asInclusiveMaximum(input)) != null)) {
             return res;
         }
         return new Scalar().setValue(input);

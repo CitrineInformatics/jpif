@@ -32,8 +32,7 @@ import java.util.List;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = System.class),
         @JsonSubTypes.Type(value = ChemicalSystem.class),
-        @JsonSubTypes.Type(value = Alloy.class)
-})
+        @JsonSubTypes.Type(value = Alloy.class)})
 public class System extends Rcl {
 
     /**
@@ -288,15 +287,6 @@ public class System extends Rcl {
     }
 
     /**
-     * Get an {@link Iterable} object to iterate over preparation steps of this system.
-     *
-     * @return {@link Iterable} object for iterating over preparation steps of this system.
-     */
-    public Iterable<ProcessStep> preparation() {
-        return (this.preparation == null) ? Collections.emptyList() : this.preparation;
-    }
-
-    /**
      * Get the list of preparation steps for this system.
      *
      * @return List of {@link ProcessStep} objects with preparation steps for this system.
@@ -304,6 +294,15 @@ public class System extends Rcl {
     @JsonGetter(value = "preparation")
     protected List<ProcessStep> getPreparation() { // Private since only Jackson should use it
         return this.preparation;
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over preparation steps of this system.
+     *
+     * @return {@link Iterable} object for iterating over preparation steps of this system.
+     */
+    public Iterable<ProcessStep> preparation() {
+        return (this.preparation == null) ? Collections.emptyList() : this.preparation;
     }
 
     /**

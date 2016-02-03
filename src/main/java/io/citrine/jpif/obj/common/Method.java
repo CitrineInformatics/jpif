@@ -156,15 +156,6 @@ public class Method extends Pio {
     }
 
     /**
-     * Get an {@link Iterable} object for iterating over the list of software packages.
-     *
-     * @return {@link Iterable} object to iterate over software packages.
-     */
-    public Iterable<Software> software() {
-        return (this.software == null) ? Collections.emptyList() : this.software;
-    }
-
-    /**
      * Get the list of software packages used in the method.
      *
      * @return List of {@link Software} objects used in the method.
@@ -172,6 +163,15 @@ public class Method extends Pio {
     @JsonGetter(value = "software")
     protected List<Software> getSoftware() { // Private since only Jackson should use it
         return this.software;
+    }
+
+    /**
+     * Get an {@link Iterable} object for iterating over the list of software packages.
+     *
+     * @return {@link Iterable} object to iterate over software packages.
+     */
+    public Iterable<Software> software() {
+        return (this.software == null) ? Collections.emptyList() : this.software;
     }
 
     @Override

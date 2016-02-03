@@ -98,15 +98,6 @@ public class ChemicalSystem extends System {
     }
 
     /**
-     * Get an {@link Iterable} object to iterate over values in the composition vector of this system.
-     *
-     * @return {@link Iterable} object for iterating over values in the composition vector of this system.
-     */
-    public Iterable<Composition> composition() {
-        return (this.composition == null) ? Collections.emptyList() : this.composition;
-    }
-
-    /**
      * Get the list of composition values for this system.
      *
      * @return List of {@link Composition} objects with composition for this system.
@@ -114,6 +105,15 @@ public class ChemicalSystem extends System {
     @JsonGetter(value = "composition")
     protected List<Composition> getComposition() { // Private since only Jackson should use it
         return this.composition;
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over values in the composition vector of this system.
+     *
+     * @return {@link Iterable} object for iterating over values in the composition vector of this system.
+     */
+    public Iterable<Composition> composition() {
+        return (this.composition == null) ? Collections.emptyList() : this.composition;
     }
 
     @Override

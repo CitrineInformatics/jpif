@@ -16,8 +16,8 @@ import java.util.Map;
 
 /**
  * Information about a property and conditions under which it exists.
- * <p>
- * Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that adds
+ *
+ * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that adds
  * support for reference, contact, and license information.
  *
  * @author Kyle Michel
@@ -382,7 +382,7 @@ public class Property extends Value {
     /** Type of the data represented by the property. */
     private DataType dataType;
 
-    /** Encapsulated {@link Rcl} object. */
+    /** Encapsulated Rcl object. */
     private final Rcl rcl = new Rcl();
 
     /**
@@ -395,7 +395,7 @@ public class Property extends Value {
         /** Computational data type. */
         COMPUTATIONAL(1, "COMPUTATIONAL", "CALCULATED"),
 
-        /** Experimental data type */
+        /** Experimental data type. */
         EXPERIMENTAL(2, "EXPERIMENTAL");
 
         /**
