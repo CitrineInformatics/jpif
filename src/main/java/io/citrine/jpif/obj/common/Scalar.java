@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -457,7 +458,7 @@ public class Scalar extends Pio {
                 case VALUE_NUMBER_FLOAT:
                     return Scalar.valueOf(jsonParser.getNumberValue());
                 case START_OBJECT:
-                    return OBJECT_MAPPER.readValue(jsonParser, Scalar.class);
+                    return PifObjectMapper.getInstance().readValue(jsonParser, Scalar.class);
                 default:
                     throw deserializationContext.mappingException(Scalar.class, jsonToken);
             }

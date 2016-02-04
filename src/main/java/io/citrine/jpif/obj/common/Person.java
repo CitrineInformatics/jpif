@@ -8,6 +8,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import io.citrine.jpif.util.Orcid;
+import io.citrine.jpif.util.PifObjectMapper;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
@@ -185,7 +186,7 @@ public class Person extends Pio {
                 case VALUE_STRING:
                     return Person.valueOf(jsonParser.getValueAsString());
                 case START_OBJECT:
-                    return OBJECT_MAPPER.readValue(jsonParser, Person.class);
+                    return PifObjectMapper.getInstance().readValue(jsonParser, Person.class);
                 default:
                     throw deserializationContext.mappingException(Person.class, jsonToken);
             }

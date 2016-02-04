@@ -3,9 +3,6 @@ package io.citrine.jpif.obj.common;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -110,12 +107,4 @@ public class Pio {
 
     /** Map of unsupported field names to their values. */
     private Map<String, Object> unsupportedFields;
-
-    /** Object mapper for serialization and deserialization of Pio-derived objects. */
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
-    static {
-        OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
-                .configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-    }
 }

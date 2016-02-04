@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
 
@@ -131,7 +132,7 @@ public class Id extends Pio {
                 case VALUE_NUMBER_FLOAT:
                     return Id.valueOf(jsonParser.getNumberValue());
                 case START_OBJECT:
-                    return OBJECT_MAPPER.readValue(jsonParser, Id.class);
+                    return PifObjectMapper.getInstance().readValue(jsonParser, Id.class);
                 default:
                     throw deserializationContext.mappingException(Id.class, jsonToken);
             }

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -181,7 +182,7 @@ public class License extends Pio {
                 case VALUE_STRING:
                     return License.valueOf(jsonParser.getValueAsString());
                 case START_OBJECT:
-                    return OBJECT_MAPPER.readValue(jsonParser, License.class);
+                    return PifObjectMapper.getInstance().readValue(jsonParser, License.class);
                 default:
                     throw deserializationContext.mappingException(License.class, jsonToken);
             }

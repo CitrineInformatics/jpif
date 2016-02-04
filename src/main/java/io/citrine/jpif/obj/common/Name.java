@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -326,7 +327,7 @@ public class Name extends Pio {
                 case VALUE_STRING:
                     return Name.valueOf(jsonParser.getValueAsString());
                 case START_OBJECT:
-                    return OBJECT_MAPPER.readValue(jsonParser, Name.class);
+                    return PifObjectMapper.getInstance().readValue(jsonParser, Name.class);
                 default:
                     throw deserializationContext.mappingException(Name.class, jsonToken);
             }
