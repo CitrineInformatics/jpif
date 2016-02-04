@@ -71,6 +71,28 @@ public class Value extends Pio {
     }
 
     /**
+     * Add a string to this value. This function uses {@link Scalar#valueOf(String)} to convert the string to a
+     * {@link Scalar} object.
+     *
+     * @param scalar String to add as a scalar.
+     * @return This object.
+     */
+    public Value addScalar(final String scalar) {
+        return addScalar(Scalar.valueOf(scalar));
+    }
+
+    /**
+     * Add a number to this value. This function uses {@link Scalar#valueOf(Number)} to convert the number to a
+     * {@link Scalar} object.
+     *
+     * @param scalar Number to add as a scalar.
+     * @return This object.
+     */
+    public Value addScalar(final Number scalar) {
+        return addScalar(Scalar.valueOf(scalar));
+    }
+
+    /**
      * Get the number of scalars stored in this value.
      *
      * @return Number of scalars stored in this value.
@@ -139,6 +161,36 @@ public class Value extends Pio {
     }
 
     /**
+     * Add a string vector to this value. This function uses {@link Scalar#valueOf(String)} to convert each string to a
+     * {@link Scalar} object.
+     *
+     * @param vector String array with the vector to add.
+     * @return This object.
+     */
+    public Value addVector(final String[] vector) {
+        final Scalar[] scalarVector = new Scalar[vector.length];
+        for (int i = 0; i < vector.length; ++i) {
+            scalarVector[i] = Scalar.valueOf(vector[i]);
+        }
+        return addVector(scalarVector);
+    }
+
+    /**
+     * Add a numeric vector to this value. This function uses {@link Scalar#valueOf(Number)} to convert each number to a
+     * {@link Scalar} object.
+     *
+     * @param vector Numeric array with the vector to add.
+     * @return This object.
+     */
+    public Value addVector(final Number[] vector) {
+        final Scalar[] scalarVector = new Scalar[vector.length];
+        for (int i = 0; i < vector.length; ++i) {
+            scalarVector[i] = Scalar.valueOf(vector[i]);
+        }
+        return addVector(scalarVector);
+    }
+
+    /**
      * Get the number of vectors stored by this value.
      *
      * @return Number of vectors stored by this value.
@@ -204,6 +256,42 @@ public class Value extends Pio {
         }
         this.matrices.add(matrix);
         return this;
+    }
+
+    /**
+     * Add a string matrix to this value. This function uses {@link Scalar#valueOf(String)} to convert each string to a
+     * {@link Scalar} object.
+     *
+     * @param matrix String array of arrays with the matrix to add.
+     * @return This object.
+     */
+    public Value addMatrix(final String[][] matrix) {
+        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
+        for (int i = 0; i < matrix.length; ++i) {
+            scalarMatrix[i] = new Scalar[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; ++j) {
+                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
+            }
+        }
+        return addMatrix(scalarMatrix);
+    }
+
+    /**
+     * Add a numeric matrix to this value. This function uses {@link Scalar#valueOf(Number)} to convert each number to a
+     * {@link Scalar} object.
+     *
+     * @param matrix Numeric array of arrays with the matrix to add.
+     * @return This object.
+     */
+    public Value addMatrix(final Number[][] matrix) {
+        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
+        for (int i = 0; i < matrix.length; ++i) {
+            scalarMatrix[i] = new Scalar[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; ++j) {
+                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
+            }
+        }
+        return addMatrix(scalarMatrix);
     }
 
     /**

@@ -51,7 +51,7 @@ public class PifObjectStream {
 
     /**
      * Create an object stream from an {@link InputStream} object. This function assumes UTF-8 encoding. Use
-     * {@link #PifObjectStream(InputStream, String)} to change the encoding to use.
+     * {@link #PifObjectStream(InputStream, String)} to change the character set.
      *
      * <p>The input stream will be closed when the {@link #close()} method is called on this object.
      *

@@ -336,13 +336,49 @@ public class Property extends Value {
     }
 
     @Override
+    public Property addScalar(final String scalar) {
+        super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final Number scalar) {
+        super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
     public Property addVector(final Scalar[] vector) {
         super.addVector(vector);
         return this;
     }
 
     @Override
+    public Property addVector(final String[] vector) {
+        super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final Number[] vector) {
+        super.addVector(vector);
+        return this;
+    }
+
+    @Override
     public Property addMatrix(final Scalar[][] matrix) {
+        super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final String[][] matrix) {
+        super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final Number[][] matrix) {
         super.addMatrix(matrix);
         return this;
     }
