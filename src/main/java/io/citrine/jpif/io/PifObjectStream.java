@@ -18,6 +18,9 @@ import java.nio.charset.Charset;
 /**
  * Class to stream PIF objects from some source that is formatted in the PIF schema.
  *
+ * <p>Usage: Create an instance of this class using one of the constructors. Use one of {@link #getNextSystem()} or
+ * similar method to iterate through the objects in the data source. Call {@link #close()} when finished.
+ *
  * @author Kyle Michel
  */
 public class PifObjectStream {
@@ -30,7 +33,7 @@ public class PifObjectStream {
      */
     public PifObjectStream(final String string) throws IOException {
         this.jsonParser = new JsonFactory().createParser(string);
-
+        advanceToFirstObject();
     }
 
     /**
@@ -43,6 +46,7 @@ public class PifObjectStream {
      */
     public PifObjectStream(final Reader reader) throws IOException {
         this.jsonParser = new JsonFactory().createParser(reader);
+        advanceToFirstObject();
     }
 
     /**
@@ -69,6 +73,7 @@ public class PifObjectStream {
      */
     public PifObjectStream(final InputStream inputStream, final String charsetName) throws IOException {
         this.jsonParser = new JsonFactory().createParser(new InputStreamReader(inputStream, charsetName));
+        advanceToFirstObject();
     }
 
     /**
