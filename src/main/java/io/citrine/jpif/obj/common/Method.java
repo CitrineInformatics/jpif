@@ -63,6 +63,16 @@ public class Method extends Pio {
     }
 
     /**
+     * Remove an instrument from the method.
+     *
+     * @param instrument {@link Instrument} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeInstrument(final Instrument instrument) {
+        return (this.instruments != null) && this.instruments.remove(instrument);
+    }
+
+    /**
      * Get the number of instruments attached to the method.
      *
      * @return Number of instruments for the method.
@@ -128,6 +138,16 @@ public class Method extends Pio {
         }
         this.software.add(software);
         return this;
+    }
+
+    /**
+     * Remove a software property from the method.
+     *
+     * @param software {@link Software} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeSoftware(final Software software) {
+        return (this.software != null) && this.software.remove(software);
     }
 
     /**

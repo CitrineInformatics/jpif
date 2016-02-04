@@ -49,6 +49,16 @@ public class Property extends Value {
     }
 
     /**
+     * Remove a condition from the property.
+     *
+     * @param condition {@link Value} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeCondition(final Value condition) {
+        return (this.conditions != null) && this.conditions.remove(condition);
+    }
+
+    /**
      * Get the number of conditions for this property.
      *
      * @return Number of conditions for this property.
@@ -158,6 +168,16 @@ public class Property extends Value {
     }
 
     /**
+     * Remove a reference from the property.
+     *
+     * @param reference {@link Reference} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeReference(final Reference reference) {
+        return this.rcl.removeReference(reference);
+    }
+
+    /**
      * Get the number of references for this item.
      *
      * @return Number of references for this item.
@@ -220,6 +240,16 @@ public class Property extends Value {
     }
 
     /**
+     * Remove a contact from the property.
+     *
+     * @param contact {@link Person} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeContact(final Person contact) {
+        return this.rcl.removeContact(contact);
+    }
+
+    /**
      * Get the number of contacts for this item.
      *
      * @return Number of contacts for this item..
@@ -279,6 +309,16 @@ public class Property extends Value {
     public Property addLicense(final License license) {
         this.rcl.addLicense(license);
         return this;
+    }
+
+    /**
+     * Remove a license from this property.
+     *
+     * @param license {@link License} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeLicense(final License license) {
+        return this.rcl.removeLicense(license);
     }
 
     /**

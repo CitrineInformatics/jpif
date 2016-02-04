@@ -62,6 +62,16 @@ public class System extends Rcl {
     }
 
     /**
+     * Remove a name from the system.
+     *
+     * @param name String with the name to remove.
+     * @return True if the name was removed.
+     */
+    public boolean removeName(final String name) {
+        return (this.names != null) && this.names.remove(name);
+    }
+
+    /**
      * Get the number of names for this system.
      *
      * @return Number of names for this system.
@@ -130,6 +140,16 @@ public class System extends Rcl {
     }
 
     /**
+     * Remove an ID from the system.
+     *
+     * @param id {@link Id} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeId(final Id id) {
+        return (this.ids != null) && this.ids.remove(id);
+    }
+
+    /**
      * Get the number of IDs for this system.
      *
      * @return Number of IDs for this system.
@@ -194,6 +214,16 @@ public class System extends Rcl {
         }
         this.properties.add(property);
         return this;
+    }
+
+    /**
+     * Remove a property from the system.
+     *
+     * @param property {@link Property} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeProperty(final Property property) {
+        return (this.properties != null) && this.properties.remove(property);
     }
 
     /**
@@ -265,6 +295,16 @@ public class System extends Rcl {
     }
 
     /**
+     * Remove a preparation step from the system.
+     *
+     * @param preparation {@link ProcessStep} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removePreparation(final ProcessStep preparation) {
+        return (this.preparation != null) && this.preparation.remove(preparation);
+    }
+
+    /**
      * Get the number of preparation steps for this system.
      *
      * @return Number of preparation steps for this system.
@@ -329,6 +369,16 @@ public class System extends Rcl {
         }
         this.subSystems.add(subSystem);
         return this;
+    }
+
+    /**
+     * Remove a subsystem from the system.
+     *
+     * @param subsystem {@link System} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeSubsystem(final System subsystem) {
+        return (this.subSystems != null) && this.subSystems.remove(subsystem);
     }
 
     /**

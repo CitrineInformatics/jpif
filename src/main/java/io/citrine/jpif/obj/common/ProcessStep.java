@@ -63,6 +63,16 @@ public class ProcessStep extends Pio {
     }
 
     /**
+     * Remove a detail from the step.
+     *
+     * @param detail {@link Value} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeDetail(final Value detail) {
+        return (this.details != null) && this.details.remove(detail);
+    }
+
+    /**
      * Get the number of details attached to this process step.
      *
      * @return Number of details for the process step.

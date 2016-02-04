@@ -41,6 +41,16 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Remove a reference from this object.
+     *
+     * @param reference {@link Reference} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeReference(final Reference reference) {
+        return (this.references != null) && this.references.remove(reference);
+    }
+
+    /**
      * Get the number of references for this item.
      *
      * @return Number of references for this item.
@@ -110,6 +120,16 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Remove a contact from this object.
+     *
+     * @param contact {@link Person} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeContact(final Person contact) {
+        return (this.contacts != null) && this.contacts.remove(contact);
+    }
+
+    /**
      * Get the number of contacts for this item.
      *
      * @return Number of contacts for this item..
@@ -176,6 +196,16 @@ public class Rcl extends Pio {
         }
         this.licenses.add(license);
         return this;
+    }
+
+    /**
+     * Remove a license from this object.
+     *
+     * @param license {@link License} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeLicense(final License license) {
+        return (this.licenses != null) && this.licenses.remove(license);
     }
 
     /**

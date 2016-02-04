@@ -35,6 +35,16 @@ public class Alloy extends ChemicalSystem {
     }
 
     /**
+     * Remove a phase from the system.
+     *
+     * @param phase {@link AlloyPhase} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removePhase(final AlloyPhase phase) {
+        return (this.phases != null) && this.phases.remove(phase);
+    }
+
+    /**
      * Get the number of phases in this alloy.
      *
      * @return Number of phases in this alloy.

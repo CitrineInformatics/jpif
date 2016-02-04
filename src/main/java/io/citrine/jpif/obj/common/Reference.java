@@ -286,6 +286,16 @@ public class Reference extends Pio {
     }
 
     /**
+     * Remove an author.
+     *
+     * @param author {@link Name} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeAuthor(final Name author) {
+        return (this.authors != null) && this.authors.remove(author);
+    }
+
+    /**
      * Get the number of authors.
      *
      * @return Number of authors.
@@ -354,6 +364,16 @@ public class Reference extends Pio {
     }
 
     /**
+     * Remove an editor.
+     *
+     * @param editor {@link Name} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeEditor(final Name editor) {
+        return (this.editors != null) && this.editors.remove(editor);
+    }
+
+    /**
      * Get the number of editors.
      *
      * @return Number of editors.
@@ -418,6 +438,16 @@ public class Reference extends Pio {
         }
         this.references.add(reference);
         return this;
+    }
+
+    /**
+     * Remove a reference cited by this work.
+     *
+     * @param reference {@link Reference} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeReference(final Reference reference) {
+        return (this.references != null) && this.references.remove(reference);
     }
 
     /**

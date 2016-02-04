@@ -93,6 +93,16 @@ public class Value extends Pio {
     }
 
     /**
+     * Remove a scalar from the value.
+     *
+     * @param scalar {@link Scalar} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeScalar(final Scalar scalar) {
+        return (this.scalars != null) && this.scalars.remove(scalar);
+    }
+
+    /**
      * Get the number of scalars stored in this value.
      *
      * @return Number of scalars stored in this value.
@@ -188,6 +198,16 @@ public class Value extends Pio {
             scalarVector[i] = Scalar.valueOf(vector[i]);
         }
         return addVector(scalarVector);
+    }
+
+    /**
+     * Remove a vector from the value.
+     *
+     * @param vector {@link Scalar} array object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeVector(final Scalar[] vector) {
+        return (this.vectors != null) && this.vectors.remove(vector);
     }
 
     /**
@@ -292,6 +312,16 @@ public class Value extends Pio {
             }
         }
         return addMatrix(scalarMatrix);
+    }
+
+    /**
+     * Remove a matrix from the value.
+     *
+     * @param matrix {@link Scalar} array of arrays object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeMatrix(final Scalar[][] matrix) {
+        return (this.matrices != null) && this.matrices.remove(matrix);
     }
 
     /**

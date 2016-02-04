@@ -73,6 +73,16 @@ public class ChemicalSystem extends System {
     }
 
     /**
+     * Remove a composition from the system.
+     *
+     * @param composition {@link Composition} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeComposition(final Composition composition) {
+        return (this.composition != null) && this.composition.remove(composition);
+    }
+
+    /**
      * Get the number of elements in the composition vector for this system.
      *
      * @return Number of elements in the composition vector for this system.
