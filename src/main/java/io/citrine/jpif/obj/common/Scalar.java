@@ -174,6 +174,37 @@ public class Scalar extends Pio {
         return this.uncertainty;
     }
 
+    /**
+     * Set whether the value is approximate.
+     *
+     * @param approximate True if the value is approximate.
+     * @return This object.
+     */
+    @JsonSetter(value = "approximate")
+    public Scalar setApproximate(final Boolean approximate) {
+        this.approximate = approximate;
+        return this;
+    }
+
+    /**
+     * Get whether the value is approximate.
+     *
+     * @return True if the value is approximate.
+     */
+    @JsonGetter(value = "approximate")
+    protected Boolean getApproximate() { // Private since only Jackson should use it
+        return this.approximate;
+    }
+
+    /**
+     * Get whether the value is approximate. This with return false unless approximate has explicitly been set as true.
+     *
+     * @return True only if the value is approximate.
+     */
+    public boolean isApproximate() {
+        return (this.approximate == null) ? false : this.approximate;
+    }
+
     @Override
     @JsonAnySetter
     public Scalar addUnsupportedField(final String key, final Object value) {
@@ -223,8 +254,12 @@ public class Scalar extends Pio {
      * @param input String to save.
      * @return New {@link Scalar} object with the input string decomposed.
      */
-    protected static Scalar decomposeString(final String input) {
+    protected static Scalar decomposeString(String input) {
         Scalar res;
+        Boolean isAppoximate;
+        if ((isAppoximate = isStringApproximate(input)) == Boolean.TRUE) {
+            input = input.replace('~', ' ');
+        }
         if (((res = asPlusMinus(input)) != null)
                 || ((res = asParentheses(input)) != null)
                 || ((res = asBoundedRange(input)) != null)
@@ -232,9 +267,19 @@ public class Scalar extends Pio {
                 || ((res = asInclusiveMinimum(input)) != null)
                 || ((res = asMaximum(input)) != null)
                 || ((res = asInclusiveMaximum(input)) != null)) {
-            return res;
+            return res.setApproximate(isAppoximate);
         }
-        return new Scalar().setValue(input);
+        return new Scalar().setValue(input).setApproximate(isAppoximate);
+    }
+
+    /**
+     * Helper function that determines whether the input string contains an approximate value.
+     *
+     * @param input String to check as approximate.
+     * @return True if the input string represents an approximate value.
+     */
+    protected static Boolean isStringApproximate(final String input) {
+        return APPROXIMATE_PATTERN.matcher(input).matches() ? Boolean.TRUE : null;
     }
 
     /**
@@ -377,6 +422,9 @@ public class Scalar extends Pio {
     /** Uncertainty of the value. */
     private String uncertainty;
 
+    /** Whether the value is approximate. */
+    private Boolean approximate;
+
     /** Regular expression to match a digit. */
     private static final String DIGITS_REGEX = "(?:\\p{Digit}+)";
 
@@ -437,6 +485,13 @@ public class Scalar extends Pio {
     /** Pattern for matching inclusive maximum values. */
     private static final Pattern INCLUSIVE_MAXIMUM_PATTERN = Pattern.compile(
             "^" + INCLUSIVE_MAXIMUM_REGEX + "(" + NUMBER_REGEX + ")\\s*$");
+
+    /** Regular expression for determining whether a value is approximate. */
+    private static final String APPROXIMATE_REGEX = "~";
+
+    /** Pattern for matching whether a value is approximate. */
+    private static final Pattern APPROXIMATE_PATTERN = Pattern.compile(
+            APPROXIMATE_REGEX + "\\s*" + NUMBER_REGEX);
 
     /**
      * Class used to deserialize a JSON value into a {@link Scalar} object. If the input token is a string or number
