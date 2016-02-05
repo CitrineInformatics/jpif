@@ -258,7 +258,7 @@ public class Scalar extends Pio {
         Scalar res;
         Boolean isAppoximate;
         if ((isAppoximate = isStringApproximate(input)) == Boolean.TRUE) {
-            input = input.replace('~', ' ');
+            input = input.replace("~", "");
         }
         if (((res = asPlusMinus(input)) != null)
                 || ((res = asParentheses(input)) != null)

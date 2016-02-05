@@ -87,7 +87,7 @@ public class ChemicalSystem extends System {
      *
      * @return Number of elements in the composition vector for this system.
      */
-    public int numComposition() {
+    public int compositionLength() {
         return (this.composition == null) ? 0 : this.composition.size();
     }
 
@@ -102,7 +102,7 @@ public class ChemicalSystem extends System {
     public Composition getComposition(final int index) {
         if (this.composition == null) {
             throw new IndexOutOfBoundsException("Attempting to access composition " + index
-                    + " of " + this.numComposition());
+                    + " of " + this.compositionLength());
         }
         return this.composition.get(index);
     }
