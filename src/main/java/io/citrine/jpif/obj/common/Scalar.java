@@ -279,7 +279,7 @@ public class Scalar extends Pio {
      * @return True if the input string represents an approximate value.
      */
     protected static Boolean isStringApproximate(final String input) {
-        return APPROXIMATE_PATTERN.matcher(input).matches() ? Boolean.TRUE : null;
+        return APPROXIMATE_PATTERN.matcher(input).find() ? Boolean.TRUE : null;
     }
 
     /**
