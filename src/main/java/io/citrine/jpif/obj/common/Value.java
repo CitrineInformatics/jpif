@@ -68,6 +68,28 @@ public class Value extends Pio {
     }
 
     /**
+     * Set the list of scalar values.
+     *
+     * @param value List of {@link Scalar} objects.
+     */
+    @JsonSetter(value = "value")
+    @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
+    protected void setValue(final List<Scalar> value) { // Private since only Jackson should use it
+        setScalars(value);
+    }
+
+    /**
+     * Set the list of scalar values.
+     *
+     * @param values List of {@link Scalar} objects.
+     */
+    @JsonSetter(value = "values")
+    @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
+    protected void setValues(final List<Scalar> values) { // Private since only Jackson should use it
+        setScalars(values);
+    }
+
+    /**
      * Add a scalar to this value.
      *
      * @param scalar {@link Scalar} object to add to this value.
