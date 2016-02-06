@@ -272,6 +272,17 @@ public class Reference extends Pio {
     }
 
     /**
+     * Set the list of authors.
+     *
+     * @param author List of {@link Name} objects with the authors.
+     */
+    @JsonSetter(value = "author")
+    @JsonDeserialize(contentUsing = Name.Deserializer.class)
+    protected void setAuthor(final List<Name> author) { // Private since only Jackson should use it
+        setAuthors(author);
+    }
+
+    /**
      * Add an author.
      *
      * @param author {@link Name} object for the author to add.
@@ -365,6 +376,17 @@ public class Reference extends Pio {
     }
 
     /**
+     * Set the list of editors.
+     *
+     * @param editor List of {@link Name} objects with the editors.
+     */
+    @JsonSetter(value = "editor")
+    @JsonDeserialize(contentUsing = Name.Deserializer.class)
+    protected void setEditor(final List<Name> editor) { // Private since only Jackson should use it
+        setEditors(editor);
+    }
+
+    /**
      * Add an editor.
      *
      * @param editor {@link Name} object for the editor to add.
@@ -454,6 +476,16 @@ public class Reference extends Pio {
     @JsonSetter(value = "references")
     protected void setReferences(final List<Reference> references) { // Private since only Jackson should use it
         this.references = references;
+    }
+
+    /**
+     * Set the list of references cited by this work.
+     *
+     * @param reference List of {@link Reference} objects for the references cited by this work.
+     */
+    @JsonSetter(value = "reference")
+    protected void setReference(final List<Reference> reference) { // Private since only Jackson should use it
+        setReferences(reference);
     }
 
     /**

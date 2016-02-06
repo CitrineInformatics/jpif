@@ -15,7 +15,6 @@ import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
-import io.citrine.jpif.obj.common.Scalar;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 import io.citrine.jpif.obj.system.chemical.alloy.AlloyPhase;
@@ -46,6 +45,16 @@ public class System extends Rcl {
     @JsonSetter(value = "names")
     protected void setNames(final List<String> names) { // Private since only Jackson should use it
         this.names = names;
+    }
+
+    /**
+     * Set the list of names of this system.
+     *
+     * @param name List of strings with the names of this system.
+     */
+    @JsonSetter(value = "name")
+    protected void setName(final List<String> name) { // Private since only Jackson should use it
+        setNames(name);
     }
 
     /**
@@ -142,6 +151,17 @@ public class System extends Rcl {
     }
 
     /**
+     * Set the list of IDs of this system.
+     *
+     * @param id List of {@link Id} objects with the IDs of this system.
+     */
+    @JsonSetter(value = "id")
+    @JsonDeserialize(contentUsing = Id.Deserializer.class)
+    protected void setId(final List<Id> id) { // Private since only Jackson should use it
+        setIds(id);
+    }
+
+    /**
      * Add an ID for this system.
      *
      * @param id {@link Id} object with the ID to add.
@@ -231,6 +251,16 @@ public class System extends Rcl {
     @JsonSetter(value = "properties")
     protected void setProperties(final List<Property> properties) { // Private since only Jackson should use it
         this.properties = properties;
+    }
+
+    /**
+     * Set the list of properties of this system.
+     *
+     * @param property List of {@link Property} objects with the properties of this system.
+     */
+    @JsonSetter(value = "property")
+    protected void setProperty(final List<Property> property) { // Private since only Jackson should use it
+        setProperties(property);
     }
 
     /**
@@ -327,6 +357,16 @@ public class System extends Rcl {
     }
 
     /**
+     * Set the list of preparation steps of this system.
+     *
+     * @param preparations List of {@link ProcessStep} objects with the processing steps of this system.
+     */
+    @JsonSetter(value = "preparations")
+    protected void setPreparations(final List<ProcessStep> preparations) { // Private since only Jackson should use it
+        setPreparation(preparations);
+    }
+
+    /**
      * Add a preparation step for this system.
      *
      * @param preparation {@link ProcessStep} object with the preparation step to add.
@@ -416,6 +456,16 @@ public class System extends Rcl {
     @JsonSetter(value = "subSystems")
     protected void setSubSystems(final List<System> subSystems) { // Private since only Jackson should use it
         this.subSystems = subSystems;
+    }
+
+    /**
+     * Set the list of subsystems of this system.
+     *
+     * @param subSystem List of {@link System} objects with the subsystems of this system.
+     */
+    @JsonSetter(value = "subSystem")
+    protected void setSubSystem(final List<System> subSystem) { // Private since only Jackson should use it
+        setSubSystems(subSystem);
     }
 
     /**

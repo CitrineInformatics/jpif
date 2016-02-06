@@ -59,6 +59,16 @@ public class ChemicalSystem extends System {
     }
 
     /**
+     * Set the list of compositions of this system.
+     *
+     * @param compositions List of {@link Composition} objects with the composition of this system.
+     */
+    @JsonSetter(value = "compositions")
+    protected void setCompositions(final List<Composition> compositions) { // Private since only Jackson should use it
+        setComposition(compositions);
+    }
+
+    /**
      * Add to the composition for this system.
      *
      * @param composition {@link Composition} object with the composition to add.

@@ -35,6 +35,16 @@ public class Property extends Value {
     }
 
     /**
+     * Set the list of conditions for this property.
+     *
+     * @param condition List of {@link Value} objects with the conditions for this property.
+     */
+    @JsonSetter(value = "condition")
+    protected void setCondition(final List<Value> condition) { // Private since only Jackson should use it
+        setConditions(condition);
+    }
+
+    /**
      * Add a condition for this property.
      *
      * @param condition {@link Value} object with the condition to add.
@@ -172,6 +182,16 @@ public class Property extends Value {
     }
 
     /**
+     * Set the list of references where information about this item is published.
+     *
+     * @param reference List of {@link Reference} objects with the references for this item.
+     */
+    @JsonSetter(value = "reference")
+    protected void setReference(final List<Reference> reference) { // Private since only Jackson should use it
+        setReferences(reference);
+    }
+
+    /**
      * Add a reference where information about this item is published.
      *
      * @param reference {@link Reference} object with the reference to add for this item.
@@ -256,6 +276,17 @@ public class Property extends Value {
     }
 
     /**
+     * Set the list of people to contact for information about this item.
+     *
+     * @param contact List of {@link Person} objects with the contacts for this item.
+     */
+    @JsonSetter(value = "contact")
+    @JsonDeserialize(using = Person.Deserializer.class)
+    protected void setContact(final List<Person> contact) { // Private since only Jackson should use it
+        setContacts(contact);
+    }
+
+    /**
      * Add a person to contact for information about this item.
      *
      * @param contact {@link Person} object with the contact to add.
@@ -337,6 +368,17 @@ public class Property extends Value {
     @JsonDeserialize(using = License.Deserializer.class)
     protected void setLicenses(final List<License> licenses) { // Private since only Jackson should use it
         this.rcl.setLicenses(licenses);
+    }
+
+    /**
+     * Set the list of licenses for this item.
+     *
+     * @param license List of {@link License} objects with licenses for this item.
+     */
+    @JsonSetter(value = "license")
+    @JsonDeserialize(using = License.Deserializer.class)
+    protected void setLicense(final List<License> license) { // Private since only Jackson should use it
+        setLicenses(license);
     }
 
     /**

@@ -41,6 +41,16 @@ public class Method extends Pio {
     /**
      * Set the instruments used in the method.
      *
+     * @param instrument List of {@link Instrument} objects for the method.
+     */
+    @JsonSetter(value = "instrument")
+    protected void setInstrument(final List<Instrument> instrument) { // Private since only Jackson should use it
+        setInstruments(instruments);
+    }
+
+    /**
+     * Set the instruments used in the method.
+     *
      * @param instruments List of {@link Instrument} objects for the method.
      */
     @JsonSetter(value = "instruments")
@@ -139,6 +149,16 @@ public class Method extends Pio {
     @JsonSetter(value = "software")
     protected void setSoftware(final List<Software> software) { // Private since only Jackson should use it
         this.software = software;
+    }
+
+    /**
+     * Set the list of software packages used in the method.
+     *
+     * @param softwares List of {@link Software} objects for software packages used in the method.
+     */
+    @JsonSetter(value = "softwares")
+    protected void setSoftwares(final List<Software> softwares) { // Private since only Jackson should use it
+        setSoftware(software);
     }
 
     /**

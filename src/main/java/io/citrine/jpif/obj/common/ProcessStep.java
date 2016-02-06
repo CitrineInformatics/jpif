@@ -49,6 +49,16 @@ public class ProcessStep extends Pio {
     }
 
     /**
+     * Set the details of the process step.
+     *
+     * @param detail List of {@link Value} objects describing this process step.
+     */
+    @JsonSetter(value = "detail")
+    protected void setDetail(final List<Value> detail) { // Private since only Jackson should use it
+        setDetails(details);
+    }
+
+    /**
      * Add single detail to the process step.
      *
      * @param detail {@link Value} object to add to the process step..

@@ -57,6 +57,17 @@ public class Value extends Pio {
     }
 
     /**
+     * Set the list of scalar values.
+     *
+     * @param scalar List of {@link Scalar} objects.
+     */
+    @JsonSetter(value = "scalar")
+    @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
+    protected void setScalar(final List<Scalar> scalar) { // Private since only Jackson should use it
+        setScalars(scalar);
+    }
+
+    /**
      * Add a scalar to this value.
      *
      * @param scalar {@link Scalar} object to add to this value.
@@ -191,6 +202,17 @@ public class Value extends Pio {
     @JsonDeserialize(using = VectorsDeserializer.class)
     protected void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
         this.vectors = vectors;
+    }
+
+    /**
+     * Set the list of vectors stored by this value.
+     *
+     * @param vector List of {@link Scalar} arrays that represent the vectors stored by this value.
+     */
+    @JsonSetter(value = "vector")
+    @JsonDeserialize(using = VectorsDeserializer.class)
+    protected void setVector(final List<Scalar[]> vector) { // Private since only Jackson should use it
+        setVectors(vector);
     }
 
     /**
@@ -331,6 +353,17 @@ public class Value extends Pio {
     }
 
     /**
+     * Set the list of matrices stored by this value.
+     *
+     * @param matrix List of {@link Scalar} arrays of arrays that represent the matrices stored by this value.
+     */
+    @JsonSetter(value = "matrix")
+    @JsonDeserialize(using = MatricesDeserializer.class)
+    protected void setMatrix(final List<Scalar[][]> matrix) { // Private since only Jackson should use it
+        setMatrices(matrix);
+    }
+
+    /**
      * Add a single matrix to this value.
      *
      * @param matrix {@link Scalar} array of arrays with the matrix to add.
@@ -467,6 +500,17 @@ public class Value extends Pio {
     public Value setUnits(final String units) {
         this.units = units;
         return this;
+    }
+
+    /**
+     * Set the units of this value.
+     *
+     * @param unit String with the units of this value.
+     * @return This object.
+     */
+    @JsonSetter(value = "unit")
+    public void setUnit(final String unit) { // Private since only Jackson should use it
+        setUnits(unit);
     }
 
     /**

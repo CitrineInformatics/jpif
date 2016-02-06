@@ -27,6 +27,16 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Set the list of references where information about this item is published.
+     *
+     * @param reference List of {@link Reference} objects with the references for this item.
+     */
+    @JsonSetter(value = "reference")
+    protected void setReference(final List<Reference> reference) { // Protected since only Jackson should use it
+        setReferences(reference);
+    }
+
+    /**
      * Add a reference where information about this item is published.
      *
      * @param reference {@link Reference} object with the reference to add for this item.
@@ -121,6 +131,17 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Set the list of people to contact for information about this item.
+     *
+     * @param contact List of {@link Person} objects with the contacts for this item.
+     */
+    @JsonSetter(value = "contact")
+    @JsonDeserialize(using = Person.Deserializer.class)
+    protected void setContact(final List<Person> contact) { // Protected since only Jackson should use it
+        setContacts(contact);
+    }
+
+    /**
      * Add a person to contact for information about this item.
      *
      * @param contact {@link Person} object with the contact to add.
@@ -212,6 +233,17 @@ public class Rcl extends Pio {
     @JsonDeserialize(using = License.Deserializer.class)
     protected void setLicenses(final List<License> licenses) { // Protected since only Jackson should use it
         this.licenses = licenses;
+    }
+
+    /**
+     * Set the list of licenses for this item.
+     *
+     * @param license List of {@link License} objects with licenses for this item.
+     */
+    @JsonSetter(value = "license")
+    @JsonDeserialize(using = License.Deserializer.class)
+    protected void setLicense(final List<License> license) { // Protected since only Jackson should use it
+        setLicenses(license);
     }
 
     /**
