@@ -286,6 +286,21 @@ public class Reference extends Pio {
     }
 
     /**
+     * Insert a single author.
+     *
+     * @param index Index at which to insert the input author.
+     * @param author {@link Name} object to add for the reference.
+     * @return This object.
+     */
+    public Reference addAuthor(final int index, final Name author) {
+        if (this.authors == null) {
+            this.authors = new ArrayList<>();
+        }
+        this.authors.add(index, author);
+        return this;
+    }
+
+    /**
      * Remove an author.
      *
      * @param author {@link Name} object to delete.
@@ -364,6 +379,21 @@ public class Reference extends Pio {
     }
 
     /**
+     * Insert a single editor.
+     *
+     * @param index Index at which to insert the input editor.
+     * @param editor {@link Name} object to add for the reference.
+     * @return This object.
+     */
+    public Reference addEditor(final int index, final Name editor) {
+        if (this.editors == null) {
+            this.editors = new ArrayList<>();
+        }
+        this.editors.add(index, editor);
+        return this;
+    }
+
+    /**
      * Remove an editor.
      *
      * @param editor {@link Name} object to delete.
@@ -437,6 +467,21 @@ public class Reference extends Pio {
             this.references = new ArrayList<>();
         }
         this.references.add(reference);
+        return this;
+    }
+
+    /**
+     * Insert a single reference cited by this work.
+     *
+     * @param index Index at which to insert the input reference.
+     * @param reference {@link Reference} object to add for this reference.
+     * @return This object.
+     */
+    public Reference addCondition(final int index, final Reference reference) {
+        if (this.references == null) {
+            this.references = new ArrayList<>();
+        }
+        this.references.add(index, reference);
         return this;
     }
 

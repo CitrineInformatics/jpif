@@ -71,6 +71,21 @@ public class Value extends Pio {
     }
 
     /**
+     * Insert a single scalar for this value.
+     *
+     * @param index Index at which to insert the input scalar.
+     * @param scalar {@link Scalar} object to add to this value.
+     * @return This object.
+     */
+    public Value addScalar(final int index, final Scalar scalar) {
+        if (this.scalars == null) {
+            this.scalars = new ArrayList<>();
+        }
+        this.scalars.add(index, scalar);
+        return this;
+    }
+
+    /**
      * Add a string to this value. This function uses {@link Scalar#valueOf(String)} to convert the string to a
      * {@link Scalar} object.
      *
@@ -82,6 +97,17 @@ public class Value extends Pio {
     }
 
     /**
+     * Insert a single scalar for this value.
+     *
+     * @param index Index at which to insert the input scalar.
+     * @param scalar String to add to this value.
+     * @return This object.
+     */
+    public Value addScalar(final int index, final String scalar) {
+        return addScalar(index, Scalar.valueOf(scalar));
+    }
+
+    /**
      * Add a number to this value. This function uses {@link Scalar#valueOf(Number)} to convert the number to a
      * {@link Scalar} object.
      *
@@ -90,6 +116,17 @@ public class Value extends Pio {
      */
     public Value addScalar(final Number scalar) {
         return addScalar(Scalar.valueOf(scalar));
+    }
+
+    /**
+     * Insert a single scalar for this value.
+     *
+     * @param index Index at which to insert the input scalar.
+     * @param scalar Number to add to this value.
+     * @return This object.
+     */
+    public Value addScalar(final int index, final Number scalar) {
+        return addScalar(index, Scalar.valueOf(scalar));
     }
 
     /**
@@ -171,6 +208,21 @@ public class Value extends Pio {
     }
 
     /**
+     * Insert a single vector for this value.
+     *
+     * @param index Index at which to insert the input vector.
+     * @param vector {@link Scalar} array to add to this value.
+     * @return This object.
+     */
+    public Value addVector(final int index, final Scalar[] vector) {
+        if (this.vectors == null) {
+            this.vectors = new ArrayList<>();
+        }
+        this.vectors.add(index, vector);
+        return this;
+    }
+
+    /**
      * Add a string vector to this value. This function uses {@link Scalar#valueOf(String)} to convert each string to a
      * {@link Scalar} object.
      *
@@ -178,11 +230,18 @@ public class Value extends Pio {
      * @return This object.
      */
     public Value addVector(final String[] vector) {
-        final Scalar[] scalarVector = new Scalar[vector.length];
-        for (int i = 0; i < vector.length; ++i) {
-            scalarVector[i] = Scalar.valueOf(vector[i]);
-        }
-        return addVector(scalarVector);
+        return addVector(toScalarVector(vector));
+    }
+
+    /**
+     * Insert a single vector for this value.
+     *
+     * @param index Index at which to insert the input vector.
+     * @param vector String array to add to this value.
+     * @return This object.
+     */
+    public Value addVector(final int index, final String[] vector) {
+        return addVector(index, toScalarVector(vector));
     }
 
     /**
@@ -193,11 +252,18 @@ public class Value extends Pio {
      * @return This object.
      */
     public Value addVector(final Number[] vector) {
-        final Scalar[] scalarVector = new Scalar[vector.length];
-        for (int i = 0; i < vector.length; ++i) {
-            scalarVector[i] = Scalar.valueOf(vector[i]);
-        }
-        return addVector(scalarVector);
+        return addVector(toScalarVector(vector));
+    }
+
+    /**
+     * Insert a single vector for this value.
+     *
+     * @param index Index at which to insert the input vector.
+     * @param vector Number array to add to this value.
+     * @return This object.
+     */
+    public Value addVector(final int index, final Number[] vector) {
+        return addVector(index, toScalarVector(vector));
     }
 
     /**
@@ -279,6 +345,21 @@ public class Value extends Pio {
     }
 
     /**
+     * Insert a single matrix for this value.
+     *
+     * @param index Index at which to insert the input matrix.
+     * @param matrix {@link Scalar} array of arrays to add to this value.
+     * @return This object.
+     */
+    public Value addMatrix(final int index, final Scalar[][] matrix) {
+        if (this.matrices == null) {
+            this.matrices = new ArrayList<>();
+        }
+        this.matrices.add(index, matrix);
+        return this;
+    }
+
+    /**
      * Add a string matrix to this value. This function uses {@link Scalar#valueOf(String)} to convert each string to a
      * {@link Scalar} object.
      *
@@ -286,14 +367,18 @@ public class Value extends Pio {
      * @return This object.
      */
     public Value addMatrix(final String[][] matrix) {
-        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
-        for (int i = 0; i < matrix.length; ++i) {
-            scalarMatrix[i] = new Scalar[matrix[i].length];
-            for (int j = 0; j < matrix[i].length; ++j) {
-                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
-            }
-        }
-        return addMatrix(scalarMatrix);
+        return addMatrix(toScalarMatrix(matrix));
+    }
+
+    /**
+     * Insert a single matrix for this value.
+     *
+     * @param index Index at which to insert the input matrix.
+     * @param matrix String array of arrays to add to this value.
+     * @return This object.
+     */
+    public Value addMatrix(final int index, final String[][] matrix) {
+        return addMatrix(index, toScalarMatrix(matrix));
     }
 
     /**
@@ -304,14 +389,18 @@ public class Value extends Pio {
      * @return This object.
      */
     public Value addMatrix(final Number[][] matrix) {
-        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
-        for (int i = 0; i < matrix.length; ++i) {
-            scalarMatrix[i] = new Scalar[matrix[i].length];
-            for (int j = 0; j < matrix[i].length; ++j) {
-                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
-            }
-        }
-        return addMatrix(scalarMatrix);
+        return addMatrix(toScalarMatrix(matrix));
+    }
+
+    /**
+     * Insert a single matrix for this value.
+     *
+     * @param index Index at which to insert the input matrix.
+     * @param matrix Number array of arrays to add to this value.
+     * @return This object.
+     */
+    public Value addMatrix(final int index, final Number[][] matrix) {
+        return addMatrix(index, toScalarMatrix(matrix));
     }
 
     /**
@@ -407,6 +496,68 @@ public class Value extends Pio {
     public Value clearUnsupportedFields() {
         super.clearUnsupportedFields();
         return this;
+    }
+
+    /**
+     * Convert from an array of strings to an array of {@link Scalar} objects.
+     *
+     * @param vector Array of strings to convert to scalars.
+     * @return Array of scalars.
+     */
+    protected Scalar[] toScalarVector(final String[] vector) {
+        final Scalar[] scalarVector = new Scalar[vector.length];
+        for (int i = 0; i < vector.length; ++i) {
+            scalarVector[i] = Scalar.valueOf(vector[i]);
+        }
+        return scalarVector;
+    }
+
+    /**
+     * Convert from an array of numbers to an array of {@link Scalar} objects.
+     *
+     * @param vector Array of numbers to convert to scalars.
+     * @return Array of scalars.
+     */
+    protected Scalar[] toScalarVector(final Number[] vector) {
+        final Scalar[] scalarVector = new Scalar[vector.length];
+        for (int i = 0; i < vector.length; ++i) {
+            scalarVector[i] = Scalar.valueOf(vector[i]);
+        }
+        return scalarVector;
+    }
+
+    /**
+     * Convert from an array of arrays of strings to an array of arrays of {@link Scalar} objects.
+     *
+     * @param matrix Array of arrays of strings to convert to scalars.
+     * @return Array of arrays of scalars.
+     */
+    protected Scalar[][] toScalarMatrix(final String[][] matrix) {
+        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
+        for (int i = 0; i < matrix.length; ++i) {
+            scalarMatrix[i] = new Scalar[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; ++j) {
+                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
+            }
+        }
+        return scalarMatrix;
+    }
+
+    /**
+     * Convert from an array of arrays of numbers to an array of arrays of {@link Scalar} objects.
+     *
+     * @param matrix Array of arrays of numbers to convert to scalars.
+     * @return Array of arrays of scalars.
+     */
+    protected Scalar[][] toScalarMatrix(final Number[][] matrix) {
+        final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
+        for (int i = 0; i < matrix.length; ++i) {
+            scalarMatrix[i] = new Scalar[matrix[i].length];
+            for (int j = 0; j < matrix[i].length; ++j) {
+                scalarMatrix[i][j] = Scalar.valueOf(matrix[i][j]);
+            }
+        }
+        return scalarMatrix;
     }
 
     /** String with the name of the value. */

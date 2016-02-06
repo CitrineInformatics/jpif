@@ -15,6 +15,7 @@ import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
+import io.citrine.jpif.obj.common.Scalar;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 import io.citrine.jpif.obj.system.chemical.alloy.AlloyPhase;
@@ -58,6 +59,21 @@ public class System extends Rcl {
             this.names = new ArrayList<>();
         }
         this.names.add(name);
+        return this;
+    }
+
+    /**
+     * Insert a single name for this value.
+     *
+     * @param index Index at which to insert the input name.
+     * @param name String with the name to add.
+     * @return This object.
+     */
+    public System addName(final int index, final String name) {
+        if (this.names == null) {
+            this.names = new ArrayList<>();
+        }
+        this.names.add(index, name);
         return this;
     }
 
@@ -140,6 +156,21 @@ public class System extends Rcl {
     }
 
     /**
+     * Insert a single ID for this system.
+     *
+     * @param index Index at which to insert the input ID.
+     * @param id {@link Id} object to add to this system.
+     * @return This object.
+     */
+    public System addId(final int index, final Id id) {
+        if (this.ids == null) {
+            this.ids = new ArrayList<>();
+        }
+        this.ids.add(index, id);
+        return this;
+    }
+
+    /**
      * Remove an ID from the system.
      *
      * @param id {@link Id} object to delete.
@@ -213,6 +244,21 @@ public class System extends Rcl {
             this.properties = new ArrayList<>();
         }
         this.properties.add(property);
+        return this;
+    }
+
+    /**
+     * Insert a single property for this system.
+     *
+     * @param index Index at which to insert the input property.
+     * @param property {@link Property} object to add to this system.
+     * @return This object.
+     */
+    public System addProperty(final int index, final Property property) {
+        if (this.properties == null) {
+            this.properties = new ArrayList<>();
+        }
+        this.properties.add(index, property);
         return this;
     }
 
@@ -295,6 +341,21 @@ public class System extends Rcl {
     }
 
     /**
+     * Insert a single preparation step for this system.
+     *
+     * @param index Index at which to insert the input preparation step.
+     * @param preparation {@link ProcessStep} object to add to this system.
+     * @return This object.
+     */
+    public System addPreparation(final int index, final ProcessStep preparation) {
+        if (this.preparation == null) {
+            this.preparation = new ArrayList<>();
+        }
+        this.preparation.add(index, preparation);
+        return this;
+    }
+
+    /**
      * Remove a preparation step from the system.
      *
      * @param preparation {@link ProcessStep} object to delete.
@@ -372,6 +433,21 @@ public class System extends Rcl {
     }
 
     /**
+     * Insert a single subsystem for this system.
+     *
+     * @param index Index at which to insert the input subsystem.
+     * @param subSystem {@link System} object to add to this value.
+     * @return This object.
+     */
+    public System addSubSystem(final int index, final System subSystem) {
+        if (this.subSystems == null) {
+            this.subSystems = new ArrayList<>();
+        }
+        this.subSystems.add(index, subSystem);
+        return this;
+    }
+
+    /**
      * Remove a subsystem from the system.
      *
      * @param subsystem {@link System} object to delete.
@@ -432,14 +508,32 @@ public class System extends Rcl {
     }
 
     @Override
+    public System addReference(final int index, final Reference reference) {
+        super.addReference(index, reference);
+        return this;
+    }
+
+    @Override
     public System addContact(final Person contact) {
         super.addContact(contact);
         return this;
     }
 
     @Override
+    public System addContact(final int index, final Person contact) {
+        super.addContact(index, contact);
+        return this;
+    }
+
+    @Override
     public System addLicense(final License license) {
         super.addLicense(license);
+        return this;
+    }
+
+    @Override
+    public System addLicense(final int index, final License license) {
+        super.addLicense(index, license);
         return this;
     }
 

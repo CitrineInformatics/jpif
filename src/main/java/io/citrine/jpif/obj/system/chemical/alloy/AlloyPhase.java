@@ -26,8 +26,20 @@ public class AlloyPhase extends ChemicalSystem {
     }
 
     @Override
+    public AlloyPhase addName(final int index, final String name) {
+        super.addName(index, name);
+        return this;
+    }
+
+    @Override
     public AlloyPhase addId(final Id id) {
         super.addId(id);
+        return this;
+    }
+
+    @Override
+    public AlloyPhase addId(final int index, final Id id) {
+        super.addId(index, id);
         return this;
     }
 
@@ -38,8 +50,20 @@ public class AlloyPhase extends ChemicalSystem {
     }
 
     @Override
+    public AlloyPhase addProperty(final int index, final Property property) {
+        super.addProperty(index, property);
+        return this;
+    }
+
+    @Override
     public AlloyPhase addPreparation(final ProcessStep preparation) {
         super.addPreparation(preparation);
+        return this;
+    }
+
+    @Override
+    public AlloyPhase addPreparation(final int index, final ProcessStep preparation) {
+        super.addPreparation(index, preparation);
         return this;
     }
 
@@ -50,8 +74,20 @@ public class AlloyPhase extends ChemicalSystem {
     }
 
     @Override
+    public AlloyPhase addSubSystem(final int index, final System subSystem) {
+        super.addSubSystem(index, subSystem);
+        return this;
+    }
+
+    @Override
     public AlloyPhase addReference(final Reference reference) {
         super.addReference(reference);
+        return this;
+    }
+
+    @Override
+    public AlloyPhase addReference(final int index, final Reference reference) {
+        super.addReference(index, reference);
         return this;
     }
 
@@ -62,8 +98,20 @@ public class AlloyPhase extends ChemicalSystem {
     }
 
     @Override
+    public AlloyPhase addContact(final int index, final Person contact) {
+        super.addContact(index, contact);
+        return this;
+    }
+
+    @Override
     public AlloyPhase addLicense(final License license) {
         super.addLicense(license);
+        return this;
+    }
+
+    @Override
+    public AlloyPhase addLicense(final int index, final License license) {
+        super.addLicense(index, license);
         return this;
     }
 

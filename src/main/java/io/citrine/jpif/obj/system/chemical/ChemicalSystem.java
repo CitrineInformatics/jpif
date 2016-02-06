@@ -64,11 +64,26 @@ public class ChemicalSystem extends System {
      * @param composition {@link Composition} object with the composition to add.
      * @return This object.
      */
-    public System addComposition(final Composition composition) {
+    public ChemicalSystem addComposition(final Composition composition) {
         if (this.composition == null) {
             this.composition = new ArrayList<>();
         }
         this.composition.add(composition);
+        return this;
+    }
+
+    /**
+     * Insert a single composition for this system.
+     *
+     * @param index Index at which to insert the input composition.
+     * @param composition {@link Composition} object to add to this system.
+     * @return This object.
+     */
+    public ChemicalSystem addComposition(final int index, final Composition composition) {
+        if (this.composition == null) {
+            this.composition = new ArrayList<>();
+        }
+        this.composition.add(index, composition);
         return this;
     }
 
@@ -133,8 +148,20 @@ public class ChemicalSystem extends System {
     }
 
     @Override
+    public ChemicalSystem addName(final int index, final String name) {
+        super.addName(index, name);
+        return this;
+    }
+
+    @Override
     public ChemicalSystem addId(final Id id) {
         super.addId(id);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addId(final int index, final Id id) {
+        super.addId(index, id);
         return this;
     }
 
@@ -145,8 +172,20 @@ public class ChemicalSystem extends System {
     }
 
     @Override
+    public ChemicalSystem addProperty(final int index, final Property property) {
+        super.addProperty(index, property);
+        return this;
+    }
+
+    @Override
     public ChemicalSystem addPreparation(final ProcessStep preparation) {
         super.addPreparation(preparation);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addPreparation(final int index, final ProcessStep preparation) {
+        super.addPreparation(index, preparation);
         return this;
     }
 
@@ -157,8 +196,20 @@ public class ChemicalSystem extends System {
     }
 
     @Override
+    public ChemicalSystem addSubSystem(final int index, final System subSystem) {
+        super.addSubSystem(index, subSystem);
+        return this;
+    }
+
+    @Override
     public ChemicalSystem addReference(final Reference reference) {
         super.addReference(reference);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addReference(final int index, final Reference reference) {
+        super.addReference(index, reference);
         return this;
     }
 
@@ -169,8 +220,20 @@ public class ChemicalSystem extends System {
     }
 
     @Override
+    public ChemicalSystem addContact(final int index, final Person contact) {
+        super.addContact(index, contact);
+        return this;
+    }
+
+    @Override
     public ChemicalSystem addLicense(final License license) {
         super.addLicense(license);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addLicense(final int index, final License license) {
+        super.addLicense(index, license);
         return this;
     }
 

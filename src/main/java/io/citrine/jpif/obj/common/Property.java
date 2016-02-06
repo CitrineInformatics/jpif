@@ -49,6 +49,21 @@ public class Property extends Value {
     }
 
     /**
+     * Insert a single condition for this property.
+     *
+     * @param index Index at which to insert the input condition.
+     * @param condition {@link Value} object to add for the property.
+     * @return This object.
+     */
+    public Property addCondition(final int index, final Value condition) {
+        if (this.conditions == null) {
+            this.conditions = new ArrayList<>();
+        }
+        this.conditions.add(index, condition);
+        return this;
+    }
+
+    /**
      * Remove a condition from the property.
      *
      * @param condition {@link Value} object to delete.
@@ -168,6 +183,18 @@ public class Property extends Value {
     }
 
     /**
+     * Insert a single reference for this property.
+     *
+     * @param index Index at which to insert the input reference.
+     * @param reference {@link Reference} object to add for the property.
+     * @return This object.
+     */
+    public Property addReference(final int index, final Reference reference) {
+        this.rcl.addReference(index, reference);
+        return this;
+    }
+
+    /**
      * Remove a reference from the property.
      *
      * @param reference {@link Reference} object to delete.
@@ -236,6 +263,18 @@ public class Property extends Value {
      */
     public Property addContact(final Person contact) {
         this.rcl.addContact(contact);
+        return this;
+    }
+
+    /**
+     * Insert a single person to contact for information about this property.
+     *
+     * @param index Index at which to insert the input contact.
+     * @param contact {@link Person} object to add for the property.
+     * @return This object.
+     */
+    public Property addContact(final int index, final Person contact) {
+        this.rcl.addContact(index, contact);
         return this;
     }
 
@@ -312,6 +351,18 @@ public class Property extends Value {
     }
 
     /**
+     * Insert a single license for this property.
+     *
+     * @param index Index at which to insert the input license.
+     * @param license {@link License} object to add for the property.
+     * @return This object.
+     */
+    public Property addLicense(final int index, final License license) {
+        this.rcl.addLicense(index, license);
+        return this;
+    }
+
+    /**
      * Remove a license from this property.
      *
      * @param license {@link License} object to delete.
@@ -376,8 +427,20 @@ public class Property extends Value {
     }
 
     @Override
+    public Property addScalar(final int index, final Scalar scalar) {
+        super.addScalar(index, scalar);
+        return this;
+    }
+
+    @Override
     public Property addScalar(final String scalar) {
         super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final int index, final String scalar) {
+        super.addScalar(index, scalar);
         return this;
     }
 
@@ -388,8 +451,20 @@ public class Property extends Value {
     }
 
     @Override
+    public Property addScalar(final int index, final Number scalar) {
+        super.addScalar(index, scalar);
+        return this;
+    }
+
+    @Override
     public Property addVector(final Scalar[] vector) {
         super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final int index, final Scalar[] vector) {
+        super.addVector(index, vector);
         return this;
     }
 
@@ -400,8 +475,20 @@ public class Property extends Value {
     }
 
     @Override
+    public Property addVector(final int index, final String[] vector) {
+        super.addVector(index, vector);
+        return this;
+    }
+
+    @Override
     public Property addVector(final Number[] vector) {
         super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final int index, final Number[] vector) {
+        super.addVector(index, vector);
         return this;
     }
 
@@ -412,14 +499,32 @@ public class Property extends Value {
     }
 
     @Override
+    public Property addMatrix(final int index, final Scalar[][] matrix) {
+        super.addMatrix(index, matrix);
+        return this;
+    }
+
+    @Override
     public Property addMatrix(final String[][] matrix) {
         super.addMatrix(matrix);
         return this;
     }
 
     @Override
+    public Property addMatrix(final int index, final String[][] matrix) {
+        super.addMatrix(index, matrix);
+        return this;
+    }
+
+    @Override
     public Property addMatrix(final Number[][] matrix) {
         super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final int index, final Number[][] matrix) {
+        super.addMatrix(index, matrix);
         return this;
     }
 

@@ -49,7 +49,7 @@ public class Method extends Pio {
     }
 
     /**
-     * Add single instrument used in the method.
+     * Add a single instrument used in the method.
      *
      * @param instrument {@link Instrument} object to add for the method.
      * @return This object.
@@ -59,6 +59,21 @@ public class Method extends Pio {
             this.instruments = new ArrayList<>();
         }
         this.instruments.add(instrument);
+        return this;
+    }
+
+    /**
+     * Insert a single instrument used in the method at the input index.
+     *
+     * @param index Index at which to insert the input instrument.
+     * @param instrument {@link Instrument} object to add for the method.
+     * @return This object.
+     */
+    public Method addInstrument(final int index, final Instrument instrument) {
+        if (this.instruments == null) {
+            this.instruments = new ArrayList<>();
+        }
+        this.instruments.add(index, instrument);
         return this;
     }
 
@@ -137,6 +152,21 @@ public class Method extends Pio {
             this.software = new ArrayList<>();
         }
         this.software.add(software);
+        return this;
+    }
+
+    /**
+     * Insert a single software package used in the method at the input index.
+     *
+     * @param index Index at which to insert the input software package.
+     * @param software {@link Software} object to add for the method.
+     * @return This object.
+     */
+    public Method addSoftware(final int index, final Software software) {
+        if (this.software == null) {
+            this.software = new ArrayList<>();
+        }
+        this.software.add(index, software);
         return this;
     }
 

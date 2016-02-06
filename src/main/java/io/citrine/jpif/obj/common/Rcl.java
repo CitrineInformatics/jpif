@@ -41,6 +41,21 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Insert a single reference for this item.
+     *
+     * @param index Index at which to insert the input reference.
+     * @param reference {@link Reference} object to add for this item.
+     * @return This object.
+     */
+    public Rcl addReference(final int index, final Reference reference) {
+        if (this.references == null) {
+            this.references = new ArrayList<>();
+        }
+        this.references.add(index, reference);
+        return this;
+    }
+
+    /**
      * Remove a reference from this object.
      *
      * @param reference {@link Reference} object to delete.
@@ -120,6 +135,21 @@ public class Rcl extends Pio {
     }
 
     /**
+     * Insert a single contact for this item.
+     *
+     * @param index Index at which to insert the input contact.
+     * @param contact {@link Person} object to add for this item.
+     * @return This object.
+     */
+    public Rcl addContact(final int index, final Person contact) {
+        if (this.contacts == null) {
+            this.contacts = new ArrayList<>();
+        }
+        this.contacts.add(index, contact);
+        return this;
+    }
+
+    /**
      * Remove a contact from this object.
      *
      * @param contact {@link Person} object to delete.
@@ -195,6 +225,21 @@ public class Rcl extends Pio {
             this.licenses = new ArrayList<>();
         }
         this.licenses.add(license);
+        return this;
+    }
+
+    /**
+     * Add a license for this item.
+     *
+     * @param index Index at which to insert the input license.
+     * @param license {@link License} object to add for this item.
+     * @return This object.
+     */
+    public Rcl addLicense(final int index, final License license) {
+        if (this.licenses == null) {
+            this.licenses = new ArrayList<>();
+        }
+        this.licenses.add(index, license);
         return this;
     }
 

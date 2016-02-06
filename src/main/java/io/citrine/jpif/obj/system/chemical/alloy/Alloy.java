@@ -29,8 +29,20 @@ public class Alloy extends ChemicalSystem {
      * @param phase {@link AlloyPhase} object with the phase to add.
      * @return This object.
      */
-    public System addPhase(final AlloyPhase phase) {
+    public Alloy addPhase(final AlloyPhase phase) {
         super.addSubSystem(phase);
+        return this;
+    }
+
+    /**
+     * Insert a single phase for this alloy.
+     *
+     * @param index Index at which to insert the input phase.
+     * @param phase {@link AlloyPhase} object to add to this alloy.
+     * @return This object.
+     */
+    public Alloy addPhase(final int index, final AlloyPhase phase) {
+        super.addSubSystem(index, phase);
         return this;
     }
 
@@ -84,8 +96,20 @@ public class Alloy extends ChemicalSystem {
     }
 
     @Override
+    public Alloy addName(final int index, final String name) {
+        super.addName(index, name);
+        return this;
+    }
+
+    @Override
     public Alloy addId(final Id id) {
         super.addId(id);
+        return this;
+    }
+
+    @Override
+    public Alloy addId(final int index, final Id id) {
+        super.addId(index, id);
         return this;
     }
 
@@ -96,8 +120,20 @@ public class Alloy extends ChemicalSystem {
     }
 
     @Override
+    public Alloy addProperty(final int index, final Property property) {
+        super.addProperty(index, property);
+        return this;
+    }
+
+    @Override
     public Alloy addPreparation(final ProcessStep preparation) {
         super.addPreparation(preparation);
+        return this;
+    }
+
+    @Override
+    public Alloy addPreparation(final int index, final ProcessStep preparation) {
+        super.addPreparation(index, preparation);
         return this;
     }
 
@@ -108,8 +144,20 @@ public class Alloy extends ChemicalSystem {
     }
 
     @Override
+    public Alloy addSubSystem(final int index, final System subSystem) {
+        super.addSubSystem(index, subSystem);
+        return this;
+    }
+
+    @Override
     public Alloy addReference(final Reference reference) {
         super.addReference(reference);
+        return this;
+    }
+
+    @Override
+    public Alloy addReference(final int index, final Reference reference) {
+        super.addReference(index, reference);
         return this;
     }
 
@@ -120,8 +168,20 @@ public class Alloy extends ChemicalSystem {
     }
 
     @Override
+    public Alloy addContact(final int index, final Person contact) {
+        super.addContact(index, contact);
+        return this;
+    }
+
+    @Override
     public Alloy addLicense(final License license) {
         super.addLicense(license);
+        return this;
+    }
+
+    @Override
+    public Alloy addLicense(final int index, final License license) {
+        super.addLicense(index, license);
         return this;
     }
 

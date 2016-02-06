@@ -63,6 +63,21 @@ public class ProcessStep extends Pio {
     }
 
     /**
+     * Insert a single detail of the process step at the input index.
+     *
+     * @param index Index at which to insert the input detail.
+     * @param detail {@link Value} object to add to the process step.
+     * @return This object.
+     */
+    public ProcessStep addDetail(final int index, final Value detail) {
+        if (this.details == null) {
+            this.details = new ArrayList<>();
+        }
+        this.details.add(index, detail);
+        return this;
+    }
+
+    /**
      * Remove a detail from the step.
      *
      * @param detail {@link Value} object to delete.
