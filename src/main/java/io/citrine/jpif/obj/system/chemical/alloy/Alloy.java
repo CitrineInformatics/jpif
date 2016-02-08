@@ -74,7 +74,7 @@ public class Alloy extends ChemicalSystem {
      * @throws IndexOutOfBoundsException if the index is out of range of the phase list.
      */
     @JsonIgnore
-    public System getPhase(final int index) {
+    public AlloyPhase getPhase(final int index) {
         updatePhases();
         return this.phases.get(index);
     }
