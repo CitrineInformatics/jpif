@@ -38,93 +38,205 @@ public class Composition extends Pio {
     }
 
     /**
-     * Set the weight percent of the element in the overall system.
+     * Set the actual weight percent of the element in the overall system.
      *
-     * @param weightPercent {@link Scalar} with the weight percent of the element in the system.
-     * @return This object.
+     * @param weightPercent {@link Scalar} with the actual weight percent of the element in the system.
      */
     @JsonSetter(value = "weightPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Composition setWeightPercent(final Scalar weightPercent) {
-        this.weightPercent = weightPercent;
+    protected void setWeightPercent(final Scalar weightPercent) {  // Private since only Jackson should use it
+        setActualWeightPercent(weightPercent);
+    }
+
+    /**
+     * Set the actual weight percent of the element in the overall system.
+     *
+     * @param actualWeightPercent {@link Scalar} with the actual weight percent of the element in the system.
+     * @return This object.
+     */
+    @JsonSetter(value = "actualWeightPercent")
+    @JsonDeserialize(using = Scalar.Deserializer.class)
+    public Composition setActualWeightPercent(final Scalar actualWeightPercent) {
+        this.actualWeightPercent = actualWeightPercent;
         return this;
     }
 
     /**
-     * Set the weight percent of the element in the overall system.
+     * Set the actual weight percent of the element in the overall system.
      *
-     * @param weightPercent String with the weight percent of the element in the system.
+     * @param actualWeightPercent String with the actual weight percent of the element in the system.
      * @return This object.
      */
     @JsonIgnore
-    public Composition setWeightPercent(final String weightPercent) {
-        return setWeightPercent(Scalar.valueOf(weightPercent));
+    public Composition setActualWeightPercent(final String actualWeightPercent) {
+        return setActualWeightPercent(Scalar.valueOf(actualWeightPercent));
     }
 
     /**
-     * Set the weight percent of the element in the overall system.
+     * Set the actual weight percent of the element in the overall system.
      *
-     * @param weightPercent Number with the weight percent of the element in the system.
+     * @param actualWeightPercent Number with the actual weight percent of the element in the system.
      * @return This object.
      */
     @JsonIgnore
-    public Composition setWeightPercent(final Number weightPercent) {
-        return setWeightPercent(Scalar.valueOf(weightPercent));
+    public Composition setActualWeightPercent(final Number actualWeightPercent) {
+        return setActualWeightPercent(Scalar.valueOf(actualWeightPercent));
     }
 
     /**
-     * Get the weight percent of the element in the system.
+     * Get the actual weight percent of the element in the system.
      *
-     * @return {@link Scalar} with the weight percent of the element in the system.
+     * @return {@link Scalar} with the actual weight percent of the element in the system.
      */
-    @JsonGetter(value = "weightPercent")
-    public Scalar getWeightPercent() {
-        return this.weightPercent;
+    @JsonGetter(value = "actualWeightPercent")
+    public Scalar getActualWeightPercent() {
+        return this.actualWeightPercent;
     }
 
     /**
-     * Set the atomic percent of the element in the system.
+     * Set the ideal weight percent of the element in the overall system.
      *
-     * @param atomicPercent {@link Scalar} with the atomic percent of the element in the system.
+     * @param idealWeightPercent {@link Scalar} with the ideal weight percent of the element in the system.
      * @return This object.
+     */
+    @JsonSetter(value = "idealWeightPercent")
+    @JsonDeserialize(using = Scalar.Deserializer.class)
+    public Composition setIdealWeightPercent(final Scalar idealWeightPercent) {
+        this.idealWeightPercent = idealWeightPercent;
+        return this;
+    }
+
+    /**
+     * Set the ideal weight percent of the element in the overall system.
+     *
+     * @param idealWeightPercent String with the ideal weight percent of the element in the system.
+     * @return This object.
+     */
+    @JsonIgnore
+    public Composition setIdealWeightPercent(final String idealWeightPercent) {
+        return setIdealWeightPercent(Scalar.valueOf(idealWeightPercent));
+    }
+
+    /**
+     * Set the ideal weight percent of the element in the overall system.
+     *
+     * @param idealWeightPercent Number with the ideal weight percent of the element in the system.
+     * @return This object.
+     */
+    @JsonIgnore
+    public Composition setIdealWeightPercent(final Number idealWeightPercent) {
+        return setIdealWeightPercent(Scalar.valueOf(idealWeightPercent));
+    }
+
+    /**
+     * Get the ideal weight percent of the element in the system.
+     *
+     * @return {@link Scalar} with the ideal weight percent of the element in the system.
+     */
+    @JsonGetter(value = "idealWeightPercent")
+    public Scalar getIdealWeightPercent() {
+        return this.idealWeightPercent;
+    }
+
+    /**
+     * Set the actual atomic percent of the element in the system.
+     *
+     * @param atomicPercent {@link Scalar} with the actual atomic percent of the element in the system.
      */
     @JsonSetter(value = "atomicPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Composition setAtomicPercent(final Scalar atomicPercent) {
-        this.atomicPercent = atomicPercent;
+    protected void setAtomicPercent(final Scalar atomicPercent) {  // Private since only Jackson should use it
+        setActualAtomicPercent(atomicPercent);
+    }
+
+    /**
+     * Set the actual atomic percent of the element in the system.
+     *
+     * @param actualAtomicPercent {@link Scalar} with the actual atomic percent of the element in the system.
+     * @return This object.
+     */
+    @JsonSetter(value = "actualAtomicPercent")
+    @JsonDeserialize(using = Scalar.Deserializer.class)
+    public Composition setActualAtomicPercent(final Scalar actualAtomicPercent) {
+        this.actualAtomicPercent = actualAtomicPercent;
         return this;
     }
 
     /**
-     * Set the atomic percent of the element in the system.
+     * Set the actual atomic percent of the element in the system.
      *
-     * @param atomicPercent String with the atomic percent of the element in the system.
+     * @param actualAtomicPercent String with the actual atomic percent of the element in the system.
      * @return This object.
      */
     @JsonIgnore
-    public Composition setAtomicPercent(final String atomicPercent) {
-        return setAtomicPercent(Scalar.valueOf(atomicPercent));
+    public Composition setActualAtomicPercent(final String actualAtomicPercent) {
+        return setActualAtomicPercent(Scalar.valueOf(actualAtomicPercent));
     }
 
     /**
-     * Set the atomic percent of the element in the system.
+     * Set the actual atomic percent of the element in the system.
      *
-     * @param atomicPercent Number with the atomic percent of the element in the system.
+     * @param actualAtomicPercent Number with the actual atomic percent of the element in the system.
      * @return This object.
      */
     @JsonIgnore
-    public Composition setAtomicPercent(final Number atomicPercent) {
-        return setAtomicPercent(Scalar.valueOf(atomicPercent));
+    public Composition setActualAtomicPercent(final Number actualAtomicPercent) {
+        return setActualAtomicPercent(Scalar.valueOf(actualAtomicPercent));
     }
 
     /**
-     * Get the atomic percent of the element in the system.
+     * Get the actual atomic percent of the element in the system.
      *
-     * @return {@link Scalar} with the atomic percent of the element in the system.
+     * @return {@link Scalar} with the actual atomic percent of the element in the system.
      */
-    @JsonGetter(value = "atomicPercent")
-    public Scalar getAtomicPercent() {
-        return this.atomicPercent;
+    @JsonGetter(value = "actualAtomicPercent")
+    public Scalar getActualAtomicPercent() {
+        return this.actualAtomicPercent;
+    }
+
+    /**
+     * Set the ideal atomic percent of the element in the system.
+     *
+     * @param idealAtomicPercent {@link Scalar} with the ideal atomic percent of the element in the system.
+     * @return This object.
+     */
+    @JsonSetter(value = "idealAtomicPercent")
+    @JsonDeserialize(using = Scalar.Deserializer.class)
+    public Composition setIdealAtomicPercent(final Scalar idealAtomicPercent) {
+        this.idealAtomicPercent = idealAtomicPercent;
+        return this;
+    }
+
+    /**
+     * Set the ideal atomic percent of the element in the system.
+     *
+     * @param idealAtomicPercent String with the ideal atomic percent of the element in the system.
+     * @return This object.
+     */
+    @JsonIgnore
+    public Composition setIdealAtomicPercent(final String idealAtomicPercent) {
+        return setIdealAtomicPercent(Scalar.valueOf(idealAtomicPercent));
+    }
+
+    /**
+     * Set the ideal atomic percent of the element in the system.
+     *
+     * @param idealAtomicPercent Number with the ideal atomic percent of the element in the system.
+     * @return This object.
+     */
+    @JsonIgnore
+    public Composition setIdealAtomicPercent(final Number idealAtomicPercent) {
+        return setIdealAtomicPercent(Scalar.valueOf(idealAtomicPercent));
+    }
+
+    /**
+     * Get the ideal atomic percent of the element in the system.
+     *
+     * @return {@link Scalar} with the ideal atomic percent of the element in the system.
+     */
+    @JsonGetter(value = "idealAtomicPercent")
+    public Scalar getIdealAtomicPercent() {
+        return this.idealAtomicPercent;
     }
 
     @Override
@@ -149,9 +261,15 @@ public class Composition extends Pio {
     /** Element this composition represents. */
     private String element;
 
-    /** Weight percent of the element. */
-    private Scalar weightPercent;
+    /** Actual weight percent of the element. */
+    private Scalar actualWeightPercent;
 
-    /** Atomic percent of the element. */
-    private Scalar atomicPercent;
+    /** Actual atomic percent of the element. */
+    private Scalar actualAtomicPercent;
+
+    /** Ideal weight percent of the element. */
+    private Scalar idealWeightPercent;
+
+    /** Ideal atomic percent of the element. */
+    private Scalar idealAtomicPercent;
 }
