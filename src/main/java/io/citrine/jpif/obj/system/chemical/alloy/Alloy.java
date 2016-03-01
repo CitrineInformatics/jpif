@@ -53,7 +53,7 @@ public class Alloy extends ChemicalSystem {
      * @return True if the object was removed.
      */
     public boolean removePhase(final AlloyPhase phase) {
-        return (this.phases != null) && this.phases.remove(phase);
+        return removeSubsystem(phase);
     }
 
     /**
