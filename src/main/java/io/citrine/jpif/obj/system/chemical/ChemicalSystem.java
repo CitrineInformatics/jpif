@@ -25,10 +25,11 @@ public class ChemicalSystem<T extends ChemicalSystem<T>> extends System<T> {
      * @param chemicalFormula String with the chemical formula for this system.
      * @return This object.
      */
+    @SuppressWarnings("unchecked")
     @JsonSetter(value = "chemicalFormula")
-    public ChemicalSystem setChemicalFormula(final String chemicalFormula) {
+    public T setChemicalFormula(final String chemicalFormula) {
         this.chemicalFormula = chemicalFormula;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -67,12 +68,13 @@ public class ChemicalSystem<T extends ChemicalSystem<T>> extends System<T> {
      * @param composition {@link Composition} object with the composition to add.
      * @return This object.
      */
-    public ChemicalSystem addComposition(final Composition composition) {
+    @SuppressWarnings("unchecked")
+    public T addComposition(final Composition composition) {
         if (this.composition == null) {
             this.composition = new ArrayList<>();
         }
         this.composition.add(composition);
-        return this;
+        return (T) this;
     }
 
     /**
@@ -82,12 +84,13 @@ public class ChemicalSystem<T extends ChemicalSystem<T>> extends System<T> {
      * @param composition {@link Composition} object to add to this system.
      * @return This object.
      */
-    public ChemicalSystem addComposition(final int index, final Composition composition) {
+    @SuppressWarnings("unchecked")
+    public T addComposition(final int index, final Composition composition) {
         if (this.composition == null) {
             this.composition = new ArrayList<>();
         }
         this.composition.add(index, composition);
-        return this;
+        return (T) this;
     }
 
     /**

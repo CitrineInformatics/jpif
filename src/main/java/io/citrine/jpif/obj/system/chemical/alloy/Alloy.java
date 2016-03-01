@@ -22,9 +22,10 @@ public class Alloy<T extends Alloy<T>> extends ChemicalSystem<T> {
      * @param phase {@link AlloyPhase} object with the phase to add.
      * @return This object.
      */
-    public Alloy addPhase(final AlloyPhase phase) {
+    @SuppressWarnings("unchecked")
+    public T addPhase(final AlloyPhase phase) {
         super.addSubSystem(phase);
-        return this;
+        return (T) this;
     }
 
     /**
@@ -34,9 +35,10 @@ public class Alloy<T extends Alloy<T>> extends ChemicalSystem<T> {
      * @param phase {@link AlloyPhase} object to add to this alloy.
      * @return This object.
      */
-    public Alloy addPhase(final int index, final AlloyPhase phase) {
+    @SuppressWarnings("unchecked")
+    public T addPhase(final int index, final AlloyPhase phase) {
         super.addSubSystem(index, phase);
-        return this;
+        return (T) this;
     }
 
     /**

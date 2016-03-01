@@ -14,7 +14,6 @@ import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 import io.citrine.jpif.obj.system.chemical.alloy.AlloyPhase;
-import io.citrine.jpif.util.PifObjectMapper;
 
 import java.util.ArrayList;
 import java.util.Collections;
