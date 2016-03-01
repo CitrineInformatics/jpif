@@ -1,16 +1,9 @@
 package io.citrine.jpif.obj.system.chemical;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import io.citrine.jpif.obj.common.Id;
-import io.citrine.jpif.obj.common.License;
-import io.citrine.jpif.obj.common.Person;
-import io.citrine.jpif.obj.common.ProcessStep;
-import io.citrine.jpif.obj.common.Property;
-import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.common.Composition;
 
@@ -24,7 +17,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonTypeName("system.chemical")
-public class ChemicalSystem extends System {
+public class ChemicalSystem<T extends ChemicalSystem<T>> extends System<T> {
 
     /**
      * Set the chemical formula for this system.
@@ -149,121 +142,6 @@ public class ChemicalSystem extends System {
      */
     public Iterable<Composition> composition() {
         return (this.composition == null) ? Collections.emptyList() : this.composition;
-    }
-
-    @Override
-    public ChemicalSystem addName(final String name) {
-        super.addName(name);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addName(final int index, final String name) {
-        super.addName(index, name);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addId(final Id id) {
-        super.addId(id);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addId(final int index, final Id id) {
-        super.addId(index, id);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addProperty(final Property property) {
-        super.addProperty(property);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addProperty(final int index, final Property property) {
-        super.addProperty(index, property);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addPreparation(final ProcessStep preparation) {
-        super.addPreparation(preparation);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addPreparation(final int index, final ProcessStep preparation) {
-        super.addPreparation(index, preparation);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addSubSystem(final System subSystem) {
-        super.addSubSystem(subSystem);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addSubSystem(final int index, final System subSystem) {
-        super.addSubSystem(index, subSystem);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addReference(final Reference reference) {
-        super.addReference(reference);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addReference(final int index, final Reference reference) {
-        super.addReference(index, reference);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addContact(final Person contact) {
-        super.addContact(contact);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addContact(final int index, final Person contact) {
-        super.addContact(index, contact);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addLicense(final License license) {
-        super.addLicense(license);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem addLicense(final int index, final License license) {
-        super.addLicense(index, license);
-        return this;
-    }
-
-    @Override
-    @JsonAnySetter
-    public ChemicalSystem addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public ChemicalSystem clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /** Chemical formula. */

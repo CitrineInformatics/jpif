@@ -1,14 +1,7 @@
 package io.citrine.jpif.obj.system.chemical.alloy;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import io.citrine.jpif.obj.common.Id;
-import io.citrine.jpif.obj.common.License;
-import io.citrine.jpif.obj.common.Person;
-import io.citrine.jpif.obj.common.ProcessStep;
-import io.citrine.jpif.obj.common.Property;
-import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 
@@ -21,7 +14,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonTypeName("system.chemical.alloy")
-public class Alloy extends ChemicalSystem {
+public class Alloy<T extends Alloy<T>> extends ChemicalSystem<T> {
 
     /**
      * Add a phase to this alloy.
@@ -87,121 +80,6 @@ public class Alloy extends ChemicalSystem {
     public Iterable<AlloyPhase> phases() {
         updatePhases();
         return this.phases;
-    }
-
-    @Override
-    public Alloy addName(final String name) {
-        super.addName(name);
-        return this;
-    }
-
-    @Override
-    public Alloy addName(final int index, final String name) {
-        super.addName(index, name);
-        return this;
-    }
-
-    @Override
-    public Alloy addId(final Id id) {
-        super.addId(id);
-        return this;
-    }
-
-    @Override
-    public Alloy addId(final int index, final Id id) {
-        super.addId(index, id);
-        return this;
-    }
-
-    @Override
-    public Alloy addProperty(final Property property) {
-        super.addProperty(property);
-        return this;
-    }
-
-    @Override
-    public Alloy addProperty(final int index, final Property property) {
-        super.addProperty(index, property);
-        return this;
-    }
-
-    @Override
-    public Alloy addPreparation(final ProcessStep preparation) {
-        super.addPreparation(preparation);
-        return this;
-    }
-
-    @Override
-    public Alloy addPreparation(final int index, final ProcessStep preparation) {
-        super.addPreparation(index, preparation);
-        return this;
-    }
-
-    @Override
-    public Alloy addSubSystem(final System subSystem) {
-        super.addSubSystem(subSystem);
-        return this;
-    }
-
-    @Override
-    public Alloy addSubSystem(final int index, final System subSystem) {
-        super.addSubSystem(index, subSystem);
-        return this;
-    }
-
-    @Override
-    public Alloy addReference(final Reference reference) {
-        super.addReference(reference);
-        return this;
-    }
-
-    @Override
-    public Alloy addReference(final int index, final Reference reference) {
-        super.addReference(index, reference);
-        return this;
-    }
-
-    @Override
-    public Alloy addContact(final Person contact) {
-        super.addContact(contact);
-        return this;
-    }
-
-    @Override
-    public Alloy addContact(final int index, final Person contact) {
-        super.addContact(index, contact);
-        return this;
-    }
-
-    @Override
-    public Alloy addLicense(final License license) {
-        super.addLicense(license);
-        return this;
-    }
-
-    @Override
-    public Alloy addLicense(final int index, final License license) {
-        super.addLicense(index, license);
-        return this;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Alloy addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Alloy removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Alloy clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /**

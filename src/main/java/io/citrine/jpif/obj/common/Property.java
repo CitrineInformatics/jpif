@@ -16,17 +16,17 @@ import java.util.Map;
 /**
  * Information about a property and conditions under which it exists.
  *
- * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link AbstractRcl} object that
+ * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that
  * adds support for reference, contact, and license information.
  *
  * @author Kyle Michel
  */
-public class Property extends AbstractValue<Property> {
+public class Property extends Value<Property> {
 
     /**
      * Set the list of conditions for this property.
      *
-     * @param conditions List of {@link AbstractValue} objects with the conditions for this property.
+     * @param conditions List of {@link Value} objects with the conditions for this property.
      */
     @JsonSetter(value = "conditions")
     protected void setConditions(final List<Value> conditions) { // Private since only Jackson should use it
