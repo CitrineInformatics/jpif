@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class Method extends Pio {
+public class Method extends Pio<Method> {
 
     /**
      * Set the name of the method.
@@ -242,25 +242,6 @@ public class Method extends Pio {
      */
     public Iterable<Software> software() {
         return (this.software == null) ? Collections.emptyList() : this.software;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Method addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Method removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Method clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /** Name of the measurement method. */

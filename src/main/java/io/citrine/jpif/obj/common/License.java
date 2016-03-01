@@ -1,6 +1,5 @@
 package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -18,7 +17,7 @@ import java.net.URL;
  *
  * @author Kyle Michel
  */
-public class License extends Pio {
+public class License extends Pio<License> {
 
     /**
      * Set the name of the license.
@@ -84,25 +83,6 @@ public class License extends Pio {
     @JsonGetter(value = "url")
     public String getUrl() {
         return this.url;
-    }
-
-    @Override
-    @JsonAnySetter
-    public License addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public License removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public License clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /**

@@ -1,6 +1,5 @@
 package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -16,7 +15,7 @@ import java.io.IOException;
  *
  * @author Kyle Michel
  */
-public class Id extends Pio {
+public class Id extends Pio<Id> {
 
     /**
      * Set the name of the identifier.
@@ -60,25 +59,6 @@ public class Id extends Pio {
     @JsonGetter(value = "value")
     public String getValue() {
         return this.value;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Id addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Id removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Id clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /**

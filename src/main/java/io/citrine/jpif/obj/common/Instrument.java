@@ -1,6 +1,5 @@
 package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -9,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  *
  * @author Kyle Michel
  */
-public class Instrument extends Pio {
+public class Instrument extends Pio<Instrument> {
 
     /**
      * Set the name of the instrument.
@@ -97,25 +96,6 @@ public class Instrument extends Pio {
     @JsonGetter(value = "url")
     public String getUrl() {
         return this.url;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Instrument addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Instrument removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Instrument clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /** Name of the instrument. */

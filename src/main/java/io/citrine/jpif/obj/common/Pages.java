@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  *
  * @author Kyle Michel
  */
-public class Pages extends Pio {
+public class Pages extends Pio<Pages> {
 
     /**
      * Set the starting page.
@@ -61,25 +61,6 @@ public class Pages extends Pio {
     @JsonGetter(value = "end")
     public String getEnd() {
         return this.end;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Pages addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Pages removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Pages clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /**

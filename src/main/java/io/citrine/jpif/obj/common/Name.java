@@ -1,6 +1,5 @@
 package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -18,7 +17,7 @@ import java.util.regex.Pattern;
  *
  * @author Kyle Michel
  */
-public class Name extends Pio {
+public class Name extends Pio<Name> {
 
     /**
      * Set the title of the person.
@@ -106,25 +105,6 @@ public class Name extends Pio {
     @JsonGetter(value = "suffix")
     public String getSuffix() {
         return this.suffix;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Name addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Name removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Name clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
     }
 
     /**

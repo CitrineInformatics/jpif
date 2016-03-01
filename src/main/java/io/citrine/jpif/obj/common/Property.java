@@ -1,6 +1,5 @@
 package io.citrine.jpif.obj.common;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,40 +16,40 @@ import java.util.Map;
 /**
  * Information about a property and conditions under which it exists.
  *
- * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that adds
+ * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link AbstractRcl} object that adds
  * support for reference, contact, and license information.
  *
  * @author Kyle Michel
  */
-public class Property extends Value {
+public class Property extends AbstractValue<Property> {
 
     /**
      * Set the list of conditions for this property.
      *
-     * @param conditions List of {@link Value} objects with the conditions for this property.
+     * @param conditions List of {@link AbstractValue} objects with the conditions for this property.
      */
     @JsonSetter(value = "conditions")
-    protected void setConditions(final List<Value> conditions) { // Private since only Jackson should use it
+    protected void setConditions(final List<AbstractValue> conditions) { // Private since only Jackson should use it
         this.conditions = conditions;
     }
 
     /**
      * Set the list of conditions for this property.
      *
-     * @param condition List of {@link Value} objects with the conditions for this property.
+     * @param condition List of {@link AbstractValue} objects with the conditions for this property.
      */
     @JsonSetter(value = "condition")
-    protected void setCondition(final List<Value> condition) { // Private since only Jackson should use it
+    protected void setCondition(final List<AbstractValue> condition) { // Private since only Jackson should use it
         setConditions(condition);
     }
 
     /**
      * Add a condition for this property.
      *
-     * @param condition {@link Value} object with the condition to add.
+     * @param condition {@link AbstractValue} object with the condition to add.
      * @return This object.
      */
-    public Property addCondition(final Value condition) {
+    public Property addCondition(final AbstractValue condition) {
         if (this.conditions == null) {
             this.conditions = new ArrayList<>();
         }
@@ -62,10 +61,10 @@ public class Property extends Value {
      * Insert a single condition for this property.
      *
      * @param index Index at which to insert the input condition.
-     * @param condition {@link Value} object to add for the property.
+     * @param condition {@link AbstractValue} object to add for the property.
      * @return This object.
      */
-    public Property addCondition(final int index, final Value condition) {
+    public Property addCondition(final int index, final AbstractValue condition) {
         if (this.conditions == null) {
             this.conditions = new ArrayList<>();
         }
@@ -76,10 +75,10 @@ public class Property extends Value {
     /**
      * Remove a condition from the property.
      *
-     * @param condition {@link Value} object to delete.
+     * @param condition {@link AbstractValue} object to delete.
      * @return True if the object was removed.
      */
-    public boolean removeCondition(final Value condition) {
+    public boolean removeCondition(final AbstractValue condition) {
         return (this.conditions != null) && this.conditions.remove(condition);
     }
 
@@ -96,11 +95,11 @@ public class Property extends Value {
      * Get a condition for this property at a set index.
      *
      * @param index Index of the condition to get.
-     * @return {@link Value} object at the input index.
+     * @return {@link AbstractValue} object at the input index.
      * @throws IndexOutOfBoundsException if the index is out of range of the conditions list.
      */
     @JsonIgnore
-    public Value getCondition(final int index) {
+    public AbstractValue getCondition(final int index) {
         if (this.conditions == null) {
             throw new IndexOutOfBoundsException("Attempting to access condition " + index + " of "
                     + this.numConditions());
@@ -113,17 +112,17 @@ public class Property extends Value {
      *
      * @return {@link Iterable} object for iterating over conditions of this property.
      */
-    public Iterable<Value> conditions() {
+    public Iterable<AbstractValue> conditions() {
         return (this.conditions == null) ? Collections.emptyList() : this.conditions;
     }
 
     /**
      * Get the list of conditions for this property.
      *
-     * @return List of {@link Value} objects with conditions for this property.
+     * @return List of {@link AbstractValue} objects with conditions for this property.
      */
     @JsonGetter(value = "conditions")
-    protected List<Value> getConditions() { // Private since only Jackson should use it
+    protected List<AbstractValue> getConditions() { // Private since only Jackson should use it
         return this.conditions;
     }
 
@@ -455,149 +454,8 @@ public class Property extends Value {
         return this.rcl.getLicenses();
     }
 
-    @Override
-    @JsonSetter(value = "name")
-    public Property setName(final String name) {
-        super.setName(name);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final Scalar scalar) {
-        super.addScalar(scalar);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final int index, final Scalar scalar) {
-        super.addScalar(index, scalar);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final String scalar) {
-        super.addScalar(scalar);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final int index, final String scalar) {
-        super.addScalar(index, scalar);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final Number scalar) {
-        super.addScalar(scalar);
-        return this;
-    }
-
-    @Override
-    public Property addScalar(final int index, final Number scalar) {
-        super.addScalar(index, scalar);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final Scalar[] vector) {
-        super.addVector(vector);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final int index, final Scalar[] vector) {
-        super.addVector(index, vector);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final String[] vector) {
-        super.addVector(vector);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final int index, final String[] vector) {
-        super.addVector(index, vector);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final Number[] vector) {
-        super.addVector(vector);
-        return this;
-    }
-
-    @Override
-    public Property addVector(final int index, final Number[] vector) {
-        super.addVector(index, vector);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final Scalar[][] matrix) {
-        super.addMatrix(matrix);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final int index, final Scalar[][] matrix) {
-        super.addMatrix(index, matrix);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final String[][] matrix) {
-        super.addMatrix(matrix);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final int index, final String[][] matrix) {
-        super.addMatrix(index, matrix);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final Number[][] matrix) {
-        super.addMatrix(matrix);
-        return this;
-    }
-
-    @Override
-    public Property addMatrix(final int index, final Number[][] matrix) {
-        super.addMatrix(index, matrix);
-        return this;
-    }
-
-    @Override
-    @JsonSetter(value = "units")
-    public Property setUnits(final String units) {
-        super.setUnits(units);
-        return this;
-    }
-
-    @Override
-    @JsonAnySetter
-    public Property addUnsupportedField(final String key, final Object value) {
-        super.addUnsupportedField(key, value);
-        return this;
-    }
-
-    @Override
-    public Property removeUnsupportedField(final String key) {
-        super.removeUnsupportedField(key);
-        return this;
-    }
-
-    @Override
-    public Property clearUnsupportedFields() {
-        super.clearUnsupportedFields();
-        return this;
-    }
-
     /** List of conditions for the property. */
-    private List<Value> conditions;
+    private List<AbstractValue> conditions;
 
     /** Method used to obtain the property. */
     private Method method;

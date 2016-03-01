@@ -620,7 +620,4 @@ public class System extends Rcl {
 
     /** List of subsystems of this system. */
     private List<System> subSystems;
-
-    /** Category of the system. */
-    private String category;
 }
