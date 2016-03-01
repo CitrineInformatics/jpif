@@ -4,9 +4,6 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import io.citrine.jpif.obj.system.System;
-import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
-import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
-import io.citrine.jpif.obj.system.chemical.alloy.AlloyPhase;
 import io.citrine.jpif.util.PifObjectMapper;
 
 import java.io.IOException;
@@ -83,97 +80,35 @@ public class PifObjectStream {
      * @throws IOException if the stream cannot be processed.
      */
     public System getNextSystem() throws IOException {
-        return isFinished() ? null : advanceToNextSystem();
+        return getNextSystem(System.class);
     }
 
     /**
-     * Move to the next {@link System} in this stream.
+     * Get the next object derived from {@link System} in this stream.
      *
-     * @return Next {@link System} object in the stream or a null pointer if the end of the stream has been reached.
+     * @param systemClass Class of the system to return.
+     * @param <T> Type of the class to return.
+     * @return Next object of type T in the stream or a null pointer if the end of the stream has been reached.
      * @throws IOException if the stream cannot be processed.
      */
-    private System advanceToNextSystem() throws IOException {
-        return PifObjectMapper.getInstance().readValue(this.jsonParser, System.class);
+    public <T extends System> T getNextSystem(final Class<T> systemClass) throws IOException {
+        return isFinished() ? null : advanceToNextSystem(systemClass);
     }
 
     /**
-     * Get the next {@link ChemicalSystem} in this stream. This ignores any records that are not of type
-     * {@link ChemicalSystem} or one of its subclasses.
+     * Move to the next object derived from {@link System} in this stream.
      *
-     * @return Next {@link ChemicalSystem} object in the stream or a null pointer if the end of the stream
-     *      has been reached.
+     * @param systemClass Class of the system to return.
+     * @param <T> Type of the class to return.
+     * @return Next object of type T in the stream or a null pointer if the end of the stream has been reached.
      * @throws IOException if the stream cannot be processed.
      */
-    public ChemicalSystem getNextChemicalSystem() throws IOException {
-        return isFinished() ? null : advanceToNextChemicalSystem();
-    }
-
-    /**
-     * Move to the next {@link ChemicalSystem} in this stream.
-     *
-     * @return Next {@link ChemicalSystem} object in the stream or a null pointer if the end of the stream
-     *      has been reached.
-     * @throws IOException if the stream cannot be processed.
-     */
-    private ChemicalSystem advanceToNextChemicalSystem() throws IOException {
+    @SuppressWarnings("unchecked")
+    private <T extends System> T advanceToNextSystem(final Class<T> systemClass) throws IOException {
         System currentSystem;
         while ((currentSystem = PifObjectMapper.getInstance().readValue(this.jsonParser, System.class)) != null) {
-            if (currentSystem instanceof ChemicalSystem) {
-                return (ChemicalSystem) currentSystem;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get the next {@link Alloy} in this stream. This ignores any records that are not of type {@link Alloy} or one
-     * of its subclasses.
-     *
-     * @return Next {@link Alloy} object in the stream or a null pointer if the end of the stream has been reached.
-     * @throws IOException if the stream cannot be processed.
-     */
-    public Alloy getNextAlloy() throws IOException {
-        return isFinished() ? null : advanceToNextAlloy();
-    }
-
-    /**
-     * Move to the next {@link Alloy} in this stream.
-     *
-     * @return Next {@link Alloy} object in the stream or a null pointer if the end of the stream has been reached.
-     * @throws IOException if the stream cannot be processed.
-     */
-    private Alloy advanceToNextAlloy() throws IOException {
-        System currentSystem;
-        while ((currentSystem = PifObjectMapper.getInstance().readValue(this.jsonParser, System.class)) != null) {
-            if (currentSystem instanceof Alloy) {
-                return (Alloy) currentSystem;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Get the next {@link AlloyPhase} in this stream. This ignores any records that are not of type
-     * {@link AlloyPhase} or one of its subclasses.
-     *
-     * @return Next {@link AlloyPhase} object in the stream or a null pointer if the end of the stream has been reached.
-     * @throws IOException if the stream cannot be processed.
-     */
-    public AlloyPhase getNextAlloyPhase() throws IOException {
-        return isFinished() ? null : advanceToNextAlloyPhase();
-    }
-
-    /**
-     * Move to the next {@link AlloyPhase} in this stream.
-     *
-     * @return Next {@link AlloyPhase} object in the stream or a null pointer if the end of the stream has been reached.
-     * @throws IOException if the stream cannot be processed.
-     */
-    private AlloyPhase advanceToNextAlloyPhase() throws IOException {
-        System currentSystem;
-        while ((currentSystem = PifObjectMapper.getInstance().readValue(this.jsonParser, System.class)) != null) {
-            if (currentSystem instanceof AlloyPhase) {
-                return (AlloyPhase) currentSystem;
+            if (systemClass.isAssignableFrom(currentSystem.getClass())) {
+                return (T) currentSystem;
             }
         }
         return null;
