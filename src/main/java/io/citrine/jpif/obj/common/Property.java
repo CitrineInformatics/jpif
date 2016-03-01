@@ -29,27 +29,27 @@ public class Property extends AbstractValue<Property> {
      * @param conditions List of {@link AbstractValue} objects with the conditions for this property.
      */
     @JsonSetter(value = "conditions")
-    protected void setConditions(final List<AbstractValue> conditions) { // Private since only Jackson should use it
+    protected void setConditions(final List<Value> conditions) { // Private since only Jackson should use it
         this.conditions = conditions;
     }
 
     /**
      * Set the list of conditions for this property.
      *
-     * @param condition List of {@link AbstractValue} objects with the conditions for this property.
+     * @param condition List of {@link Value} objects with the conditions for this property.
      */
     @JsonSetter(value = "condition")
-    protected void setCondition(final List<AbstractValue> condition) { // Private since only Jackson should use it
+    protected void setCondition(final List<Value> condition) { // Private since only Jackson should use it
         setConditions(condition);
     }
 
     /**
      * Add a condition for this property.
      *
-     * @param condition {@link AbstractValue} object with the condition to add.
+     * @param condition {@link Value} object with the condition to add.
      * @return This object.
      */
-    public Property addCondition(final AbstractValue condition) {
+    public Property addCondition(final Value condition) {
         if (this.conditions == null) {
             this.conditions = new ArrayList<>();
         }
@@ -61,10 +61,10 @@ public class Property extends AbstractValue<Property> {
      * Insert a single condition for this property.
      *
      * @param index Index at which to insert the input condition.
-     * @param condition {@link AbstractValue} object to add for the property.
+     * @param condition {@link Value} object to add for the property.
      * @return This object.
      */
-    public Property addCondition(final int index, final AbstractValue condition) {
+    public Property addCondition(final int index, final Value condition) {
         if (this.conditions == null) {
             this.conditions = new ArrayList<>();
         }
@@ -75,10 +75,10 @@ public class Property extends AbstractValue<Property> {
     /**
      * Remove a condition from the property.
      *
-     * @param condition {@link AbstractValue} object to delete.
+     * @param condition {@link Value} object to delete.
      * @return True if the object was removed.
      */
-    public boolean removeCondition(final AbstractValue condition) {
+    public boolean removeCondition(final Value condition) {
         return (this.conditions != null) && this.conditions.remove(condition);
     }
 
@@ -95,11 +95,11 @@ public class Property extends AbstractValue<Property> {
      * Get a condition for this property at a set index.
      *
      * @param index Index of the condition to get.
-     * @return {@link AbstractValue} object at the input index.
+     * @return {@link Value} object at the input index.
      * @throws IndexOutOfBoundsException if the index is out of range of the conditions list.
      */
     @JsonIgnore
-    public AbstractValue getCondition(final int index) {
+    public Value getCondition(final int index) {
         if (this.conditions == null) {
             throw new IndexOutOfBoundsException("Attempting to access condition " + index + " of "
                     + this.numConditions());
@@ -112,17 +112,17 @@ public class Property extends AbstractValue<Property> {
      *
      * @return {@link Iterable} object for iterating over conditions of this property.
      */
-    public Iterable<AbstractValue> conditions() {
+    public Iterable<Value> conditions() {
         return (this.conditions == null) ? Collections.emptyList() : this.conditions;
     }
 
     /**
      * Get the list of conditions for this property.
      *
-     * @return List of {@link AbstractValue} objects with conditions for this property.
+     * @return List of {@link Value} objects with conditions for this property.
      */
     @JsonGetter(value = "conditions")
-    protected List<AbstractValue> getConditions() { // Private since only Jackson should use it
+    protected List<Value> getConditions() { // Private since only Jackson should use it
         return this.conditions;
     }
 
@@ -455,7 +455,7 @@ public class Property extends AbstractValue<Property> {
     }
 
     /** List of conditions for the property. */
-    private List<AbstractValue> conditions;
+    private List<Value> conditions;
 
     /** Method used to obtain the property. */
     private Method method;
