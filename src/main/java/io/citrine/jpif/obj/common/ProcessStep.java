@@ -40,30 +40,30 @@ public class ProcessStep extends Pio<ProcessStep> {
     /**
      * Set the details of the process step.
      *
-     * @param details List of {@link AbstractValue} objects describing this process step.
+     * @param details List of {@link Value} objects describing this process step.
      */
     @JsonSetter(value = "details")
-    protected void setDetails(final List<AbstractValue> details) { // Private since only Jackson should use it
+    protected void setDetails(final List<Value> details) { // Private since only Jackson should use it
         this.details = details;
     }
 
     /**
      * Set the details of the process step.
      *
-     * @param detail List of {@link AbstractValue} objects describing this process step.
+     * @param detail List of {@link Value} objects describing this process step.
      */
     @JsonSetter(value = "detail")
-    protected void setDetail(final List<AbstractValue> detail) { // Private since only Jackson should use it
+    protected void setDetail(final List<Value> detail) { // Private since only Jackson should use it
         setDetails(details);
     }
 
     /**
      * Add single detail to the process step.
      *
-     * @param detail {@link AbstractValue} object to add to the process step..
+     * @param detail {@link Value} object to add to the process step..
      * @return This object.
      */
-    public ProcessStep addDetail(final AbstractValue detail) {
+    public ProcessStep addDetail(final Value detail) {
         if (this.details == null) {
             this.details = new ArrayList<>();
         }
@@ -75,10 +75,10 @@ public class ProcessStep extends Pio<ProcessStep> {
      * Insert a single detail of the process step at the input index.
      *
      * @param index Index at which to insert the input detail.
-     * @param detail {@link AbstractValue} object to add to the process step.
+     * @param detail {@link Value} object to add to the process step.
      * @return This object.
      */
-    public ProcessStep addDetail(final int index, final AbstractValue detail) {
+    public ProcessStep addDetail(final int index, final Value detail) {
         if (this.details == null) {
             this.details = new ArrayList<>();
         }
@@ -89,10 +89,10 @@ public class ProcessStep extends Pio<ProcessStep> {
     /**
      * Remove a detail from the step.
      *
-     * @param detail {@link AbstractValue} object to delete.
+     * @param detail {@link Value} object to delete.
      * @return True if the object was removed.
      */
-    public boolean removeDetail(final AbstractValue detail) {
+    public boolean removeDetail(final Value detail) {
         return (this.details != null) && this.details.remove(detail);
     }
 
@@ -109,11 +109,11 @@ public class ProcessStep extends Pio<ProcessStep> {
      * Get the process step detail at the input index.
      *
      * @param index Index of the detail to get.
-     * @return {@link AbstractValue} object at the input index.
+     * @return {@link Value} object at the input index.
      * @throws IndexOutOfBoundsException if the input index is out of range of the details list.
      */
     @JsonIgnore
-    public AbstractValue getDetail(final int index) {
+    public Value getDetail(final int index) {
         if (this.details == null) {
             throw new IndexOutOfBoundsException(
                     "Attempting to access detail " + index + " of " + this.numDetails());
@@ -126,17 +126,17 @@ public class ProcessStep extends Pio<ProcessStep> {
      *
      * @return {@link Iterable} object for iterating over details of the process step.
      */
-    public Iterable<AbstractValue> details() {
+    public Iterable<Value> details() {
         return (this.details == null) ? Collections.emptyList() : this.details;
     }
 
     /**
      * Get the list of details of the process step.
      *
-     * @return List of {@link AbstractValue} objects with details of the process step.
+     * @return List of {@link Value} objects with details of the process step.
      */
     @JsonGetter(value = "details")
-    protected List<AbstractValue> getDetails() { // Private since only Jackson should use it
+    protected List<Value> getDetails() { // Private since only Jackson should use it
         return this.details;
     }
 
@@ -144,5 +144,5 @@ public class ProcessStep extends Pio<ProcessStep> {
     private String name;
 
     /** List of details of the process step. */
-    private List<AbstractValue> details;
+    private List<Value> details;
 }
