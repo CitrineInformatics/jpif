@@ -16,8 +16,8 @@ import java.util.Map;
 /**
  * Information about a property and conditions under which it exists.
  *
- * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link AbstractRcl} object that adds
- * support for reference, contact, and license information.
+ * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link AbstractRcl} object that
+ * adds support for reference, contact, and license information.
  *
  * @author Kyle Michel
  */

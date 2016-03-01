@@ -84,7 +84,8 @@ public class PifObjectStream {
     }
 
     /**
-     * Get the next object derived from {@link System} in this stream.
+     * Get the next object derived from {@link System} in this stream. This function only returns objects of input
+     * class or one of its derived classes, and ignore all other systems in the stream.
      *
      * @param systemClass Class of the system to return.
      * @param <T> Type of the class to return.
