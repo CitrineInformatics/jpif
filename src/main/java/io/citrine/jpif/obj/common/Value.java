@@ -155,7 +155,7 @@ public abstract class Value extends Pio {
      *
      * @return Number of scalars stored in this value.
      */
-    public int scalarsLength() {
+    public int numScalars() {
         return (this.scalars == null) ? 0 : this.scalars.size();
     }
 
@@ -169,7 +169,7 @@ public abstract class Value extends Pio {
     @JsonIgnore
     public Scalar getScalar(final int index) {
         if (this.scalars == null) {
-            throw new IndexOutOfBoundsException("Attempting to access scalar " + index + " of " + this.scalarsLength());
+            throw new IndexOutOfBoundsException("Attempting to access scalar " + index + " of " + this.numScalars());
         }
         return this.scalars.get(index);
     }
@@ -303,7 +303,7 @@ public abstract class Value extends Pio {
      *
      * @return Number of vectors stored by this value.
      */
-    public int vectorsLength() {
+    public int numVectors() {
         return (this.vectors == null) ? 0 : this.vectors.size();
     }
 
@@ -317,7 +317,7 @@ public abstract class Value extends Pio {
     @JsonIgnore
     public Scalar[] getVector(final int index) {
         if (this.vectors == null) {
-            throw new IndexOutOfBoundsException("Attempting to access vector " + index + " of " + this.vectorsLength());
+            throw new IndexOutOfBoundsException("Attempting to access vector " + index + " of " + this.numVectors());
         }
         return this.vectors.get(index);
     }
@@ -451,7 +451,7 @@ public abstract class Value extends Pio {
      *
      * @return Number of matrices stored by this value.
      */
-    public int matricesLength() {
+    public int numMatrices() {
         return (this.matrices == null) ? 0 : this.matrices.size();
     }
 
@@ -465,8 +465,7 @@ public abstract class Value extends Pio {
     @JsonIgnore
     public Scalar[][] getMatrix(final int index) {
         if (this.matrices == null) {
-            throw new IndexOutOfBoundsException("Attempting to access matrix " + index + " of "
-                    + this.matricesLength());
+            throw new IndexOutOfBoundsException("Attempting to access matrix " + index + " of " + this.numMatrices());
         }
         return this.matrices.get(index);
     }
