@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class ProcessStep extends Pio<ProcessStep> {
+public class ProcessStep extends Pio {
 
     /**
      * Set the name of this process step.
@@ -138,6 +139,13 @@ public class ProcessStep extends Pio<ProcessStep> {
     @JsonGetter(value = "details")
     protected List<Value> getDetails() { // Private since only Jackson should use it
         return this.details;
+    }
+
+    @Override
+    @JsonAnySetter
+    public ProcessStep addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** Name of the process step. */

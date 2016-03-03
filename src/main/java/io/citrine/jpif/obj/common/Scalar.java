@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.core.JsonParser;
@@ -19,7 +20,7 @@ import java.util.regex.Pattern;
  *
  * @author Kyle Michel
  */
-public class Scalar extends Pio<Scalar> {
+public class Scalar extends Pio {
 
     /**
      * Set the exact value.
@@ -202,6 +203,13 @@ public class Scalar extends Pio<Scalar> {
      */
     public boolean isApproximate() {
         return (this.approximate == null) ? false : this.approximate;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Scalar addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /**

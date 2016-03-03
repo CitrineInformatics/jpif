@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class Reference extends Pio<Reference> {
+public class Reference extends Pio {
 
     /**
      * Set the DOI of the published work.
@@ -568,6 +569,13 @@ public class Reference extends Pio<Reference> {
     @JsonGetter(value = "references")
     protected List<Reference> getReferences() { // Private since only Jackson should use it
         return this.references;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Reference addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** DOI of the published work. */

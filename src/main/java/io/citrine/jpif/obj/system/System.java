@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.system;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -8,9 +9,12 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jpif.obj.common.Id;
+import io.citrine.jpif.obj.common.License;
+import io.citrine.jpif.obj.common.Person;
 import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Rcl;
+import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 import io.citrine.jpif.obj.system.chemical.alloy.AlloyPhase;
@@ -31,7 +35,7 @@ import java.util.List;
         @JsonSubTypes.Type(value = ChemicalSystem.class),
         @JsonSubTypes.Type(value = Alloy.class),
         @JsonSubTypes.Type(value = AlloyPhase.class)})
-public class System<T extends System<T>> extends Rcl<T> {
+public class System extends Rcl {
 
     /**
      * Set the list of names of this system.
@@ -59,13 +63,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param name String with the name to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addName(final String name) {
+    public System addName(final String name) {
         if (this.names == null) {
             this.names = new ArrayList<>();
         }
         this.names.add(name);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -75,13 +78,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param name String with the name to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addName(final int index, final String name) {
+    public System addName(final int index, final String name) {
         if (this.names == null) {
             this.names = new ArrayList<>();
         }
         this.names.add(index, name);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -165,13 +167,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param id {@link Id} object with the ID to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addId(final Id id) {
+    public System addId(final Id id) {
         if (this.ids == null) {
             this.ids = new ArrayList<>();
         }
         this.ids.add(id);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -181,13 +182,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param id {@link Id} object to add to this system.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addId(final int index, final Id id) {
+    public System addId(final int index, final Id id) {
         if (this.ids == null) {
             this.ids = new ArrayList<>();
         }
         this.ids.add(index, id);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -269,13 +269,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param property {@link Property} object with the property to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addProperty(final Property property) {
+    public System addProperty(final Property property) {
         if (this.properties == null) {
             this.properties = new ArrayList<>();
         }
         this.properties.add(property);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -285,13 +284,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param property {@link Property} object to add to this system.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addProperty(final int index, final Property property) {
+    public System addProperty(final int index, final Property property) {
         if (this.properties == null) {
             this.properties = new ArrayList<>();
         }
         this.properties.add(index, property);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -374,13 +372,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param preparation {@link ProcessStep} object with the preparation step to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addPreparation(final ProcessStep preparation) {
+    public System addPreparation(final ProcessStep preparation) {
         if (this.preparation == null) {
             this.preparation = new ArrayList<>();
         }
         this.preparation.add(preparation);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -390,13 +387,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param preparation {@link ProcessStep} object to add to this system.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addPreparation(final int index, final ProcessStep preparation) {
+    public System addPreparation(final int index, final ProcessStep preparation) {
         if (this.preparation == null) {
             this.preparation = new ArrayList<>();
         }
         this.preparation.add(index, preparation);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -478,13 +474,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param subSystem {@link System} object with the subsystem to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addSubSystem(final System subSystem) {
+    public System addSubSystem(final System subSystem) {
         if (this.subSystems == null) {
             this.subSystems = new ArrayList<>();
         }
         this.subSystems.add(subSystem);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -494,13 +489,12 @@ public class System<T extends System<T>> extends Rcl<T> {
      * @param subSystem {@link System} object to add to this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addSubSystem(final int index, final System subSystem) {
+    public System addSubSystem(final int index, final System subSystem) {
         if (this.subSystems == null) {
             this.subSystems = new ArrayList<>();
         }
         this.subSystems.add(index, subSystem);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -555,6 +549,49 @@ public class System<T extends System<T>> extends Rcl<T> {
     @JsonGetter(value = "subSystems")
     protected List<System> getSubSystems() { // Private since only Jackson should use it
         return this.subSystems;
+    }
+
+    @Override
+    public System addReference(final Reference reference) {
+        super.addReference(reference);
+        return this;
+    }
+
+    @Override
+    public System addReference(final int index, final Reference reference) {
+        super.addReference(index, reference);
+        return this;
+    }
+
+    @Override
+    public System addContact(final Person contact) {
+        super.addContact(contact);
+        return this;
+    }
+
+    @Override
+    public System addContact(final int index, final Person contact) {
+        super.addContact(index, contact);
+        return this;
+    }
+
+    @Override
+    public System addLicense(final License license) {
+        super.addLicense(license);
+        return this;
+    }
+
+    @Override
+    public System addLicense(final int index, final License license) {
+        super.addLicense(index, license);
+        return this;
+    }
+
+    @Override
+    @JsonAnySetter
+    public System addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** List of names for this system. */

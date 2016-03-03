@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public abstract class Value<T extends Value<T>> extends Pio<T> {
+public abstract class Value extends Pio {
 
     /**
      * Set the name of this value.
@@ -28,11 +29,10 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param name String with the name of this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
     @JsonSetter(value = "name")
-    public T setName(final String name) {
+    public Value setName(final String name) {
         this.name = name;
-        return (T) this;
+        return this;
     }
 
     /**
@@ -73,13 +73,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar {@link Scalar} object to add to this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addScalar(final Scalar scalar) {
+    public Value addScalar(final Scalar scalar) {
         if (this.scalars == null) {
             this.scalars = new ArrayList<>();
         }
         this.scalars.add(scalar);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -89,13 +88,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar {@link Scalar} object to add to this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addScalar(final int index, final Scalar scalar) {
+    public Value addScalar(final int index, final Scalar scalar) {
         if (this.scalars == null) {
             this.scalars = new ArrayList<>();
         }
         this.scalars.add(index, scalar);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -105,7 +103,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar String to add as a scalar.
      * @return This object.
      */
-    public T addScalar(final String scalar) {
+    public Value addScalar(final String scalar) {
         return addScalar(Scalar.valueOf(scalar));
     }
 
@@ -116,7 +114,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar String to add to this value.
      * @return This object.
      */
-    public T addScalar(final int index, final String scalar) {
+    public Value addScalar(final int index, final String scalar) {
         return addScalar(index, Scalar.valueOf(scalar));
     }
 
@@ -127,7 +125,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar Number to add as a scalar.
      * @return This object.
      */
-    public T addScalar(final Number scalar) {
+    public Value addScalar(final Number scalar) {
         return addScalar(Scalar.valueOf(scalar));
     }
 
@@ -138,7 +136,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param scalar Number to add to this value.
      * @return This object.
      */
-    public T addScalar(final int index, final Number scalar) {
+    public Value addScalar(final int index, final Number scalar) {
         return addScalar(index, Scalar.valueOf(scalar));
     }
 
@@ -223,13 +221,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector {@link Scalar} array with the vector to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addVector(final Scalar[] vector) {
+    public Value addVector(final Scalar[] vector) {
         if (this.vectors == null) {
             this.vectors = new ArrayList<>();
         }
         this.vectors.add(vector);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -239,13 +236,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector {@link Scalar} array to add to this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addVector(final int index, final Scalar[] vector) {
+    public Value addVector(final int index, final Scalar[] vector) {
         if (this.vectors == null) {
             this.vectors = new ArrayList<>();
         }
         this.vectors.add(index, vector);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -255,7 +251,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector String array with the vector to add.
      * @return This object.
      */
-    public T addVector(final String[] vector) {
+    public Value addVector(final String[] vector) {
         return addVector(toScalarVector(vector));
     }
 
@@ -266,7 +262,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector String array to add to this value.
      * @return This object.
      */
-    public T addVector(final int index, final String[] vector) {
+    public Value addVector(final int index, final String[] vector) {
         return addVector(index, toScalarVector(vector));
     }
 
@@ -277,7 +273,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector Numeric array with the vector to add.
      * @return This object.
      */
-    public T addVector(final Number[] vector) {
+    public Value addVector(final Number[] vector) {
         return addVector(toScalarVector(vector));
     }
 
@@ -288,7 +284,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param vector Number array to add to this value.
      * @return This object.
      */
-    public T addVector(final int index, final Number[] vector) {
+    public Value addVector(final int index, final Number[] vector) {
         return addVector(index, toScalarVector(vector));
     }
 
@@ -373,13 +369,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix {@link Scalar} array of arrays with the matrix to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addMatrix(final Scalar[][] matrix) {
+    public Value addMatrix(final Scalar[][] matrix) {
         if (this.matrices == null) {
             this.matrices = new ArrayList<>();
         }
         this.matrices.add(matrix);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -389,13 +384,12 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix {@link Scalar} array of arrays to add to this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addMatrix(final int index, final Scalar[][] matrix) {
+    public Value addMatrix(final int index, final Scalar[][] matrix) {
         if (this.matrices == null) {
             this.matrices = new ArrayList<>();
         }
         this.matrices.add(index, matrix);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -405,7 +399,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix String array of arrays with the matrix to add.
      * @return This object.
      */
-    public T addMatrix(final String[][] matrix) {
+    public Value addMatrix(final String[][] matrix) {
         return addMatrix(toScalarMatrix(matrix));
     }
 
@@ -416,7 +410,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix String array of arrays to add to this value.
      * @return This object.
      */
-    public T addMatrix(final int index, final String[][] matrix) {
+    public Value addMatrix(final int index, final String[][] matrix) {
         return addMatrix(index, toScalarMatrix(matrix));
     }
 
@@ -427,7 +421,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix Numeric array of arrays with the matrix to add.
      * @return This object.
      */
-    public T addMatrix(final Number[][] matrix) {
+    public Value addMatrix(final Number[][] matrix) {
         return addMatrix(toScalarMatrix(matrix));
     }
 
@@ -438,7 +432,7 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param matrix Number array of arrays to add to this value.
      * @return This object.
      */
-    public T addMatrix(final int index, final Number[][] matrix) {
+    public Value addMatrix(final int index, final Number[][] matrix) {
         return addMatrix(index, toScalarMatrix(matrix));
     }
 
@@ -502,11 +496,10 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
      * @param units String with the units of this value.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
     @JsonSetter(value = "units")
-    public T setUnits(final String units) {
+    public Value setUnits(final String units) {
         this.units = units;
-        return (T) this;
+        return this;
     }
 
     /**
@@ -527,6 +520,13 @@ public abstract class Value<T extends Value<T>> extends Pio<T> {
     @JsonGetter(value = "units")
     public String getUnits() {
         return this.units;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Value addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /**

@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.system.chemical.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -12,7 +13,7 @@ import io.citrine.jpif.obj.common.Scalar;
  *
  * @author Kyle Michel
  */
-public class Composition extends Pio<Composition> {
+public class Composition extends Pio {
 
     /**
      * Set the element of the composition.
@@ -236,6 +237,13 @@ public class Composition extends Pio<Composition> {
     @JsonGetter(value = "idealAtomicPercent")
     public Scalar getIdealAtomicPercent() {
         return this.idealAtomicPercent;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Composition addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** Element this composition represents. */

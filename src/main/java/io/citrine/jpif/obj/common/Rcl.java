@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class Rcl<T extends Rcl<T>> extends Pio<T> {
+public class Rcl extends Pio {
 
     /**
      * Set the list of references where information about this item is published.
@@ -42,13 +43,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param reference {@link Reference} object with the reference to add for this item.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addReference(final Reference reference) {
+    public Rcl addReference(final Reference reference) {
         if (this.references == null) {
             this.references = new ArrayList<>();
         }
         this.references.add(reference);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -58,13 +58,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param reference {@link Reference} object to add for this item.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addReference(final int index, final Reference reference) {
+    public Rcl addReference(final int index, final Reference reference) {
         if (this.references == null) {
             this.references = new ArrayList<>();
         }
         this.references.add(index, reference);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -149,13 +148,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param contact {@link Person} object with the contact to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addContact(final Person contact) {
+    public Rcl addContact(final Person contact) {
         if (this.contacts == null) {
             this.contacts = new ArrayList<>();
         }
         this.contacts.add(contact);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -165,13 +163,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param contact {@link Person} object to add for this item.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addContact(final int index, final Person contact) {
+    public Rcl addContact(final int index, final Person contact) {
         if (this.contacts == null) {
             this.contacts = new ArrayList<>();
         }
         this.contacts.add(index, contact);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -256,13 +253,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param license {@link License} object with the license to add.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addLicense(final License license) {
+    public Rcl addLicense(final License license) {
         if (this.licenses == null) {
             this.licenses = new ArrayList<>();
         }
         this.licenses.add(license);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -272,13 +268,12 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
      * @param license {@link License} object to add for this item.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T addLicense(final int index, final License license) {
+    public Rcl addLicense(final int index, final License license) {
         if (this.licenses == null) {
             this.licenses = new ArrayList<>();
         }
         this.licenses.add(index, license);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -334,6 +329,13 @@ public class Rcl<T extends Rcl<T>> extends Pio<T> {
     @JsonGetter(value = "licenses")
     protected List<License> getLicenses() { // Protected since only Jackson should use it
         return this.licenses;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Rcl addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** List of references for the item. */

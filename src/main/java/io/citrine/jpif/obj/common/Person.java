@@ -18,7 +18,7 @@ import java.io.IOException;
  *
  * @author Kyle Michel
  */
-public class Person extends Pio<Person> {
+public class Person extends Pio {
 
     /**
      * Set the name of the person.
@@ -84,6 +84,13 @@ public class Person extends Pio<Person> {
     @JsonGetter(value = "orcid")
     public String getOrcid() {
         return this.orcid;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Person addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /**

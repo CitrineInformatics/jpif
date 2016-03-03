@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author Kyle Michel
  */
-public abstract class Pio<T extends Pio<T>> {
+public abstract class Pio {
 
     /**
      * Add an unsupported field to this object.
@@ -22,14 +22,13 @@ public abstract class Pio<T extends Pio<T>> {
      * @param value Object with the value of the field.
      * @return This object.
      */
-    @SuppressWarnings("unchecked")
     @JsonAnySetter
-    public T addUnsupportedField(final String key, final Object value) {
+    public Pio addUnsupportedField(final String key, final Object value) {
         if (this.unsupportedFields == null) {
             this.unsupportedFields = new HashMap<>();
         }
         this.unsupportedFields.put(key, value);
-        return (T) this;
+        return this;
     }
 
     /**
@@ -85,27 +84,20 @@ public abstract class Pio<T extends Pio<T>> {
      * Remove a single unsupported field by its key value (if present).
      *
      * @param key String with the key of the unsupported field to remove.
-     * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T removeUnsupportedField(final String key) {
+    public void removeUnsupportedField(final String key) {
         if (this.unsupportedFields != null) {
             this.unsupportedFields.remove(key);
         }
-        return (T) this;
     }
 
     /**
      * Remove all unsupported fields.
-     *
-     * @return This object.
      */
-    @SuppressWarnings("unchecked")
-    public T clearUnsupportedFields() {
+    public void clearUnsupportedFields() {
         if (this.unsupportedFields != null) {
             this.unsupportedFields.clear();
         }
-        return (T) this;
     }
 
     /** Map of unsupported field names to their values. */

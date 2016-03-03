@@ -1,5 +1,6 @@
 package io.citrine.jpif.obj.common;
 
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,7 +22,7 @@ import java.util.Map;
  *
  * @author Kyle Michel
  */
-public class Property extends Value<Property> {
+public class Property extends Value {
 
     /**
      * Set the list of conditions for this property.
@@ -452,6 +453,135 @@ public class Property extends Value<Property> {
     @JsonGetter(value = "licenses")
     protected List<License> getLicenses() { // Private since only Jackson should use it
         return this.rcl.getLicenses();
+    }
+
+    @Override
+    @JsonSetter(value = "name")
+    public Property setName(final String name) {
+        super.setName(name);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final Scalar scalar) {
+        super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final int index, final Scalar scalar) {
+        super.addScalar(index, scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final String scalar) {
+        super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final int index, final String scalar) {
+        super.addScalar(index, scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final Number scalar) {
+        super.addScalar(scalar);
+        return this;
+    }
+
+    @Override
+    public Property addScalar(final int index, final Number scalar) {
+        super.addScalar(index, scalar);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final Scalar[] vector) {
+        super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final int index, final Scalar[] vector) {
+        super.addVector(index, vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final String[] vector) {
+        super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final int index, final String[] vector) {
+        super.addVector(index, vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final Number[] vector) {
+        super.addVector(vector);
+        return this;
+    }
+
+    @Override
+    public Property addVector(final int index, final Number[] vector) {
+        super.addVector(index, vector);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final Scalar[][] matrix) {
+        super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final int index, final Scalar[][] matrix) {
+        super.addMatrix(index, matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final String[][] matrix) {
+        super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final int index, final String[][] matrix) {
+        super.addMatrix(index, matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final Number[][] matrix) {
+        super.addMatrix(matrix);
+        return this;
+    }
+
+    @Override
+    public Property addMatrix(final int index, final Number[][] matrix) {
+        super.addMatrix(index, matrix);
+        return this;
+    }
+
+    @Override
+    @JsonSetter(value = "units")
+    public Property setUnits(final String units) {
+        super.setUnits(units);
+        return this;
+    }
+
+    @Override
+    @JsonAnySetter
+    public Property addUnsupportedField(final String key, final Object value) {
+        super.addUnsupportedField(key, value);
+        return this;
     }
 
     /** List of conditions for the property. */
