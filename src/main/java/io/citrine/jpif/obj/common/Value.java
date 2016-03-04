@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public abstract class Value extends Pio {
+public class Value extends Pio {
 
     /**
      * Set the name of this value.
