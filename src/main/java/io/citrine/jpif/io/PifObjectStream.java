@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
+import java.util.Iterator;
 
 /**
  * Class to stream PIF objects from some source that is formatted in the PIF schema.
@@ -20,7 +21,7 @@ import java.nio.charset.Charset;
  *
  * @author Kyle Michel
  */
-public class PifObjectStream {
+public class PifObjectStream implements Iterable<System> {
 
     /**
      * Create an object stream from a string.
@@ -145,6 +146,17 @@ public class PifObjectStream {
      */
     public void close() throws IOException {
         this.jsonParser.close();
+    }
+
+    /**
+     * Get an iterator for the stream. This iterator just reads from the stream underlying this object and will read
+     * from the current system. This object must still be closed using the {@link #close()} method.
+     *
+     * @return Iterator for this stream.
+     */
+    @Override
+    public Iterator<System> iterator() {
+        return new SystemIterator(this);
     }
 
     /** Json parser to read a PIF-formatted JSON source. */
