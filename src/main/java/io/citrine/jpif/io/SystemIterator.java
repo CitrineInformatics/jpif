@@ -12,6 +12,12 @@ import java.util.Iterator;
  */
 public class SystemIterator implements Iterator<System> {
 
+    /**
+     * Return whether there is another item to iterate over.
+     *
+     * @return True if another item can be obtained.
+     * @throws RuntimeException if an {@link IOException} is thrown from within this function.
+     */
     @Override
     public boolean hasNext() {
         if (this.nextSystem == null) {
@@ -19,12 +25,18 @@ public class SystemIterator implements Iterator<System> {
                 this.nextSystem = this.pifObjectStream.getNextSystem();
             }
             catch (IOException e) {
-                return false;
+                throw new RuntimeException(e);
             }
         }
         return this.nextSystem != null;
     }
 
+    /**
+     * Get the next object.
+     *
+     * @return {@link System} object.
+     * @throws RuntimeException if an {@link IOException} is thrown from within this function.
+     */
     @Override
     public System next() {
         if (this.nextSystem != null) {
@@ -37,7 +49,7 @@ public class SystemIterator implements Iterator<System> {
                 return this.pifObjectStream.getNextSystem();
             }
             catch (IOException e) {
-                return null;
+                throw new RuntimeException(e);
             }
         }
     }
