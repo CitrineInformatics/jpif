@@ -112,6 +112,9 @@ public class PifObjectStream implements Iterable<System> {
             if (systemClass.isAssignableFrom(currentSystem.getClass())) {
                 return (T) currentSystem;
             }
+            if (isFinished()) {
+                break;
+            }
         }
         return null;
     }
@@ -123,9 +126,9 @@ public class PifObjectStream implements Iterable<System> {
      * @throws IOException if the underlying stream cannot be parsed.
      */
     private void advanceToFirstObject() throws IOException {
-        this.currentToken = this.jsonParser.nextToken();
-        if (this.currentToken == JsonToken.START_ARRAY) {
-            this.currentToken = this.jsonParser.nextToken();
+        this.jsonParser.nextToken();
+        if (this.jsonParser.getCurrentToken() == JsonToken.START_ARRAY) {
+            this.jsonParser.nextToken();
         }
     }
 
@@ -135,7 +138,7 @@ public class PifObjectStream implements Iterable<System> {
      * @return True if the end of the stream has been reached.
      */
     private boolean isFinished() {
-        return (this.currentToken == JsonToken.END_ARRAY) || (this.currentToken == null);
+        return (this.jsonParser.getCurrentToken() == JsonToken.END_ARRAY) || !this.jsonParser.hasCurrentToken();
     }
 
     /**
@@ -161,7 +164,4 @@ public class PifObjectStream implements Iterable<System> {
 
     /** Json parser to read a PIF-formatted JSON source. */
     private final JsonParser jsonParser;
-
-    /** Current token. */
-    private JsonToken currentToken;
 }
