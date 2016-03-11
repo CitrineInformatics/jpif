@@ -161,7 +161,8 @@ public class PifObjectStream implements Iterable<System> {
      * @return True if the end of the stream has been reached.
      */
     private boolean isFinished() {
-        return (this.jsonParser.getCurrentToken() == JsonToken.END_ARRAY) || !this.jsonParser.hasCurrentToken();
+        return (this.jsonParser.getCurrentToken() == JsonToken.END_ARRAY)
+                || (this.jsonParser.getCurrentToken() == null);
     }
 
     /**
