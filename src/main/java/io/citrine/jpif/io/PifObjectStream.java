@@ -132,6 +132,7 @@ public class PifObjectStream implements Iterable<System> {
     private <T extends System> T advanceToNextSystem(final Class<T> systemClass) throws IOException {
         System currentSystem;
         while ((currentSystem = PifObjectMapper.getInstance().readValue(this.jsonParser, System.class)) != null) {
+            this.jsonParser.nextToken();
             if (systemClass.isAssignableFrom(currentSystem.getClass())) {
                 return (T) currentSystem;
             }
