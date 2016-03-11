@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jpif.util.Orcid;
 import io.citrine.jpif.util.PifObjectMapper;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -27,6 +28,7 @@ public class Person extends Pio {
      * @return This object.
      */
     @JsonSetter(value = "name")
+    @JsonDeserialize(using = Name.Deserializer.class)
     public Person setName(final Name name) {
         this.name = name;
         return this;
