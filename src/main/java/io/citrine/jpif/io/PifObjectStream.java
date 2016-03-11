@@ -17,7 +17,30 @@ import java.util.Iterator;
  * Class to stream PIF objects from some source that is formatted in the PIF schema.
  *
  * <p>Usage: Create an instance of this class using one of the constructors. Use one of {@link #getNextSystem()} or
- * similar method to iterate through the objects in the data source. Call {@link #close()} when finished.
+ * {@link #getNextSystem(Class)} to iterate through the objects in the data source:
+ *
+ * <pre>
+ * {@code
+ * PifObjectStream pifObjectStream = new PifObjectStream(inputStream);
+ * ChemicalSystem chemicalSystem = new ChemicalSystem();
+ * while ((system = pifObjectStream.getNextSystem()) != null) {
+ *      // do work on system
+ * }
+ * pifObjectStream.close();
+ * }
+ * </pre>
+ *
+ * <p>Alternatively, an object of this class type can be created and directly iterated on:
+ *
+ * <pre>
+ * {@code
+ * PifObjectStream pifObjectStream = new PifObjectStream(inputStream);
+ * for (System system : pifObjectStream) {
+ *     // do work on system
+ * }
+ * pifObjectStream.close();
+ * }
+ * </pre>
  *
  * @author Kyle Michel
  */
