@@ -4,7 +4,13 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import io.citrine.jpif.util.PifObjectMapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -259,4 +265,28 @@ public class Method extends Pio {
 
     /** Software packages used in the measurement. */
     private List<Software> software;
+
+    /**
+     * Class used to deserialize a JSON value into a {@link Method} object. If the input token is a string then it is
+     * saved as the name of the method. If the input token is an object, then it is converted directly
+     * to a {@link Method} object.
+     *
+     * @author Kyle Michel
+     */
+    public static class Deserializer extends JsonDeserializer<Method> {
+
+        @Override
+        public Method deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+                throws IOException {
+            final JsonToken jsonToken = jsonParser.getCurrentToken();
+            switch (jsonToken) {
+                case VALUE_STRING:
+                    return new Method().setName(jsonParser.getValueAsString());
+                case START_OBJECT:
+                    return PifObjectMapper.getInstance().readValue(jsonParser, Method.class);
+                default:
+                    throw deserializationContext.mappingException(Method.class, jsonToken);
+            }
+        }
+    }
 }

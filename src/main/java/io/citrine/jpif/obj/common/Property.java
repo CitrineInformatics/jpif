@@ -134,6 +134,7 @@ public class Property extends Value {
      * @return This object.
      */
     @JsonSetter(value = "method")
+    @JsonDeserialize(using = Method.Deserializer.class)
     public Property setMethod(final Method method) {
         this.method = method;
         return this;
