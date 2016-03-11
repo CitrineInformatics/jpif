@@ -257,6 +257,16 @@ public class Method extends Pio {
         return this;
     }
 
+    /**
+     * Create a new {@link Method} object from an input string. This saves the string as the name of the method.
+     *
+     * @param name String with the name of the method.
+     * @return New {@link Method} object.
+     */
+    public static Method valueOf(final String name) {
+        return new Method().setName(name);
+    }
+
     /** Name of the measurement method. */
     private String name;
 
@@ -281,7 +291,7 @@ public class Method extends Pio {
             final JsonToken jsonToken = jsonParser.getCurrentToken();
             switch (jsonToken) {
                 case VALUE_STRING:
-                    return new Method().setName(jsonParser.getValueAsString());
+                    return Method.valueOf(jsonParser.getValueAsString());
                 case START_OBJECT:
                     return PifObjectMapper.getInstance().readValue(jsonParser, Method.class);
                 default:
