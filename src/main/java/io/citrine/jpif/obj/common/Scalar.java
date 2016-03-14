@@ -296,15 +296,29 @@ public class Scalar extends Pio {
         final Matcher matcher = PARENTHESES_UNCERTAINTY_PATTERN.matcher(input);
         if (matcher.matches()) {
             try {
+
+                // Figure out whether the base string, X in X(Y), contains a decimal
                 final String base = matcher.group(1);
                 String uncertainty = matcher.group(2);
-                final int decimalIndex = base.indexOf(".");
-                if (decimalIndex != -1) {
-                    final int numToPad = (base.length() - decimalIndex - 1) - uncertainty.length();
+                final int baseDecimalIndex = base.indexOf(".");
+
+                // If the base string has a decimal then pad the uncertainty
+                if (baseDecimalIndex != -1) {
+
+                    // Determine the magnitude of the uncertainty
+                    int uncertaintyLength = uncertainty.length();
+                    if (uncertainty.contains(".")) {
+                        uncertaintyLength -= uncertainty.indexOf('.') + 1;
+                    }
+
+                    // Generate uncertainty string
+                    final int numToPad = (base.length() - baseDecimalIndex - 1) - uncertaintyLength;
                     final char[] padding = new char[numToPad];
                     Arrays.fill(padding, '0');
-                    uncertainty = "0." + String.valueOf(padding) + uncertainty;
+                    uncertainty = "0." + String.valueOf(padding) + uncertainty.replace(".", "");
                 }
+
+                // Return the base value and uncertainty
                 return new Scalar()
                         .setValue(base)
                         .setUncertainty(uncertainty);
@@ -437,7 +451,7 @@ public class Scalar extends Pio {
 
     /** Pattern for matching uncertainty in the form of e.g. 1.051(13). */
     private static final Pattern PARENTHESES_UNCERTAINTY_PATTERN = Pattern.compile(
-            "^\\s*(?:(" + NUMBER_REGEX + ")\\(([0-9]+)\\))\\s*$");
+            "^\\s*(?:(" + NUMBER_REGEX + ")\\s*\\((" + NUMBER_REGEX + ")\\))\\s*$");
 
     /** Regular expression for matching symbol in bounded ranges. */
     private static final String RANGE_REGEX = "\\s*(?:-|–|to)\\s*";
