@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 /**
  * Representation of a single scalar value that could represent an absolute point, an uncertain point, a range of
  * values, a minimum, or a maximum.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>value - Exact value.
  *     <li>minimum - Minimum value.

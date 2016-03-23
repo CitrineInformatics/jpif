@@ -13,8 +13,8 @@ import java.io.IOException;
 
 /**
  * Information about a generic identifier.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>name - Name of the identifier.
  *     <li>value - Value of the identifier.

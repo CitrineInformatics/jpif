@@ -19,8 +19,8 @@ import java.util.List;
 
 /**
  * Information about an alloy.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>chemicalFormula - Chemical formula of the system.
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.

@@ -7,8 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 /**
  * Description of an instrument used in an experimental measurement.
  *
- * <p>
- * Supported fields:
+ * <p>Supported fields:
  * <ul>
  *     <li>name - Name of the instrument.
  *     <li>model - Model of the instrument.

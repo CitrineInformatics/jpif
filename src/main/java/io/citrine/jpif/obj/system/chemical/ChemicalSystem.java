@@ -20,8 +20,8 @@ import java.util.List;
 
 /**
  * Base representation for the general chemical system.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>chemicalFormula - Chemical formula of the system.
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.

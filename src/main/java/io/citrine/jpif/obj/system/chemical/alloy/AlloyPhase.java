@@ -15,8 +15,8 @@ import io.citrine.jpif.obj.system.chemical.common.Composition;
 
 /**
  * Information about a single phase in an alloy.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>chemicalFormula - Chemical formula of the system.
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.

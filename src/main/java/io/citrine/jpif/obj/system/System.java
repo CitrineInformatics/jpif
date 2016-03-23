@@ -25,8 +25,8 @@ import java.util.List;
 
 /**
  * Base representation for all systems.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.

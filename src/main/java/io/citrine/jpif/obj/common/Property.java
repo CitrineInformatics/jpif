@@ -17,9 +17,7 @@ import java.util.Map;
 /**
  * Information about a property and conditions under which it exists.
  *
- *
- * <p>
- * Supported fields:
+ * <p>Supported fields:
  * <ul>
  *     <li>name - Name of the property.
  *     <li>scalars - List of {@link Scalar}s representing scalar values.

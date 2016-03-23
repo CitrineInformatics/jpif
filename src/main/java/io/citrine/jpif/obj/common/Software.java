@@ -6,8 +6,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * Information about a software package.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>name - Name of the software.
  *     <li>version - Version of the software.

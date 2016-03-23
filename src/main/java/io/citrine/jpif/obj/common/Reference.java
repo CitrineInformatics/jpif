@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * Information about a referenced publication.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>doi - DOI of the work.
  *     <li>isbn - ISBN of the work.

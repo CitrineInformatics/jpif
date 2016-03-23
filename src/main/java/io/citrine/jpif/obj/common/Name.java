@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
 
 /**
  * Representation of the first and last name of a person.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>title - Title of the person.
  *     <li>given - Given (first) name of the person.

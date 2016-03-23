@@ -10,8 +10,8 @@ import io.citrine.jpif.obj.common.Scalar;
 
 /**
  * Information about an element in a composition vector using weight or atomic percents.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>element - Element that the atomic and weight percents apply to.
  *     <li>actualWeightPercent - Actual (measured) weight percent of the element.

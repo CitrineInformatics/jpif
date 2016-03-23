@@ -18,8 +18,8 @@ import java.util.List;
 
 /**
  * Information about a scalar, vector, or matrix, or a list of one of those.
- * <p>
- * Supported fields:
+ *
+ * <p>Supported fields:
  * <ul>
  *     <li>name - Name of the value.
  *     <li>scalars - List of {@link Scalar}s representing scalar values.
