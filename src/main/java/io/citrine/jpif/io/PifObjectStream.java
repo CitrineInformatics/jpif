@@ -22,7 +22,7 @@ import java.util.Iterator;
  * <pre>
  * {@code
  * PifObjectStream pifObjectStream = new PifObjectStream(inputStream);
- * ChemicalSystem chemicalSystem = new ChemicalSystem();
+ * ChemicalSystem chemicalSystem;
  * while ((chemicalSystem = pifObjectStream.getNextSystem(ChemicalSystem.class)) != null) {
  *      // do work on chemical system
  * }
