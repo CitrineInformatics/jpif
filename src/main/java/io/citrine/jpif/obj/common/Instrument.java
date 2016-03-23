@@ -7,6 +7,15 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 /**
  * Description of an instrument used in an experimental measurement.
  *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the instrument.
+ *     <li>model - Model of the instrument.
+ *     <li>producer - Producer of the instrument.
+ *     <li>url - URL to the website with information about the instrument.
+ * </ul>
+ *
  * @author Kyle Michel
  */
 public class Instrument extends Pio {

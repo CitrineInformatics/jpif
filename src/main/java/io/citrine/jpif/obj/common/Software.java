@@ -6,7 +6,14 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
  * Information about a software package.
- *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the software.
+ *     <li>version - Version of the software.
+ *     <li>producer - Producer of the software.
+ *     <li>url - URL at which the software can be accessed.
+ * </ul>
  * @author Kyle Michel
  */
 public class Software extends Pio {

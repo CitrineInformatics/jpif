@@ -18,7 +18,15 @@ import java.util.List;
 
 /**
  * Information about a scalar, vector, or matrix, or a list of one of those.
- *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the value.
+ *     <li>scalars - List of {@link Scalar}s representing scalar values.
+ *     <li>vectors - List of arrays of {@link Scalar}s, each representing a vector.
+ *     <li>matrices - List of arrays of arrays of {@link Scalar}s, each representing a matrix.
+ *     <li>units - Units of the values.
+ * </ul>
  * @author Kyle Michel
  */
 public class Value extends Pio {

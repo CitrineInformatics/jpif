@@ -14,6 +14,12 @@ import java.util.regex.Pattern;
 
 /**
  * Representation of the starting and ending pages of a reference.
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>start - Starting page.
+ *     <li>end - Ending page.
+ * </ul>
  *
  * @author Kyle Michel
  */

@@ -17,6 +17,14 @@ import java.io.IOException;
 /**
  * Information about a person.
  *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - {@link Name} of the person.
+ *     <li>email - Email address of the person.
+ *     <li>orcid - <a href="http://orcid.org">ORCID</a> identifier of the person.
+ * </ul>
+ *
  * @author Kyle Michel
  */
 public class Person extends Pio {

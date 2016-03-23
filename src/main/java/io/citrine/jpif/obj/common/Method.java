@@ -18,6 +18,14 @@ import java.util.List;
 /**
  * Information about a method used in obtaining a property value.
  *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the method.
+ *     <li>instruments - List of {@link Instrument}s used in the method.
+ *     <li>software - List of {@link Software} packages used in the method.
+ * </ul>
+ *
  * @author Kyle Michel
  */
 public class Method extends Pio {

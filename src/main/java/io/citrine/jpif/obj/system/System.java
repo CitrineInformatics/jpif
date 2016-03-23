@@ -25,6 +25,18 @@ import java.util.List;
 
 /**
  * Base representation for all systems.
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>names - Names of the system.
+ *     <li>ids - List of {@link Id}s of the system.
+ *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
+ *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
+ *     <li>subSystems - List of sub-systems ({@link System}) of the system.
+ *     <li>references - List of {@link Reference}s with information about the system.
+ *     <li>contacts - List of contacts ({@link Person}) for information about the system.
+ *     <li>licenses - List of {@link License}s that apply to the system.
+ * </ul>
  *
  * @author Kyle Michel
  */

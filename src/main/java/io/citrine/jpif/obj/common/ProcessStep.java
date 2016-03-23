@@ -11,6 +11,12 @@ import java.util.List;
 
 /**
  * Information about a single step in a processing pipeline.
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the process step.
+ *     <li>details - List of details ({@link Value}s) of the process step.
+ * </ul>
  *
  * @author Kyle Michel
  */

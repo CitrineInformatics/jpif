@@ -15,6 +15,13 @@ import java.net.URL;
 
 /**
  * Information about a license that applies to some item.
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the license.
+ *     <li>description - Description of the license.
+ *     <li>url - URL to the license.
+ * </ul>
  *
  * @author Kyle Michel
  */

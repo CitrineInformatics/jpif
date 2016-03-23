@@ -17,12 +17,28 @@ import java.util.Map;
 /**
  * Information about a property and conditions under which it exists.
  *
- * <p>Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that
- * adds support for reference, contact, and license information.
+ *
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>name - Name of the property.
+ *     <li>scalars - List of {@link Scalar}s representing scalar values.
+ *     <li>vectors - List of arrays of {@link Scalar}s, each representing a vector.
+ *     <li>matrices - List of arrays of arrays of {@link Scalar}s, each representing a matrix.
+ *     <li>units - Units of the values.
+ *     <li>condition - Conditions under which the property was measured or calculated.
+ *     <li>methods - List of {@link Method}s used to perform the measurement or calculation.
+ *     <li>dataType - {@link DataType} of the property.
+ *     <li>references - List of {@link Reference}s for the property.
+ *     <li>contacts - List of people ({@link Person}) to contact about the property.
+ *     <li>licenses - List of {@link License}
+ * </ul>
  *
  * @author Kyle Michel
  */
 public class Property extends Value {
+    // Since java does not allow for multiple inheritance, this class encapsulates an {@link Rcl} object that
+    // adds support for reference, contact, and license information.
 
     /**
      * Set the list of conditions for this property.

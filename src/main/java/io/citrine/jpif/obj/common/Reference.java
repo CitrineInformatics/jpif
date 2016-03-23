@@ -12,6 +12,24 @@ import java.util.List;
 
 /**
  * Information about a referenced publication.
+ * <p>
+ * Supported fields:
+ * <ul>
+ *     <li>doi - DOI of the work.
+ *     <li>isbn - ISBN of the work.
+ *     <li>issn - ISSN of the work.
+ *     <li>url - URL at which the work can be accessed.
+ *     <li>title - Title of the work.
+ *     <li>publisher - Publisher of the work.
+ *     <li>journal - Journal in which the work was published.
+ *     <li>volume - Volume in which the work was published.
+ *     <li>issue - Issue in which the work was published.
+ *     <li>year - Year in which the work was published.
+ *     <li>pages - {@link Pages} of the work.
+ *     <li>authors - List of authors ({@link Person}) of the work.
+ *     <li>editors - List of editors ({@link Person}) of the work.
+ *     <li>references - List of {@link Reference}s that are referenced by this work.
+ * </ul>
  *
  * @author Kyle Michel
  */
@@ -509,7 +527,7 @@ public class Reference extends Pio {
      * @param reference {@link Reference} object to add for this reference.
      * @return This object.
      */
-    public Reference addCondition(final int index, final Reference reference) {
+    public Reference addReference(final int index, final Reference reference) {
         if (this.references == null) {
             this.references = new ArrayList<>();
         }

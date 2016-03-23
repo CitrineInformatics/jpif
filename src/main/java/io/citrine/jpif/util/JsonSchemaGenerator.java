@@ -17,6 +17,7 @@ public class JsonSchemaGenerator {
      *
      * @param clazz Class of the object to get JSON schema for.
      * @return String with the pretty-printed JSON schema for the input class.
+     * @throws IOException if thrown from within this function.
      */
     public static String getJsonSchema(Class<?> clazz) throws IOException {
         SchemaFactoryWrapper visitor = new SchemaFactoryWrapper();
