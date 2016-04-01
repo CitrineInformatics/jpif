@@ -223,6 +223,41 @@ public class Scalar extends Pio {
         return this;
     }
 
+    @Override
+    public String toString() {
+        if ((this.value != null) && (this.value.length() > 0)) {
+            return (this.uncertainty != null)
+                    ? appoximate() + this.value + " +- " + this.uncertainty
+                    : appoximate() + this.value;
+        }
+        else if ((this.minimum != null) && (this.minimum.length() > 0)
+                && (this.maximum != null) && (this.maximum.length() > 0)) {
+            return appoximate() + this.minimum + " to " + this.maximum;
+        }
+        else if ((this.minimum != null) && (this.minimum.length() > 0)) {
+            return this.inclusiveMinimum
+                    ? ">= " + this.minimum
+                    : this.minimum;
+        }
+        else if ((this.maximum != null) && (this.maximum.length() > 0)) {
+            return this.inclusiveMaximum
+                    ? "<= " + this.maximum
+                    : this.maximum;
+        }
+        else {
+            return "";
+        }
+    }
+
+    /**
+     * Helper method that returns ~ if this object is appoximate or an empty string otherwise.
+     *
+     * @return String with ~ or nothing.
+     */
+    private String appoximate() {
+        return this.isApproximate() ? "~" : "";
+    }
+
     /**
      * Save the input number as a value. This saves the number in the "value" field.
      *

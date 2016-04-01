@@ -26,8 +26,8 @@ import java.util.List;
  *     <li>issue - Issue in which the work was published.
  *     <li>year - Year in which the work was published.
  *     <li>pages - {@link Pages} of the work.
- *     <li>authors - List of authors ({@link Person}) of the work.
- *     <li>editors - List of editors ({@link Person}) of the work.
+ *     <li>authors - List of authors ({@link Name}) of the work.
+ *     <li>editors - List of editors ({@link Name}) of the work.
  *     <li>references - List of {@link Reference}s that are referenced by this work.
  * </ul>
  *
