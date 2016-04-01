@@ -237,12 +237,12 @@ public class Scalar extends Pio {
         else if ((this.minimum != null) && (this.minimum.length() > 0)) {
             return this.inclusiveMinimum
                     ? ">= " + this.minimum
-                    : this.minimum;
+                    : "> "  + this.minimum;
         }
         else if ((this.maximum != null) && (this.maximum.length() > 0)) {
             return this.inclusiveMaximum
                     ? "<= " + this.maximum
-                    : this.maximum;
+                    : "< "  + this.maximum;
         }
         else {
             return "";
