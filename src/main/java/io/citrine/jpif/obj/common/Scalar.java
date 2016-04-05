@@ -250,7 +250,7 @@ public class Scalar extends Pio {
     }
 
     /**
-     * Helper method that returns ~ if this object is appoximate or an empty string otherwise.
+     * Helper method that returns ~ if this object is approximate or an empty string otherwise.
      *
      * @return String with ~ or nothing.
      */

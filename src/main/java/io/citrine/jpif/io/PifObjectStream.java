@@ -184,9 +184,67 @@ public class PifObjectStream implements Iterable<System> {
      */
     @Override
     public Iterator<System> iterator() {
-        return new SystemIterator(this);
+        return this.new SystemIterator();
     }
 
     /** Json parser to read a PIF-formatted JSON source. */
     private final JsonParser jsonParser;
+
+    /**
+     * Iterator class for iterating over systems.
+     *
+     * @author Kyle Michel
+     */
+    public class SystemIterator implements Iterator<System> {
+
+        /**
+         * Return whether there is another item to iterate over.
+         *
+         * @return True if another item can be obtained.
+         * @throws RuntimeException if an {@link IOException} is thrown from within this function.
+         */
+        @Override
+        public boolean hasNext() {
+            if (this.nextSystem == null) {
+                this.nextSystem = getNextSystem();
+            }
+            return this.nextSystem != null;
+        }
+
+        /**
+         * Get the next object.
+         *
+         * @return {@link System} object.
+         * @throws RuntimeException if an {@link IOException} is thrown from within this function.
+         */
+        @Override
+        public System next() {
+            if (this.nextSystem != null) {
+                System res = this.nextSystem;
+                this.nextSystem = null;
+                return res;
+            }
+            else {
+                return getNextSystem();
+            }
+        }
+
+        /**
+         * Try to read the next system.
+         *
+         * @return Next {@link System} in the stream.
+         * @throws RuntimeException if the stream cannot be read.
+         */
+        private System getNextSystem() {
+            try {
+                return PifObjectStream.this.getNextSystem();
+            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        /** Next system in the stream. */
+        private System nextSystem;
+    }
 }
