@@ -123,6 +123,33 @@ public class Name extends Pio {
         return this;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder res = new StringBuilder();
+        if (this.title != null) {
+            res.append(this.title);
+        }
+        if (this.given != null) {
+            if (res.length() > 0) {
+                res.append(" ");
+            }
+            res.append(this.given);
+        }
+        if (this.family != null) {
+            if (res.length() > 0) {
+                res.append(" ");
+            }
+            res.append(this.family);
+        }
+        if (this.suffix != null) {
+            if (res.length() > 0) {
+                res.append(" ");
+            }
+            res.append(this.suffix);
+        }
+        return res.toString();
+    }
+
     /**
      * Generate a new {@link Name} object from the input string. This function goes through a set of heuristics to
      * determine the title, given, family, and suffix of the name.
