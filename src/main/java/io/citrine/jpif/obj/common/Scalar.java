@@ -225,24 +225,34 @@ public class Scalar extends Pio {
 
     @Override
     public String toString() {
+        return toString(false);
+    }
+
+    /**
+     * Convert this object to a (latex) formatted string.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return String with the value of this object in (latex) notation.
+     */
+    public String toString(final boolean useLatex) {
         if ((this.value != null) && (this.value.length() > 0)) {
             return (this.uncertainty != null)
-                    ? appoximate() + this.value + " +- " + this.uncertainty
-                    : appoximate() + this.value;
+                    ? approximate() + this.value + plusMinus(useLatex) + this.uncertainty
+                    : approximate() + this.value;
         }
         else if ((this.minimum != null) && (this.minimum.length() > 0)
                 && (this.maximum != null) && (this.maximum.length() > 0)) {
-            return appoximate() + this.minimum + " to " + this.maximum;
+            return approximate() + this.minimum + " to " + this.maximum;
         }
         else if ((this.minimum != null) && (this.minimum.length() > 0)) {
             return this.inclusiveMinimum
-                    ? ">= " + this.minimum
-                    : "> "  + this.minimum;
+                    ? greaterOrEqual(useLatex) + this.minimum
+                    : greater(useLatex)  + this.minimum;
         }
         else if ((this.maximum != null) && (this.maximum.length() > 0)) {
             return this.inclusiveMaximum
-                    ? "<= " + this.maximum
-                    : "< "  + this.maximum;
+                    ? lessOrEqual(useLatex) + this.maximum
+                    : less(useLatex)  + this.maximum;
         }
         else {
             return "";
@@ -254,8 +264,58 @@ public class Scalar extends Pio {
      *
      * @return String with ~ or nothing.
      */
-    private String appoximate() {
+    private String approximate() {
         return this.isApproximate() ? "~" : "";
+    }
+
+    /**
+     * Return a plus/minus symbol.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return Plus/minus symbol.
+     */
+    private String plusMinus(final boolean useLatex) {
+        return useLatex ? "$\\pm$" : "+-";
+    }
+
+    /**
+     * Return a greater than symbol.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return Greater than symbol.
+     */
+    private String greater(final boolean useLatex) {
+        return useLatex ? "$\\gt" : ">";
+    }
+
+    /**
+     * Return a greater than or equal symbol.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return Greater than or equal symbol.
+     */
+    private String greaterOrEqual(final boolean useLatex) {
+        return useLatex ? "$\\gte$" : ">=";
+    }
+
+    /**
+     * Return a less than symbol.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return Less than symbol.
+     */
+    private String less(final boolean useLatex) {
+        return useLatex ? "$\\lt" : "<";
+    }
+
+    /**
+     * Return a less than or equal symbol.
+     *
+     * @param useLatex True to use latex formatting.
+     * @return Less than or equal symbol.
+     */
+    private String lessOrEqual(final boolean useLatex) {
+        return useLatex ? "$\\lte$" : ">=";
     }
 
     /**
