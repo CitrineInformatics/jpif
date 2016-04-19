@@ -44,6 +44,16 @@ public class Value extends Pio {
     }
 
     /**
+     * Set the name of this value.
+     *
+     * @param names String with the name of this value.
+     */
+    @JsonSetter(value = "names")
+    protected void setNames(final String names) { // Private since only Jackson should use it
+        this.setName(names);
+    }
+
+    /**
      * Get the name of this value.
      *
      * @return String with the name of this value.
