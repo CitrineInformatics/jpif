@@ -618,6 +618,9 @@ public class Property extends Value {
      */
     public enum DataType {
 
+        /** Machine learning data type. */
+        MACHINE_LEARNING(0, "MACHINE_LEARNING"),
+
         /** Computational data type. */
         COMPUTATIONAL(1, "COMPUTATIONAL", "CALCULATED"),
 
