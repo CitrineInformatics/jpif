@@ -453,7 +453,7 @@ public class Reference extends Pio {
     }
 
     /**
-     * Get a reference at a set index.
+     * Get a editor at a set index.
      *
      * @param index Index of the reference to get.
      * @return {@link Reference} object for the reference at the input index.
@@ -484,6 +484,212 @@ public class Reference extends Pio {
     @JsonGetter(value = "editors")
     protected List<Name> getEditors() { // Private since only Jackson should use it
         return this.editors;
+    }
+
+    /**
+     * Set the list of affiliations.
+     *
+     * @param affiliations List of strings with the affiliations.
+     */
+    @JsonSetter(value = "affiliations")
+    protected void setAffiliations(final List<String> affiliations) { // Private since only Jackson should use it
+        this.affiliations = affiliations;
+    }
+
+    /**
+     * Set the list of affiliations.
+     *
+     * @param affiliations List of strings with the affiliations.
+     */
+    @JsonSetter(value = "affiliation")
+    protected void setAffiliation(final List<String> affiliations) { // Private since only Jackson should use it
+        setAffiliations(affiliations);
+    }
+
+    /**
+     * Add an affiliations.
+     *
+     * @param affiliation String for the affiliation to add.
+     * @return This object.
+     */
+    public Reference addAffiliation(final String affiliation) {
+        if (this.affiliations == null) {
+            this.affiliations = new ArrayList<>();
+        }
+        this.affiliations.add(affiliation);
+        return this;
+    }
+
+    /**
+     * Insert a single affiliation.
+     *
+     * @param index Index at which to insert the input affiliation.
+     * @param affiliation String to add for the reference.
+     * @return This object.
+     */
+    public Reference addAffiliation(final int index, final String affiliation) {
+        if (this.affiliations == null) {
+            this.affiliations = new ArrayList<>();
+        }
+        this.affiliations.add(index, affiliation);
+        return this;
+    }
+
+    /**
+     * Remove an affiliation.
+     *
+     * @param affiliation String to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeAffiliation(final String affiliation) {
+        return (this.affiliations != null) && this.affiliations.remove(affiliation);
+    }
+
+    /**
+     * Get the number of affiliations.
+     *
+     * @return Number of affiliations.
+     */
+    public int numAffiliations() {
+        return (this.affiliations == null) ? 0 : this.affiliations.size();
+    }
+
+    /**
+     * Get an affiliation at a set index.
+     *
+     * @param index Index of the reference to get.
+     * @return {@link Reference} object for the reference at the input index.
+     * @throws IndexOutOfBoundsException if the index is out of range of the reference list.
+     */
+    @JsonIgnore
+    public String getAffiliation(final int index) {
+        if (this.affiliations == null) {
+            throw new IndexOutOfBoundsException("Attempting to access affiliation " + index + " of "
+                    + this.numAffiliations());
+        }
+        return this.affiliations.get(index);
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over affiliations.
+     *
+     * @return {@link Iterable} object for iterating over affiliations.
+     */
+    public Iterable<String> affiliations() {
+        return (this.affiliations == null) ? Collections.emptyList() : this.affiliations;
+    }
+
+    /**
+     * Get the list of affiliations.
+     *
+     * @return List of strings with the affiliations.
+     */
+    @JsonGetter(value = "affiliations")
+    protected List<String> getAffiliations() { // Private since only Jackson should use it
+        return this.affiliations;
+    }
+
+    /**
+     * Set the list of acknowledgements.
+     *
+     * @param acknowledgements List of strings with the acknowledgements.
+     */
+    @JsonSetter(value = "acknowledgements")
+    protected void setAcknowledgements(final List<String> acknowledgements) { // Private only Jackson should use it
+        this.acknowledgements = acknowledgements;
+    }
+
+    /**
+     * Set the list of acknowledgements.
+     *
+     * @param acknowledgements List of strings with the acknowledgements.
+     */
+    @JsonSetter(value = "acknowledgement")
+    protected void setAcknowledgement(final List<String> acknowledgements) { // Private since only Jackson should use it
+        setAcknowledgements(acknowledgements);
+    }
+
+    /**
+     * Add an acknowledgement.
+     *
+     * @param acknowledgement String for the acknowledgement to add.
+     * @return This object.
+     */
+    public Reference addAcknowledgement(final String acknowledgement) {
+        if (this.acknowledgements == null) {
+            this.acknowledgements = new ArrayList<>();
+        }
+        this.acknowledgements.add(acknowledgement);
+        return this;
+    }
+
+    /**
+     * Insert a single acknowledgement.
+     *
+     * @param index Index at which to insert the input acknowledgement.
+     * @param acknowledgement String to add for the reference.
+     * @return This object.
+     */
+    public Reference addAcknowledgement(final int index, final String acknowledgement) {
+        if (this.acknowledgements == null) {
+            this.acknowledgements = new ArrayList<>();
+        }
+        this.acknowledgements.add(index, acknowledgement);
+        return this;
+    }
+
+    /**
+     * Remove an acknowledgement.
+     *
+     * @param acknowledgement String to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeAcknowledgement(final String acknowledgement) {
+        return (this.acknowledgements != null) && this.acknowledgements.remove(acknowledgement);
+    }
+
+    /**
+     * Get the number of acknowledgements.
+     *
+     * @return Number of acknowledgements.
+     */
+    public int numAcknowledgements() {
+        return (this.acknowledgements == null) ? 0 : this.acknowledgements.size();
+    }
+
+    /**
+     * Get an acknowledgement at a set index.
+     *
+     * @param index Index of the reference to get.
+     * @return {@link Reference} object for the reference at the input index.
+     * @throws IndexOutOfBoundsException if the index is out of range of the reference list.
+     */
+    @JsonIgnore
+    public String getAcknowledgement(final int index) {
+        if (this.acknowledgements == null) {
+            throw new IndexOutOfBoundsException("Attempting to access acknowledgements " + index + " of "
+                    + this.numAcknowledgements());
+        }
+        return this.acknowledgements.get(index);
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over acknowledgements.
+     *
+     * @return {@link Iterable} object for iterating over acknowledgements.
+     */
+    public Iterable<String> acknowledgements() {
+        return (this.acknowledgements == null) ? Collections.emptyList() : this.acknowledgements;
+    }
+
+    /**
+     * Get the list of acknowledgements.
+     *
+     * @return List of strings with the acknowledgements.
+     */
+    @JsonGetter(value = "acknowledgements")
+    protected List<String> getAcknowledgements() { // Private since only Jackson should use it
+        return this.acknowledgements;
     }
 
     /**
@@ -634,6 +840,12 @@ public class Reference extends Pio {
 
     /** List of editors. */
     private List<Name> editors;
+
+    /** List of affiliations. */
+    private List<String> affiliations;
+
+    /** List of acknowledgements. */
+    private List<String> acknowledgements;
 
     /** List of works cited by this reference. */
     private List<Reference> references;
