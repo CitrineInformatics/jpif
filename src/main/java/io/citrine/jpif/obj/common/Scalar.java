@@ -543,7 +543,7 @@ public class Scalar extends Pio {
     private static final String EXP_REGEX = "[eE][+-]?" + DIGITS_REGEX;
 
     /** Regular expression to match a number. This is taken from the javadoc for java.lang.Double.valueOf(). */
-    private static final String NUMBER_REGEX = "[+-]?(?:NaN|Infinity|(?:(?:(?:" + DIGITS_REGEX + "(?:\\.)?(?:"
+    public static final String NUMBER_REGEX = "[+-]?(?:NaN|Infinity|(?:(?:(?:" + DIGITS_REGEX + "(?:\\.)?(?:"
             + DIGITS_REGEX + "?)(?:" + EXP_REGEX + ")?)|(?:\\.(?:" + DIGITS_REGEX + ")(?:" + EXP_REGEX
             + ")?)|(?:(?:" + "(?:0[xX]" + HEX_DIGITS_REGEX + "(?:\\.)?)|(?:0[xX]" + HEX_DIGITS_REGEX + "?(?:\\.)"
             + DIGITS_REGEX + ")" + ")[pP][+-]?" + DIGITS_REGEX + "))[fFdD]?))";

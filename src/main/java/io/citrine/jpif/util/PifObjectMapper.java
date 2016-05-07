@@ -27,6 +27,7 @@ public class PifObjectMapper extends ObjectMapper {
         this.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         this.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         this.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+        this.configure(DeserializationFeature.UNWRAP_SINGLE_VALUE_ARRAYS, true);
     }
 
     /**

@@ -436,7 +436,8 @@ public class System extends Rcl {
     @JsonIgnore
     public ProcessStep getPreparation(final int index) {
         if (this.preparation == null) {
-            throw new IndexOutOfBoundsException("Attempting to access ID " + index + " of " + this.numPreparation());
+            throw new IndexOutOfBoundsException("Attempting to access preparation " + index + " of "
+                    + this.numPreparation());
         }
         return this.preparation.get(index);
     }
