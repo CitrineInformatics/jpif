@@ -335,15 +335,6 @@ public class ProcessStep extends Pio {
     }
 
     /**
-     * Get an {@link Iterable} object to iterate over the software packages of the process step.
-     *
-     * @return {@link Iterable} object for iterating over software of the process step.
-     */
-    public Iterable<Software> software() {
-        return (this.software == null) ? Collections.emptyList() : this.software;
-    }
-
-    /**
      * Get the list of software used in the process step.
      *
      * @return List of {@link Software} objects with software of the process step.
@@ -351,6 +342,15 @@ public class ProcessStep extends Pio {
     @JsonGetter(value = "software")
     protected List<Software> getSoftware() { // Private since only Jackson should use it
         return this.software;
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over the software packages of the process step.
+     *
+     * @return {@link Iterable} object for iterating over software of the process step.
+     */
+    public Iterable<Software> software() {
+        return (this.software == null) ? Collections.emptyList() : this.software;
     }
 
     @Override
