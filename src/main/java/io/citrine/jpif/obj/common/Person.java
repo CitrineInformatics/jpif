@@ -96,6 +96,18 @@ public class Person extends Pio {
     }
 
     @Override
+    public Person addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Person addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Person addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

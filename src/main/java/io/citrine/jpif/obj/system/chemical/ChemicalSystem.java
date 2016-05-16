@@ -262,6 +262,18 @@ public class ChemicalSystem extends System {
     }
 
     @Override
+    public ChemicalSystem addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public ChemicalSystem addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

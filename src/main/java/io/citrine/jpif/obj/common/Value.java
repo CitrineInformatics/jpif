@@ -540,6 +540,18 @@ public class Value extends Pio {
     }
 
     @Override
+    public Value addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Value addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Value addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

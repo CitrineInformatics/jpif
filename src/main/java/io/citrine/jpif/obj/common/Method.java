@@ -258,6 +258,18 @@ public class Method extends Pio {
     }
 
     @Override
+    public Method addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Method addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Method addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

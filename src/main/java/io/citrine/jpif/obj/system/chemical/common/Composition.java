@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.common.Scalar;
 
@@ -246,6 +247,18 @@ public class Composition extends Pio {
     @JsonGetter(value = "idealAtomicPercent")
     public Scalar getIdealAtomicPercent() {
         return this.idealAtomicPercent;
+    }
+
+    @Override
+    public Composition addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Composition addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
     }
 
     @Override

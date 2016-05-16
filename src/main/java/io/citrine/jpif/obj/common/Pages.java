@@ -70,6 +70,18 @@ public class Pages extends Pio {
     }
 
     @Override
+    public Pages addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Pages addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Pages addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

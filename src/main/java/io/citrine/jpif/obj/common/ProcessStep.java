@@ -61,7 +61,7 @@ public class ProcessStep extends Pio {
      */
     @JsonSetter(value = "detail")
     protected void setDetail(final List<Value> detail) { // Private since only Jackson should use it
-        setDetails(details);
+        setDetails(detail);
     }
 
     /**
@@ -351,6 +351,18 @@ public class ProcessStep extends Pio {
      */
     public Iterable<Software> software() {
         return (this.software == null) ? Collections.emptyList() : this.software;
+    }
+
+    @Override
+    public ProcessStep addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public ProcessStep addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
     }
 
     @Override

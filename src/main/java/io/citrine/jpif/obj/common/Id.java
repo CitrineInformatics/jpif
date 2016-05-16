@@ -69,6 +69,18 @@ public class Id extends Pio {
     }
 
     @Override
+    public Id addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Id addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Id addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

@@ -601,6 +601,18 @@ public class System extends Rcl {
     }
 
     @Override
+    public System addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public System addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public System addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

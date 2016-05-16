@@ -796,6 +796,18 @@ public class Reference extends Pio {
     }
 
     @Override
+    public Reference addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Reference addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Reference addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

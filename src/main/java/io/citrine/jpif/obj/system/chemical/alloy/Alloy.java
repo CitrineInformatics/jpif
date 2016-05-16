@@ -221,6 +221,18 @@ public class Alloy extends ChemicalSystem {
     }
 
     @Override
+    public Alloy addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Alloy addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Alloy addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);

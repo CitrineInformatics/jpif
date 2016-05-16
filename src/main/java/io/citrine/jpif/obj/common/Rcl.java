@@ -332,6 +332,18 @@ public class Rcl extends Pio {
     }
 
     @Override
+    public Rcl addTag(final String tag) {
+        super.addTag(tag);
+        return this;
+    }
+
+    @Override
+    public Rcl addTag(final int index, final String tag) {
+        super.addTag(index, tag);
+        return this;
+    }
+
+    @Override
     @JsonAnySetter
     public Rcl addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);
