@@ -162,7 +162,7 @@ public class ProcessStep extends Pio {
      *
      * @param instruments List of {@link Instrument} objects used in this process step.
      */
-    @JsonSetter(value = "instruments")
+    @JsonSetter(value = "instrument")
     protected void setInstrument(final List<Instrument> instruments) { // Private since only Jackson should use it
         setInstruments(instruments);
     }
