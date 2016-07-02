@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  *     <li>version - Version of the software.
  *     <li>producer - Producer of the software.
  *     <li>url - URL at which the software can be accessed.
+ *     <li>tags - List of tags that apply to the software.
  * </ul>
  * @author Kyle Michel
  */

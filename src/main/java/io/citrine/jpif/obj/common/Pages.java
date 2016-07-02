@@ -19,6 +19,7 @@ import java.util.regex.Pattern;
  * <ul>
  *     <li>start - Starting page.
  *     <li>end - Ending page.
+ *     <li>tags - List of tags that apply to the pages.
  * </ul>
  *
  * @author Kyle Michel

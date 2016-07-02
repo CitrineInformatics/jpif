@@ -18,6 +18,7 @@ import java.io.IOException;
  * <ul>
  *     <li>name - Name of the identifier.
  *     <li>value - Value of the identifier.
+ *     <li>tags - List of tags that apply to the identifier.
  * </ul>
  *
  * @author Kyle Michel

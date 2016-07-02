@@ -16,6 +16,9 @@ import java.util.List;
  * <ul>
  *     <li>name - Name of the process step.
  *     <li>details - List of details ({@link Value}s) of the process step.
+ *     <li>instruments - List of {@link Instrument}s that were used in the process step.
+ *     <li>software - List of {@link Software} packages that were used in the process step.
+ *     <li>tags - List of tags that apply to the process step.
  * </ul>
  *
  * @author Kyle Michel

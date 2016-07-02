@@ -28,7 +28,10 @@ import java.util.List;
  *     <li>pages - {@link Pages} of the work.
  *     <li>authors - List of authors ({@link Name}) of the work.
  *     <li>editors - List of editors ({@link Name}) of the work.
+ *     <li>affiliations - List of affiliations of the authors or editors of the work.
+ *     <li>acknowledgements - List of acknowledgements made in the work.
  *     <li>references - List of {@link Reference}s that are referenced by this work.
+ *     <li>tags - List of tags that apply to the reference.
  * </ul>
  *
  * @author Kyle Michel

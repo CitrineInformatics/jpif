@@ -24,12 +24,13 @@ import java.util.Map;
  *     <li>vectors - List of arrays of {@link Scalar}s, each representing a vector.
  *     <li>matrices - List of arrays of arrays of {@link Scalar}s, each representing a matrix.
  *     <li>units - Units of the values.
- *     <li>condition - Conditions under which the property was measured or calculated.
+ *     <li>conditions - Conditions under which the property was measured or calculated.
  *     <li>methods - List of {@link Method}s used to perform the measurement or calculation.
  *     <li>dataType - {@link DataType} of the property.
  *     <li>references - List of {@link Reference}s for the property.
  *     <li>contacts - List of people ({@link Person}) to contact about the property.
- *     <li>licenses - List of {@link License}
+ *     <li>licenses - List of {@link License}s for the property.
+ *     <li>tags - List of tags that apply to the property.
  * </ul>
  *
  * @author Kyle Michel

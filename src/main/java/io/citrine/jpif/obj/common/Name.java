@@ -22,6 +22,7 @@ import java.util.regex.Pattern;
  *     <li>given - Given (first) name of the person.
  *     <li>family - Family (last) name of the person.
  *     <li>suffix - Suffix of the person.
+ *     <li>tags - List of tags that apply to the name.
  * </ul>
  *
  * @author Kyle Michel

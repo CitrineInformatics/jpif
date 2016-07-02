@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  *     <li>model - Model of the instrument.
  *     <li>producer - Producer of the instrument.
  *     <li>url - URL to the website with information about the instrument.
+ *     <li>tags - List of tags that apply to the instrument.
  * </ul>
  *
  * @author Kyle Michel

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.common.Scalar;
 
@@ -19,6 +18,7 @@ import io.citrine.jpif.obj.common.Scalar;
  *     <li>idealWeightPercent - Ideal weight percent of the element.
  *     <li>actualAtomicPercent - Actual (measured) atomic percent of the element.
  *     <li>idealAtomicPercent - Ideal atomic percent of the element.
+ *     <li>tags - List of strings with tags that apply to the composition.
  * </ul>
  *
  * @author Kyle Michel

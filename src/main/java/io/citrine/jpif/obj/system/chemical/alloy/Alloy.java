@@ -14,9 +14,6 @@ import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.common.Composition;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Information about an alloy.
  *
@@ -32,6 +29,7 @@ import java.util.List;
  *     <li>references - List of {@link Reference}s with information about the system.
  *     <li>contacts - List of contacts ({@link Person}) for information about the system.
  *     <li>licenses - List of {@link License}s that apply to the system.
+ *     <li>tags - List of strings with tags that apply to the system.
  * </ul>
  *
  * @author Kyle Michel
@@ -42,10 +40,10 @@ public class Alloy extends ChemicalSystem {
     /**
      * Add a phase to this alloy.
      *
-     * @param phase {@link AlloyPhase} object with the phase to add.
+     * @param phase {@link System} object with the phase to add.
      * @return This object.
      */
-    public Alloy addPhase(final AlloyPhase phase) {
+    public Alloy addPhase(final System phase) {
         super.addSubSystem(phase);
         return this;
     }
@@ -54,10 +52,10 @@ public class Alloy extends ChemicalSystem {
      * Insert a single phase for this alloy.
      *
      * @param index Index at which to insert the input phase.
-     * @param phase {@link AlloyPhase} object to add to this alloy.
+     * @param phase {@link System} object to add to this alloy.
      * @return This object.
      */
-    public Alloy addPhase(final int index, final AlloyPhase phase) {
+    public Alloy addPhase(final int index, final System phase) {
         super.addSubSystem(index, phase);
         return this;
     }
@@ -65,10 +63,10 @@ public class Alloy extends ChemicalSystem {
     /**
      * Remove a phase from the system.
      *
-     * @param phase {@link AlloyPhase} object to delete.
+     * @param phase {@link System} object to delete.
      * @return True if the object was removed.
      */
-    public boolean removePhase(final AlloyPhase phase) {
+    public boolean removePhase(final System phase) {
         return removeSubsystem(phase);
     }
 
@@ -78,21 +76,19 @@ public class Alloy extends ChemicalSystem {
      * @return Number of phases in this alloy.
      */
     public int numPhases() {
-        updatePhases();
-        return this.phases.size();
+        return this.numSubSystems();
     }
 
     /**
      * Get a phase in this alloy at a set index.
      *
      * @param index Index of the alloy to get.
-     * @return {@link AlloyPhase} object with the phase at the input index.
+     * @return {@link System} object with the system at the input index.
      * @throws IndexOutOfBoundsException if the index is out of range of the phase list.
      */
     @JsonIgnore
-    public AlloyPhase getPhase(final int index) {
-        updatePhases();
-        return this.phases.get(index);
+    public System getPhase(final int index) {
+        return super.getSubSystem(index);
     }
 
     /**
@@ -100,9 +96,8 @@ public class Alloy extends ChemicalSystem {
      *
      * @return {@link Iterable} object for iterating over phases in this alloy.
      */
-    public Iterable<AlloyPhase> phases() {
-        updatePhases();
-        return this.phases;
+    public Iterable<System> phases() {
+        return super.subSystems();
     }
 
     @Override
@@ -238,19 +233,4 @@ public class Alloy extends ChemicalSystem {
         super.addUnsupportedField(key, value);
         return this;
     }
-
-    /**
-     * Helper function that updates the list of phases in this alloy based on the current subsystems in the system.
-     */
-    protected void updatePhases() {
-        this.phases = new ArrayList<>();
-        for (System i : subSystems()) {
-            if (i instanceof AlloyPhase) {
-                this.phases.add((AlloyPhase) i);
-            }
-        }
-    }
-
-    /** List of phases in this alloy. */
-    private List<AlloyPhase> phases;
 }
