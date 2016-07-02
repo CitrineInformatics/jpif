@@ -26,6 +26,7 @@ import java.util.List;
  *     <li>vectors - List of arrays of {@link Scalar}s, each representing a vector.
  *     <li>matrices - List of arrays of arrays of {@link Scalar}s, each representing a matrix.
  *     <li>units - Units of the values.
+ *     <li>tags - List of tags that apply to the value.
  * </ul>
  * @author Kyle Michel
  */

@@ -29,6 +29,7 @@ import io.citrine.jpif.obj.system.chemical.common.Composition;
  *     <li>references - List of {@link Reference}s with information about the system.
  *     <li>contacts - List of contacts ({@link Person}) for information about the system.
  *     <li>licenses - List of {@link License}s that apply to the system.
+ *     <li>tags - List of strings with tags that apply to the system.
  * </ul>
  *
  * @author Kyle Michel

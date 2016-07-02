@@ -21,6 +21,7 @@ import java.net.URL;
  *     <li>name - Name of the license.
  *     <li>description - Description of the license.
  *     <li>url - URL to the license.
+ *     <li>tags - List of tags that apply to the license.
  * </ul>
  *
  * @author Kyle Michel

@@ -22,6 +22,7 @@ import java.io.IOException;
  *     <li>name - {@link Name} of the person.
  *     <li>email - Email address of the person.
  *     <li>orcid - <a href="http://orcid.org">ORCID</a> identifier of the person.
+ *     <li>tags - List of tags that apply to the person.
  * </ul>
  *
  * @author Kyle Michel

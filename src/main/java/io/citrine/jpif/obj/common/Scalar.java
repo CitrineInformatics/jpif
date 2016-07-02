@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
  *     <li>inclusiveMaximum - Whether the maximum is inclusive.
  *     <li>uncertainty - Uncertainty in the value.
  *     <li>approximate - Whether the value is approximate.
+ *     <li>tags - List of tags that apply to the reference.
  * </ul>
  *
  * @author Kyle Michel

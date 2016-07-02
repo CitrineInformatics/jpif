@@ -23,6 +23,7 @@ import java.util.List;
  *     <li>name - Name of the method.
  *     <li>instruments - List of {@link Instrument}s used in the method.
  *     <li>software - List of {@link Software} packages used in the method.
+ *     <li>tags - List of tags that apply to the method.
  * </ul>
  *
  * @author Kyle Michel
