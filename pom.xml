@@ -6,7 +6,7 @@
 
     <groupId>io.citrine</groupId>
     <artifactId>jpif</artifactId>
-    <version>0.0.18</version>
+    <version>0.0.19</version>
     <packaging>jar</packaging>
 
     <dependencies>
