@@ -1,8 +1,13 @@
 package io.citrine.jpif.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import io.citrine.jpif.obj.system.System;
+
+import java.util.List;
 
 /**
  * Class used to serialize and deserialize from the PIF schema.
@@ -17,7 +22,16 @@ public class PifObjectMapper extends ObjectMapper {
      * @return {@link PifObjectMapper} object.
      */
     public static PifObjectMapper getInstance() {
-        return Holder.INSTANCE;
+        return Holder.PIF_OBJECT_MAPPER;
+    }
+
+    /**
+     * Get a writer for writing lists of systems.
+     *
+     * @return {@link ObjectWriter} for a list of {@link System} objects.
+     */
+    public ObjectWriter getSystemListWriter() {
+        return this.writerFor(Holder.SYSTEM_LIST_TYPE);
     }
 
     /**
@@ -31,11 +45,16 @@ public class PifObjectMapper extends ObjectMapper {
     }
 
     /**
-     * Holder class. Bill Pugh's Singleton pattern.
+     * Holder class.
      *
      * @author Kyle Michel
      */
     private static class Holder {
-        private static final PifObjectMapper INSTANCE = new PifObjectMapper();
+
+        /** Instance of the PIF object mapper to use. */
+        private static final PifObjectMapper PIF_OBJECT_MAPPER = new PifObjectMapper();
+
+        /** Type for a list of systems. */
+        private static final TypeReference<List<System>> SYSTEM_LIST_TYPE = new TypeReference<List<System>>() {};
     }
 }
