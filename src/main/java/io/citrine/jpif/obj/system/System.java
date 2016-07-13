@@ -15,6 +15,7 @@ import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
+import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 
@@ -29,6 +30,7 @@ import java.util.List;
  * <ul>
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
+ *     <li>source - {@link Source} of the system.
  *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
  *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
  *     <li>subSystems - List of sub-systems ({@link System}) of the system.
@@ -253,6 +255,29 @@ public class System extends Rcl {
     @JsonGetter(value = "ids")
     protected List<Id> getIds() { // Private since only Jackson should use it
         return this.ids;
+    }
+
+    /**
+     * Set the source for this system.
+     *
+     * @param source {@link Source} for this system.
+     * @return This object.
+     */
+    @JsonSetter(value = "source")
+    @JsonDeserialize(using = Source.Deserializer.class)
+    public System setSource(final Source source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Get the source for this system.
+     *
+     * @return {@link Source} for this system.
+     */
+    @JsonGetter(value = "source")
+    public Source getSource() {
+        return this.source;
     }
 
     /**
@@ -624,6 +649,9 @@ public class System extends Rcl {
 
     /** List of IDs for this system. */
     private List<Id> ids;
+
+    /** Source of this system. */
+    private Source source;
 
     /** List of properties of this system. */
     private List<Property> properties;

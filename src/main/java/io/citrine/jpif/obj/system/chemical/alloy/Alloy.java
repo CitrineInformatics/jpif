@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
 import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Reference;
+import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 import io.citrine.jpif.obj.system.chemical.common.Composition;
@@ -23,6 +25,7 @@ import io.citrine.jpif.obj.system.chemical.common.Composition;
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
+ *     <li>source - {@link Source} of the system.
  *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
  *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
  *     <li>subSystems - List of sub-systems ({@link System}) of the system.
@@ -176,6 +179,14 @@ public class Alloy extends ChemicalSystem {
     @Override
     public Alloy addId(final int index, final Id id) {
         super.addId(index, id);
+        return this;
+    }
+
+    @Override
+    @JsonSetter(value = "source")
+    @JsonDeserialize(using = Source.Deserializer.class)
+    public Alloy setSource(final Source source) {
+        super.setSource(source);
         return this;
     }
 
