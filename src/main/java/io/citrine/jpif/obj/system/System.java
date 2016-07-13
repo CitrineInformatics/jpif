@@ -13,6 +13,7 @@ import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
 import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
+import io.citrine.jpif.obj.common.Quantity;
 import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.common.Source;
@@ -31,6 +32,7 @@ import java.util.List;
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
  *     <li>source - {@link Source} of the system.
+ *     <li>quantity - {@link Quantity} of the system.
  *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
  *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
  *     <li>subSystems - List of sub-systems ({@link System}) of the system.
@@ -278,6 +280,28 @@ public class System extends Rcl {
     @JsonGetter(value = "source")
     public Source getSource() {
         return this.source;
+    }
+
+    /**
+     * Set the quantity of this system.
+     *
+     * @param quantity {@link Quantity} of this system.
+     * @return This object.
+     */
+    @JsonSetter(value = "quantity")
+    public System setQuantity(final Quantity quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    /**
+     * Get the quantity of this system.
+     *
+     * @return {@link Quantity} of this system.
+     */
+    @JsonGetter(value = "quantity")
+    public Quantity getQuantity() {
+        return this.quantity;
     }
 
     /**
@@ -652,6 +676,9 @@ public class System extends Rcl {
 
     /** Source of this system. */
     private Source source;
+
+    /** Quantity of this system. */
+    private Quantity quantity;
 
     /** List of properties of this system. */
     private List<Property> properties;
