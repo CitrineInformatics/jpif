@@ -7,17 +7,17 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
- * Information about the quantity of a system. The fields ending with massFraction, volumeFraction, and 
- * numberFraction are used to denote the relative quantity of this system when it is one of a set of subsystems.
+ * Information about the quantity of a system. The fields ending with massPercent, volumePercent, and 
+ * numberPercent are used to denote the relative quantity of this system when it is one of a set of subsystems.
  *
  * <p>Supported fields:
  * <ul>
- *     <li>actualMassFraction - Actual fraction of the total mass made up by this system.
- *     <li>actualVolumeFraction - Actual fraction of the total volume made up by this system.
- *     <li>actualNumberFraction - Actual fraction of the total numeric quantity made up by this system.
- *     <li>idealMassFraction - Ideal fraction of the total mass made up by this system.
- *     <li>idealVolumeFraction - Ideal fraction of the total volume made up by this system.
- *     <li>idealNumberFraction - Ideal fraction of the total numeric quantity made up by this system.
+ *     <li>actualMassPercent - Actual percent of the total mass made up by this system.
+ *     <li>actualVolumePercent - Actual percent of the total volume made up by this system.
+ *     <li>actualNumberPercent - Actual percent of the total numeric quantity made up by this system.
+ *     <li>idealMassPercent - Ideal percent of the total mass made up by this system.
+ *     <li>idealVolumePercent - Ideal percent of the total volume made up by this system.
+ *     <li>idealNumberPercent - Ideal percent of the total numeric quantity made up by this system.
  *     <li>tags - List of tags that apply to the source.
  * </ul>
  *
@@ -26,273 +26,273 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class Quantity extends Pio {
 
     /**
-     * Set the actual fraction of the total mass made up by this system.
+     * Set the actual percent of the total mass made up by this system.
      *
-     * @param actualMassFraction {@link Scalar} object with the mass fraction.
+     * @param actualMassPercent {@link Scalar} object with the mass percent.
      * @return This object.
      */
-    @JsonSetter(value = "actualMassFraction")
+    @JsonSetter(value = "actualMassPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setActualMassFraction(final Scalar actualMassFraction) {
-        this.actualMassFraction = actualMassFraction;
+    public Quantity setActualMassPercent(final Scalar actualMassPercent) {
+        this.actualMassPercent = actualMassPercent;
         return this;
     }
 
     /**
-     * Set the actual fraction of the total mass made up by this system.
+     * Set the actual percent of the total mass made up by this system.
      *
-     * @param actualMassFraction String with the mass fraction.
+     * @param actualMassPercent String with the mass percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualMassFraction(final String actualMassFraction) {
-        return setActualMassFraction(Scalar.valueOf(actualMassFraction));
+    public Quantity setActualMassPercent(final String actualMassPercent) {
+        return setActualMassPercent(Scalar.valueOf(actualMassPercent));
     }
 
     /**
-     * Set the actual fraction of the total mass made up by this system.
+     * Set the actual percent of the total mass made up by this system.
      *
-     * @param actualMassFraction Number with the mass fraction.
+     * @param actualMassPercent Number with the mass percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualMassFraction(final Number actualMassFraction) {
-        return setActualMassFraction(Scalar.valueOf(actualMassFraction));
+    public Quantity setActualMassPercent(final Number actualMassPercent) {
+        return setActualMassPercent(Scalar.valueOf(actualMassPercent));
     }
 
     /**
-     * Get the actual fraction of the total mass made up by this system.
+     * Get the actual percent of the total mass made up by this system.
      *
-     * @return {@link Scalar} object with the mass fraction.
+     * @return {@link Scalar} object with the mass percent.
      */
-    @JsonGetter(value = "actualMassFraction")
-    public Scalar getActualMassFraction() {
-        return this.actualMassFraction;
+    @JsonGetter(value = "actualMassPercent")
+    public Scalar getActualMassPercent() {
+        return this.actualMassPercent;
     }
 
     /**
-     * Set the actual fraction of the total volume made up by this system.
+     * Set the actual percent of the total volume made up by this system.
      *
-     * @param actualVolumeFraction {@link Scalar} object with the volume fraction.
+     * @param actualVolumePercent {@link Scalar} object with the volume percent.
      * @return This object.
      */
-    @JsonSetter(value = "actualVolumeFraction")
+    @JsonSetter(value = "actualVolumePercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setActualVolumeFraction(final Scalar actualVolumeFraction) {
-        this.actualVolumeFraction = actualVolumeFraction;
+    public Quantity setActualVolumePercent(final Scalar actualVolumePercent) {
+        this.actualVolumePercent = actualVolumePercent;
         return this;
     }
 
     /**
-     * Set the actual fraction of the total volume made up by this system.
+     * Set the actual percent of the total volume made up by this system.
      *
-     * @param actualVolumeFraction String with the volume fraction.
+     * @param actualVolumePercent String with the volume percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualVolumeFraction(final String actualVolumeFraction) {
-        return setActualVolumeFraction(Scalar.valueOf(actualVolumeFraction));
+    public Quantity setActualVolumePercent(final String actualVolumePercent) {
+        return setActualVolumePercent(Scalar.valueOf(actualVolumePercent));
     }
 
     /**
-     * Set the actual fraction of the total volume made up by this system.
+     * Set the actual percent of the total volume made up by this system.
      *
-     * @param actualVolumeFraction Number with the volume fraction.
+     * @param actualVolumePercent Number with the volume percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualVolumeFraction(final Number actualVolumeFraction) {
-        return setActualVolumeFraction(Scalar.valueOf(actualVolumeFraction));
+    public Quantity setActualVolumePercent(final Number actualVolumePercent) {
+        return setActualVolumePercent(Scalar.valueOf(actualVolumePercent));
     }
 
     /**
-     * Get the actual fraction of the total volume made up by this system.
+     * Get the actual percent of the total volume made up by this system.
      *
-     * @return {@link Scalar} object with the volume fraction.
+     * @return {@link Scalar} object with the volume percent.
      */
-    @JsonGetter(value = "actualVolumeFraction")
-    public Scalar getActualVolumeFraction() {
-        return this.actualVolumeFraction;
+    @JsonGetter(value = "actualVolumePercent")
+    public Scalar getActualVolumePercent() {
+        return this.actualVolumePercent;
     }
 
     /**
-     * Set the actual fraction of the total number made up by this system.
+     * Set the actual percent of the total number made up by this system.
      *
-     * @param actualNumberFraction {@link Scalar} object with the number fraction.
+     * @param actualNumberPercent {@link Scalar} object with the number percent.
      * @return This object.
      */
-    @JsonSetter(value = "actualNumberFraction")
+    @JsonSetter(value = "actualNumberPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setActualNumberFraction(final Scalar actualNumberFraction) {
-        this.actualNumberFraction = actualNumberFraction;
+    public Quantity setActualNumberPercent(final Scalar actualNumberPercent) {
+        this.actualNumberPercent = actualNumberPercent;
         return this;
     }
 
     /**
-     * Set the actual fraction of the total number made up by this system.
+     * Set the actual percent of the total number made up by this system.
      *
-     * @param actualNumberFraction String with the number fraction.
+     * @param actualNumberPercent String with the number percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualNumberFraction(final String actualNumberFraction) {
-        return setActualNumberFraction(Scalar.valueOf(actualNumberFraction));
+    public Quantity setActualNumberPercent(final String actualNumberPercent) {
+        return setActualNumberPercent(Scalar.valueOf(actualNumberPercent));
     }
 
     /**
-     * Set the actual fraction of the total number made up by this system.
+     * Set the actual percent of the total number made up by this system.
      *
-     * @param actualNumberFraction Number with the number fraction.
+     * @param actualNumberPercent Number with the number percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setActualNumberFraction(final Number actualNumberFraction) {
-        return setActualNumberFraction(Scalar.valueOf(actualNumberFraction));
+    public Quantity setActualNumberPercent(final Number actualNumberPercent) {
+        return setActualNumberPercent(Scalar.valueOf(actualNumberPercent));
     }
 
     /**
-     * Get the actual fraction of the total number made up by this system.
+     * Get the actual percent of the total number made up by this system.
      *
-     * @return {@link Scalar} object with the number fraction.
+     * @return {@link Scalar} object with the number percent.
      */
-    @JsonGetter(value = "actualNumberFraction")
-    public Scalar getActualNumberFraction() {
-        return this.actualNumberFraction;
+    @JsonGetter(value = "actualNumberPercent")
+    public Scalar getActualNumberPercent() {
+        return this.actualNumberPercent;
     }
 
     /**
-     * Set the ideal fraction of the total mass made up by this system.
+     * Set the ideal percent of the total mass made up by this system.
      *
-     * @param idealMassFraction {@link Scalar} object with the mass fraction.
+     * @param idealMassPercent {@link Scalar} object with the mass percent.
      * @return This object.
      */
-    @JsonSetter(value = "idealMassFraction")
+    @JsonSetter(value = "idealMassPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setIdealMassFraction(final Scalar idealMassFraction) {
-        this.idealMassFraction = idealMassFraction;
+    public Quantity setIdealMassPercent(final Scalar idealMassPercent) {
+        this.idealMassPercent = idealMassPercent;
         return this;
     }
 
     /**
-     * Set the ideal fraction of the total mass made up by this system.
+     * Set the ideal percent of the total mass made up by this system.
      *
-     * @param idealMassFraction String with the mass fraction.
+     * @param idealMassPercent String with the mass percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealMassFraction(final String idealMassFraction) {
-        return setIdealMassFraction(Scalar.valueOf(idealMassFraction));
+    public Quantity setIdealMassPercent(final String idealMassPercent) {
+        return setIdealMassPercent(Scalar.valueOf(idealMassPercent));
     }
 
     /**
-     * Set the ideal fraction of the total mass made up by this system.
+     * Set the ideal percent of the total mass made up by this system.
      *
-     * @param idealMassFraction Number with the mass fraction.
+     * @param idealMassPercent Number with the mass percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealMassFraction(final Number idealMassFraction) {
-        return setIdealMassFraction(Scalar.valueOf(idealMassFraction));
+    public Quantity setIdealMassPercent(final Number idealMassPercent) {
+        return setIdealMassPercent(Scalar.valueOf(idealMassPercent));
     }
 
     /**
-     * Get the ideal fraction of the total mass made up by this system.
+     * Get the ideal percent of the total mass made up by this system.
      *
-     * @return {@link Scalar} object with the mass fraction.
+     * @return {@link Scalar} object with the mass percent.
      */
-    @JsonGetter(value = "idealMassFraction")
-    public Scalar getIdealMassFraction() {
-        return this.idealMassFraction;
+    @JsonGetter(value = "idealMassPercent")
+    public Scalar getIdealMassPercent() {
+        return this.idealMassPercent;
     }
 
     /**
-     * Set the ideal fraction of the total volume made up by this system.
+     * Set the ideal percent of the total volume made up by this system.
      *
-     * @param idealVolumeFraction {@link Scalar} object with the volume fraction.
+     * @param idealVolumePercent {@link Scalar} object with the volume percent.
      * @return This object.
      */
-    @JsonSetter(value = "idealVolumeFraction")
+    @JsonSetter(value = "idealVolumePercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setIdealVolumeFraction(final Scalar idealVolumeFraction) {
-        this.idealVolumeFraction = idealVolumeFraction;
+    public Quantity setIdealVolumePercent(final Scalar idealVolumePercent) {
+        this.idealVolumePercent = idealVolumePercent;
         return this;
     }
 
     /**
-     * Set the ideal fraction of the total volume made up by this system.
+     * Set the ideal percent of the total volume made up by this system.
      *
-     * @param idealVolumeFraction String with the volume fraction.
+     * @param idealVolumePercent String with the volume percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealVolumeFraction(final String idealVolumeFraction) {
-        return setIdealVolumeFraction(Scalar.valueOf(idealVolumeFraction));
+    public Quantity setIdealVolumePercent(final String idealVolumePercent) {
+        return setIdealVolumePercent(Scalar.valueOf(idealVolumePercent));
     }
 
     /**
-     * Set the ideal fraction of the total volume made up by this system.
+     * Set the ideal percent of the total volume made up by this system.
      *
-     * @param idealVolumeFraction Number with the volume fraction.
+     * @param idealVolumePercent Number with the volume percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealVolumeFraction(final Number idealVolumeFraction) {
-        return setIdealVolumeFraction(Scalar.valueOf(idealVolumeFraction));
+    public Quantity setIdealVolumePercent(final Number idealVolumePercent) {
+        return setIdealVolumePercent(Scalar.valueOf(idealVolumePercent));
     }
 
     /**
-     * Get the ideal fraction of the total volume made up by this system.
+     * Get the ideal percent of the total volume made up by this system.
      *
-     * @return {@link Scalar} object with the volume fraction.
+     * @return {@link Scalar} object with the volume percent.
      */
-    @JsonGetter(value = "idealVolumeFraction")
-    public Scalar getIdealVolumeFraction() {
-        return this.idealVolumeFraction;
+    @JsonGetter(value = "idealVolumePercent")
+    public Scalar getIdealVolumePercent() {
+        return this.idealVolumePercent;
     }
 
     /**
-     * Set the ideal fraction of the total number made up by this system.
+     * Set the ideal percent of the total number made up by this system.
      *
-     * @param idealNumberFraction {@link Scalar} object with the number fraction.
+     * @param idealNumberPercent {@link Scalar} object with the number percent.
      * @return This object.
      */
-    @JsonSetter(value = "idealNumberFraction")
+    @JsonSetter(value = "idealNumberPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    public Quantity setIdealNumberFraction(final Scalar idealNumberFraction) {
-        this.idealNumberFraction = idealNumberFraction;
+    public Quantity setIdealNumberPercent(final Scalar idealNumberPercent) {
+        this.idealNumberPercent = idealNumberPercent;
         return this;
     }
 
     /**
-     * Set the ideal fraction of the total number made up by this system.
+     * Set the ideal percent of the total number made up by this system.
      *
-     * @param idealNumberFraction String with the number fraction.
+     * @param idealNumberPercent String with the number percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealNumberFraction(final String idealNumberFraction) {
-        return setIdealNumberFraction(Scalar.valueOf(idealNumberFraction));
+    public Quantity setIdealNumberPercent(final String idealNumberPercent) {
+        return setIdealNumberPercent(Scalar.valueOf(idealNumberPercent));
     }
 
     /**
-     * Set the ideal fraction of the total number made up by this system.
+     * Set the ideal percent of the total number made up by this system.
      *
-     * @param idealNumberFraction Number with the number fraction.
+     * @param idealNumberPercent Number with the number percent.
      * @return This object.
      */
     @JsonIgnore
-    public Quantity setIdealNumberFraction(final Number idealNumberFraction) {
-        return setIdealNumberFraction(Scalar.valueOf(idealNumberFraction));
+    public Quantity setIdealNumberPercent(final Number idealNumberPercent) {
+        return setIdealNumberPercent(Scalar.valueOf(idealNumberPercent));
     }
 
     /**
-     * Get the ideal fraction of the total number made up by this system.
+     * Get the ideal percent of the total number made up by this system.
      *
-     * @return {@link Scalar} object with the number fraction.
+     * @return {@link Scalar} object with the number percent.
      */
-    @JsonGetter(value = "idealNumberFraction")
-    public Scalar getIdealNumberFraction() {
-        return this.idealNumberFraction;
+    @JsonGetter(value = "idealNumberPercent")
+    public Scalar getIdealNumberPercent() {
+        return this.idealNumberPercent;
     }
 
     @Override
@@ -314,21 +314,21 @@ public class Quantity extends Pio {
         return this;
     }
 
-    /** Actual fraction of the total mass. */
-    private Scalar actualMassFraction;
+    /** Actual percent of the total mass. */
+    private Scalar actualMassPercent;
 
-    /** Actual fraction of the total volume. */
-    private Scalar actualVolumeFraction;
+    /** Actual percent of the total volume. */
+    private Scalar actualVolumePercent;
 
-    /** Actual fraction of the total number. */
-    private Scalar actualNumberFraction;
+    /** Actual percent of the total number. */
+    private Scalar actualNumberPercent;
     
-    /** Ideal fraction of the total mass. */
-    private Scalar idealMassFraction;
+    /** Ideal percent of the total mass. */
+    private Scalar idealMassPercent;
 
-    /** Ideal fraction of the total volume. */
-    private Scalar idealVolumeFraction;
+    /** Ideal percent of the total volume. */
+    private Scalar idealVolumePercent;
 
-    /** Ideal fraction of the total number. */
-    private Scalar idealNumberFraction;
+    /** Ideal percent of the total number. */
+    private Scalar idealNumberPercent;
 }
