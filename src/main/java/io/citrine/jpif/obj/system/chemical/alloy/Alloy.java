@@ -22,6 +22,7 @@ import io.citrine.jpif.obj.system.chemical.common.Composition;
  *
  * <p>Supported fields:
  * <ul>
+ *     <li>uid - Permanent ID associated with this record.
  *     <li>chemicalFormula - Chemical formula of the system.
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.
  *     <li>names - Names of the system.
@@ -103,6 +104,13 @@ public class Alloy extends ChemicalSystem {
      */
     public Iterable<System> phases() {
         return super.subSystems();
+    }
+
+    @Override
+    @JsonSetter(value = "uid")
+    public Alloy setUid(final String uid) {
+        super.setUid(uid);
+        return this;
     }
 
     @Override

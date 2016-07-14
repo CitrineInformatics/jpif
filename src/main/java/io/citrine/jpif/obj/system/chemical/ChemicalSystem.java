@@ -26,6 +26,7 @@ import java.util.List;
  *
  * <p>Supported fields:
  * <ul>
+ *     <li>uid - Permanent ID associated with this record.
  *     <li>chemicalFormula - Chemical formula of the system.
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.
  *     <li>names - Names of the system.
@@ -169,6 +170,13 @@ public class ChemicalSystem extends System {
      */
     public Iterable<Composition> composition() {
         return (this.composition == null) ? Collections.emptyList() : this.composition;
+    }
+
+    @Override
+    @JsonSetter(value = "uid")
+    public ChemicalSystem setUid(final String uid) {
+        super.setUid(uid);
+        return this;
     }
 
     @Override

@@ -29,6 +29,7 @@ import java.util.List;
  *
  * <p>Supported fields:
  * <ul>
+ *     <li>uid - Permanent ID associated with this record.
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
  *     <li>source - {@link Source} of the system.
@@ -52,6 +53,28 @@ import java.util.List;
         @JsonSubTypes.Type(value = Alloy.class),
         @JsonSubTypes.Type(name = "system.chemical.alloy.phase", value = ChemicalSystem.class)})  // Legacy support
 public class System extends Rcl {
+
+    /**
+     * Set the unique ID for this system.
+     *
+     * @param uid String with the unique id.
+     * @return This object.
+     */
+    @JsonSetter(value = "uid")
+    public System setUid(final String uid) {
+        this.uid = uid;
+        return this;
+    }
+
+    /**
+     * Get the PIF ID for this system.
+     *
+     * @return String with the PIF ID for this system.
+     */
+    @JsonGetter(value = "uid")
+    public String getUid() {
+        return this.uid;
+    }
 
     /**
      * Set the list of names of this system.
@@ -667,6 +690,9 @@ public class System extends Rcl {
         super.addUnsupportedField(key, value);
         return this;
     }
+
+    /** Permanent ID for this system. */
+    private String uid;
 
     /** List of names for this system. */
     private List<String> names;
