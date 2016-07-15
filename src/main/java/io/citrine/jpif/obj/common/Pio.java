@@ -24,7 +24,7 @@ public abstract class Pio {
      *
      * @param tags List of strings with the tags of this object.
      */
-    @JsonSetter(value = "name")
+    @JsonSetter(value = "tags")
     protected void setTags(final List<String> tags) {  // Private since only Jackson should use it
         this.tags = tags;
     }
