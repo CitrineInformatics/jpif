@@ -562,7 +562,7 @@ public class Scalar extends Pio {
             + DIGITS_REGEX + ")" + ")[pP][+-]?" + DIGITS_REGEX + "))[fFdD]?))";
 
     /** Regular expression for matching +- symbols. */
-    private static final String PLUS_MINUS_REGEX = "\\s*(?:\\+\\-|±|\\$?\\\\pm\\$?)\\s*";
+    public static final String PLUS_MINUS_REGEX = "\\s*(?:\\+\\-|±|\\$?\\\\pm\\$?)\\s*";
 
     /** Pattern for matching range in the form e.g. 1 +- 0.1. */
     private static final Pattern PLUS_MINUS_UNCERTAINTY_PATTERN = Pattern.compile(
