@@ -31,7 +31,7 @@ public class PifObjectMapper extends ObjectMapper {
      * @return {@link ObjectWriter} for a list of {@link System} objects.
      */
     public ObjectWriter getSystemListWriter() {
-        return this.writerFor(Holder.SYSTEM_LIST_TYPE);
+        return this.writerWithType(Holder.SYSTEM_LIST_TYPE);
     }
 
     /**
