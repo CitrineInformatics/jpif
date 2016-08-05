@@ -187,6 +187,14 @@ public class PifObjectStream implements Iterable<System> {
         return this.new SystemIterator();
     }
 
+    /**
+     * Default constructor. This lets subclasses exists without having to implement one of the constructors
+     * of this class.
+     */
+    protected PifObjectStream() {
+        this.jsonParser = null;
+    }
+
     /** Json parser to read a PIF-formatted JSON source. */
     private final JsonParser jsonParser;
 
