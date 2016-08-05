@@ -129,7 +129,7 @@ public class PifObjectStream implements Iterable<System> {
      * @throws IOException if the stream cannot be processed.
      */
     @SuppressWarnings("unchecked")
-    private <T extends System> T advanceToNextSystem(final Class<T> systemClass) throws IOException {
+    protected <T extends System> T advanceToNextSystem(final Class<T> systemClass) throws IOException {
         System currentSystem;
         while ((currentSystem = PifObjectMapper.getInstance().readValue(this.jsonParser, System.class)) != null) {
             this.jsonParser.nextToken();
@@ -149,7 +149,7 @@ public class PifObjectStream implements Iterable<System> {
      *
      * @throws IOException if the underlying stream cannot be parsed.
      */
-    private void advanceToFirstObject() throws IOException {
+    protected void advanceToFirstObject() throws IOException {
         this.jsonParser.nextToken();
         if (this.jsonParser.getCurrentToken() == JsonToken.START_ARRAY) {
             this.jsonParser.nextToken();
@@ -161,7 +161,7 @@ public class PifObjectStream implements Iterable<System> {
      *
      * @return True if the end of the stream has been reached.
      */
-    private boolean isFinished() {
+    protected boolean isFinished() {
         return (this.jsonParser.getCurrentToken() == JsonToken.END_ARRAY)
                 || (this.jsonParser.getCurrentToken() == null);
     }
@@ -196,7 +196,7 @@ public class PifObjectStream implements Iterable<System> {
     }
 
     /** Json parser to read a PIF-formatted JSON source. */
-    private final JsonParser jsonParser;
+    protected final JsonParser jsonParser;
 
     /**
      * Iterator class for iterating over systems.
@@ -243,7 +243,7 @@ public class PifObjectStream implements Iterable<System> {
          * @return Next {@link System} in the stream.
          * @throws RuntimeException if the stream cannot be read.
          */
-        private System getNextSystem() {
+        protected System getNextSystem() {
             try {
                 return PifObjectStream.this.getNextSystem();
             }
@@ -253,6 +253,6 @@ public class PifObjectStream implements Iterable<System> {
         }
 
         /** Next system in the stream. */
-        private System nextSystem;
+        protected System nextSystem;
     }
 }
