@@ -188,7 +188,7 @@ public class PifObjectStream implements Iterable<System> {
     }
 
     /**
-     * Default constructor. This lets subclasses exists without having to implement one of the constructors
+     * Default constructor. This lets subclasses exists without having to implement one of the constructors 
      * of this class.
      */
     protected PifObjectStream() {
