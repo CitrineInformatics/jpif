@@ -165,9 +165,11 @@ public class JsonSchemaGenerator {
      *
      * @author Kyle Michel
      */
-    public static abstract class SystemMixIn {
+    public abstract static class SystemMixIn {
+
         @JsonIgnore
         protected abstract void setSubSystems(final List<System> reference);
+
         @JsonIgnore
         protected abstract List<System> getSubSystems();
     }
@@ -177,9 +179,11 @@ public class JsonSchemaGenerator {
      *
      * @author Kyle Michel
      */
-    public static abstract class ReferenceMixIn {
+    public abstract static class ReferenceMixIn {
+
         @JsonIgnore
         protected abstract void setReference(final List<Reference> reference);
+
         @JsonIgnore
         protected abstract List<Reference> getReferences();
     }
