@@ -58,7 +58,7 @@ public class Method extends Pio {
      * @param instrument List of {@link Instrument} objects for the method.
      */
     @JsonSetter(value = "instrument")
-    protected void setInstrument(final List<Instrument> instrument) { // Private since only Jackson should use it
+    void setInstrument(final List<Instrument> instrument) { // Private since only Jackson should use it
         setInstruments(instruments);
     }
 
@@ -68,7 +68,7 @@ public class Method extends Pio {
      * @param instruments List of {@link Instrument} objects for the method.
      */
     @JsonSetter(value = "instruments")
-    protected void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
+    void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
         this.instruments = instruments;
     }
 
@@ -151,7 +151,7 @@ public class Method extends Pio {
      * @return List of {@link Instrument} objects with instruments used in the method.
      */
     @JsonGetter(value = "instruments")
-    protected List<Instrument> getInstruments() { // Private since only Jackson should use it
+    List<Instrument> getInstruments() { // Private since only Jackson should use it
         return this.instruments;
     }
 
@@ -161,7 +161,7 @@ public class Method extends Pio {
      * @param software List of {@link Software} objects for software packages used in the method.
      */
     @JsonSetter(value = "software")
-    protected void setSoftware(final List<Software> software) { // Private since only Jackson should use it
+    void setSoftware(final List<Software> software) { // Private since only Jackson should use it
         this.software = software;
     }
 
@@ -171,7 +171,7 @@ public class Method extends Pio {
      * @param softwares List of {@link Software} objects for software packages used in the method.
      */
     @JsonSetter(value = "softwares")
-    protected void setSoftwares(final List<Software> softwares) { // Private since only Jackson should use it
+    void setSoftwares(final List<Software> softwares) { // Private since only Jackson should use it
         setSoftware(software);
     }
 
@@ -245,7 +245,7 @@ public class Method extends Pio {
      * @return List of {@link Software} objects used in the method.
      */
     @JsonGetter(value = "software")
-    protected List<Software> getSoftware() { // Private since only Jackson should use it
+    List<Software> getSoftware() { // Private since only Jackson should use it
         return this.software;
     }
 

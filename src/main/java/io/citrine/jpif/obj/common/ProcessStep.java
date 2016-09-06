@@ -53,7 +53,7 @@ public class ProcessStep extends Pio {
      * @param details List of {@link Value} objects describing this process step.
      */
     @JsonSetter(value = "details")
-    protected void setDetails(final List<Value> details) { // Private since only Jackson should use it
+    void setDetails(final List<Value> details) { // Private since only Jackson should use it
         this.details = details;
     }
 
@@ -63,7 +63,7 @@ public class ProcessStep extends Pio {
      * @param detail List of {@link Value} objects describing this process step.
      */
     @JsonSetter(value = "detail")
-    protected void setDetail(final List<Value> detail) { // Private since only Jackson should use it
+    void setDetail(final List<Value> detail) { // Private since only Jackson should use it
         setDetails(detail);
     }
 
@@ -146,7 +146,7 @@ public class ProcessStep extends Pio {
      * @return List of {@link Value} objects with details of the process step.
      */
     @JsonGetter(value = "details")
-    protected List<Value> getDetails() { // Private since only Jackson should use it
+    List<Value> getDetails() { // Private since only Jackson should use it
         return this.details;
     }
 
@@ -156,7 +156,7 @@ public class ProcessStep extends Pio {
      * @param instruments List of {@link Instrument} objects used in this process step.
      */
     @JsonSetter(value = "instruments")
-    protected void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
+    void setInstruments(final List<Instrument> instruments) { // Private since only Jackson should use it
         this.instruments = instruments;
     }
 
@@ -166,7 +166,7 @@ public class ProcessStep extends Pio {
      * @param instruments List of {@link Instrument} objects used in this process step.
      */
     @JsonSetter(value = "instrument")
-    protected void setInstrument(final List<Instrument> instruments) { // Private since only Jackson should use it
+    void setInstrument(final List<Instrument> instruments) { // Private since only Jackson should use it
         setInstruments(instruments);
     }
 
@@ -249,7 +249,7 @@ public class ProcessStep extends Pio {
      * @return List of {@link Instrument} objects with instruments of the process step.
      */
     @JsonGetter(value = "instruments")
-    protected List<Instrument> getInstruments() { // Private since only Jackson should use it
+    List<Instrument> getInstruments() { // Private since only Jackson should use it
         return this.instruments;
     }
 
@@ -259,7 +259,7 @@ public class ProcessStep extends Pio {
      * @param software List of {@link Software} objects used in this process step.
      */
     @JsonSetter(value = "software")
-    protected void setSoftware(final List<Software> software) { // Private since only Jackson should use it
+    void setSoftware(final List<Software> software) { // Private since only Jackson should use it
         this.software = software;
     }
 
@@ -269,7 +269,7 @@ public class ProcessStep extends Pio {
      * @param softwares sList of {@link Software} objects used in this process step.
      */
     @JsonSetter(value = "softwares")
-    protected void setSoftwares(final List<Software> softwares) { // Private since only Jackson should use it
+    void setSoftwares(final List<Software> softwares) { // Private since only Jackson should use it
         setSoftware(softwares);
     }
 
@@ -343,7 +343,7 @@ public class ProcessStep extends Pio {
      * @return List of {@link Software} objects with software of the process step.
      */
     @JsonGetter(value = "software")
-    protected List<Software> getSoftware() { // Private since only Jackson should use it
+    List<Software> getSoftware() { // Private since only Jackson should use it
         return this.software;
     }
 

@@ -121,7 +121,7 @@ public class Pages extends Pio {
      * @param input String to break into pages.
      * @return New {@link Pages} object with the input string broken into components.
      */
-    protected static Pages decomposePages(final String input) {
+    static Pages decomposePages(final String input) {
         final Pages res = new Pages();
         final String[] parts = SPLIT_REGEX.split(input.trim());
         if (parts.length > 0) {

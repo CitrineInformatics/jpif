@@ -25,7 +25,7 @@ public abstract class Pio {
      * @param tags List of strings with the tags of this object.
      */
     @JsonSetter(value = "tags")
-    protected void setTags(final List<String> tags) {  // Private since only Jackson should use it
+    void setTags(final List<String> tags) {  // Private since only Jackson should use it
         this.tags = tags;
     }
 
@@ -35,7 +35,7 @@ public abstract class Pio {
      * @param tag List of strings with the tags of this object.
      */
     @JsonSetter(value = "tag")
-    protected void setTag(final List<String> tag) {  // Private since only Jackson should use it
+    void setTag(final List<String> tag) {  // Private since only Jackson should use it
         setTags(tag);
     }
 
@@ -117,7 +117,7 @@ public abstract class Pio {
      * @return List of tags for this object.
      */
     @JsonGetter("tags")
-    protected List<String> getTags() { // Private since only Jackson should use it
+    List<String> getTags() { // Private since only Jackson should use it
         return this.tags;
     }
 
@@ -143,7 +143,7 @@ public abstract class Pio {
      * @return Map of strings to objects with the unsupported fields.
      */
     @JsonAnyGetter
-    protected Map<String, Object> getUnsupportedFields() { // Private since only Jackson should use it
+    Map<String, Object> getUnsupportedFields() { // Private since only Jackson should use it
         return this.unsupportedFields;
     }
 

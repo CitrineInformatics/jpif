@@ -23,7 +23,7 @@ public class Rcl extends Pio {
      * @param references List of {@link Reference} objects with the references for this item.
      */
     @JsonSetter(value = "references")
-    protected void setReferences(final List<Reference> references) { // Protected since only Jackson should use it
+    void setReferences(final List<Reference> references) { // since only Jackson should use it
         this.references = references;
     }
 
@@ -33,7 +33,7 @@ public class Rcl extends Pio {
      * @param reference List of {@link Reference} objects with the references for this item.
      */
     @JsonSetter(value = "reference")
-    protected void setReference(final List<Reference> reference) { // Protected since only Jackson should use it
+    void setReference(final List<Reference> reference) { // since only Jackson should use it
         setReferences(reference);
     }
 
@@ -116,7 +116,7 @@ public class Rcl extends Pio {
      * @return List of {@link Reference} objects with references for this item.
      */
     @JsonGetter(value = "references")
-    protected List<Reference> getReferences() { // Protected since only Jackson should use it
+    List<Reference> getReferences() { // since only Jackson should use it
         return this.references;
     }
 
@@ -127,7 +127,7 @@ public class Rcl extends Pio {
      */
     @JsonSetter(value = "contacts")
     @JsonDeserialize(using = Person.Deserializer.class)
-    protected void setContacts(final List<Person> contacts) { // Protected since only Jackson should use it
+    void setContacts(final List<Person> contacts) { // since only Jackson should use it
         this.contacts = contacts;
     }
 
@@ -138,7 +138,7 @@ public class Rcl extends Pio {
      */
     @JsonSetter(value = "contact")
     @JsonDeserialize(using = Person.Deserializer.class)
-    protected void setContact(final List<Person> contact) { // Protected since only Jackson should use it
+    void setContact(final List<Person> contact) { // since only Jackson should use it
         setContacts(contact);
     }
 
@@ -221,7 +221,7 @@ public class Rcl extends Pio {
      * @return List of {@link Person} objects with contacts for this item.
      */
     @JsonGetter(value = "contacts")
-    protected List<Person> getContacts() { // Protected since only Jackson should use it
+    List<Person> getContacts() { // since only Jackson should use it
         return this.contacts;
     }
 
@@ -232,7 +232,7 @@ public class Rcl extends Pio {
      */
     @JsonSetter(value = "licenses")
     @JsonDeserialize(using = License.Deserializer.class)
-    protected void setLicenses(final List<License> licenses) { // Protected since only Jackson should use it
+    void setLicenses(final List<License> licenses) { // since only Jackson should use it
         this.licenses = licenses;
     }
 
@@ -243,7 +243,7 @@ public class Rcl extends Pio {
      */
     @JsonSetter(value = "license")
     @JsonDeserialize(using = License.Deserializer.class)
-    protected void setLicense(final List<License> license) { // Protected since only Jackson should use it
+    void setLicense(final List<License> license) { // since only Jackson should use it
         setLicenses(license);
     }
 
@@ -327,7 +327,7 @@ public class Rcl extends Pio {
      * @return List of {@link License} objects with licenses for this item.
      */
     @JsonGetter(value = "licenses")
-    protected List<License> getLicenses() { // Protected since only Jackson should use it
+    List<License> getLicenses() { // since only Jackson should use it
         return this.licenses;
     }
 

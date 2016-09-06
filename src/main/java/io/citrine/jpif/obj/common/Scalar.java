@@ -96,7 +96,7 @@ public class Scalar extends Pio {
      * @return True if the value in inclusive.
      */
     @JsonGetter(value = "inclusiveMinimum")
-    protected Boolean getInclusiveMinimum() { // Private since only Jackson should use it
+    Boolean getInclusiveMinimum() { // Private since only Jackson should use it
         return this.inclusiveMinimum;
     }
 
@@ -150,7 +150,7 @@ public class Scalar extends Pio {
      * @return True if the value of the maximum is inclusive.
      */
     @JsonGetter(value = "inclusiveMaximum")
-    protected Boolean getInclusiveMaximum() { // Private since only Jackson should use it
+    Boolean getInclusiveMaximum() { // Private since only Jackson should use it
         return this.inclusiveMaximum;
     }
 
@@ -204,7 +204,7 @@ public class Scalar extends Pio {
      * @return True if the value is approximate.
      */
     @JsonGetter(value = "approximate")
-    protected Boolean getApproximate() { // Private since only Jackson should use it
+    Boolean getApproximate() { // Private since only Jackson should use it
         return this.approximate;
     }
 
@@ -361,7 +361,7 @@ public class Scalar extends Pio {
      * @param input String to save.
      * @return New {@link Scalar} object with the input string decomposed.
      */
-    protected static Scalar decomposeString(String input) {
+    static Scalar decomposeString(String input) {
         Scalar res;
         Boolean isAppoximate;
         if ((isAppoximate = isStringApproximate(input)) == Boolean.TRUE) {
@@ -385,7 +385,7 @@ public class Scalar extends Pio {
      * @param input String to check as approximate.
      * @return True if the input string represents an approximate value.
      */
-    protected static Boolean isStringApproximate(final String input) {
+    static Boolean isStringApproximate(final String input) {
         return APPROXIMATE_PATTERN.matcher(input).find() ? Boolean.TRUE : null;
     }
 
@@ -395,7 +395,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asPlusMinus(final String input) {
+    static Scalar asPlusMinus(final String input) {
         final Matcher matcher = PLUS_MINUS_UNCERTAINTY_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar()
@@ -411,7 +411,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asParentheses(final String input) {
+    static Scalar asParentheses(final String input) {
         final Matcher matcher = PARENTHESES_UNCERTAINTY_PATTERN.matcher(input);
         if (matcher.matches()) {
             try {
@@ -455,7 +455,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asBoundedRange(final String input) {
+    static Scalar asBoundedRange(final String input) {
         final Matcher matcher = RANGE_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar()
@@ -471,7 +471,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asMinimum(final String input) {
+    static Scalar asMinimum(final String input) {
         final Matcher matcher = MINIMUM_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar().setMinimum(matcher.group(1));
@@ -485,7 +485,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asInclusiveMinimum(final String input) {
+    static Scalar asInclusiveMinimum(final String input) {
         final Matcher matcher = INCLUSIVE_MINIMUM_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar()
@@ -501,7 +501,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asMaximum(final String input) {
+    static Scalar asMaximum(final String input) {
         final Matcher matcher = MAXIMUM_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar().setMaximum(matcher.group(1));
@@ -515,7 +515,7 @@ public class Scalar extends Pio {
      * @param input String with the value to interpret.
      * @return New {@link Scalar} object or a null pointer if the input string was not in the correct format.
      */
-    protected static Scalar asInclusiveMaximum(final String input) {
+    static Scalar asInclusiveMaximum(final String input) {
         final Matcher matcher = INCLUSIVE_MAXIMUM_PATTERN.matcher(input);
         if (matcher.matches()) {
             return new Scalar()

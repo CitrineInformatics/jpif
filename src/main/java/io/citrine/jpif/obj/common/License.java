@@ -133,7 +133,7 @@ public class License extends Pio {
      * @param input String to convert to {@link License} object.
      * @return {@link License} object with the value of the string.
      */
-    protected static License interpretLicenseString(final String input) {
+    static License interpretLicenseString(final String input) {
         final License res = new License();
         if (isValidUrl(input)) {
             res.setUrl(input);
@@ -153,7 +153,7 @@ public class License extends Pio {
      * @param input String to check as a URL.
      * @return True if the input string is a URL.
      */
-    protected static boolean isValidUrl(final String input) {
+    static boolean isValidUrl(final String input) {
         // This purposely uses try catch logic to determine whether the input string is a valid url
         try {
             new URL(input);

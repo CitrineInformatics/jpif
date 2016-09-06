@@ -134,7 +134,7 @@ public class Person extends Pio {
      * @param input String to convert to a {@link Person} object.
      * @return New {@link Person} object with the parsed out input.
      */
-    protected static Person interpretString(final String input) {
+    static Person interpretString(final String input) {
         final Person res = new Person();
         if (isEmailAddress(input)) {
             res.setEmail(input);
@@ -154,7 +154,7 @@ public class Person extends Pio {
      * @param input String to check whether an email address.
      * @return True if the input string is an email address.
      */
-    protected static boolean isEmailAddress(String input) {
+    static boolean isEmailAddress(String input) {
         input = input.trim();
         return EmailValidator.getInstance().isValid(input);
     }
@@ -165,7 +165,7 @@ public class Person extends Pio {
      * @param input String to check as an ORCID id.
      * @return True if the input string is an ORCID id.
      */
-    protected static boolean isOrcid(String input) {
+    static boolean isOrcid(String input) {
         input = input.trim();
         return Orcid.isValid(input);
     }

@@ -51,7 +51,7 @@ public class Value extends Pio {
      * @param names String with the name of this value.
      */
     @JsonSetter(value = "names")
-    protected void setNames(final String names) { // Private since only Jackson should use it
+    void setNames(final String names) { // Private since only Jackson should use it
         this.setName(names);
     }
 
@@ -72,7 +72,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "scalars")
     @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
-    protected void setScalars(final List<Scalar> scalars) { // Private since only Jackson should use it
+    void setScalars(final List<Scalar> scalars) { // Private since only Jackson should use it
         this.scalars = scalars;
     }
 
@@ -83,7 +83,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "scalar")
     @JsonDeserialize(contentUsing = Scalar.Deserializer.class)
-    protected void setScalar(final List<Scalar> scalar) { // Private since only Jackson should use it
+    void setScalar(final List<Scalar> scalar) { // Private since only Jackson should use it
         setScalars(scalar);
     }
 
@@ -209,7 +209,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} objects stored in this value.
      */
     @JsonGetter(value = "scalars")
-    protected List<Scalar> getScalars() { // Private since only Jackson should use it
+    List<Scalar> getScalars() { // Private since only Jackson should use it
         return this.scalars;
     }
 
@@ -220,7 +220,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "vectors")
     @JsonDeserialize(using = VectorsDeserializer.class)
-    protected void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
+    void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
         this.vectors = vectors;
     }
 
@@ -231,7 +231,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "vector")
     @JsonDeserialize(using = VectorsDeserializer.class)
-    protected void setVector(final List<Scalar[]> vector) { // Private since only Jackson should use it
+    void setVector(final List<Scalar[]> vector) { // Private since only Jackson should use it
         setVectors(vector);
     }
 
@@ -357,7 +357,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} arrays with the vectors stored by this value.
      */
     @JsonGetter(value = "vectors")
-    protected List<Scalar[]> getVectors() { // Private since only Jackson should use it
+    List<Scalar[]> getVectors() { // Private since only Jackson should use it
         return this.vectors;
     }
 
@@ -368,7 +368,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "matrices")
     @JsonDeserialize(using = MatricesDeserializer.class)
-    protected void setMatrices(final List<Scalar[][]> matrices) { // Private since only Jackson should use it
+    void setMatrices(final List<Scalar[][]> matrices) { // Private since only Jackson should use it
         this.matrices = matrices;
     }
 
@@ -379,7 +379,7 @@ public class Value extends Pio {
      */
     @JsonSetter(value = "matrix")
     @JsonDeserialize(using = MatricesDeserializer.class)
-    protected void setMatrix(final List<Scalar[][]> matrix) { // Private since only Jackson should use it
+    void setMatrix(final List<Scalar[][]> matrix) { // Private since only Jackson should use it
         setMatrices(matrix);
     }
 
@@ -505,7 +505,7 @@ public class Value extends Pio {
      * @return List of {@link Scalar} arrays of arrays, each being a single matrix stored by this value.
      */
     @JsonGetter(value = "matrices")
-    protected List<Scalar[][]> getMatrices() { // Private since only Jackson should use it
+    List<Scalar[][]> getMatrices() { // Private since only Jackson should use it
         return this.matrices;
     }
 
@@ -566,7 +566,7 @@ public class Value extends Pio {
      * @param vector Array of strings to convert to scalars.
      * @return Array of scalars.
      */
-    protected Scalar[] toScalarVector(final String[] vector) {
+    Scalar[] toScalarVector(final String[] vector) {
         final Scalar[] scalarVector = new Scalar[vector.length];
         for (int i = 0; i < vector.length; ++i) {
             scalarVector[i] = Scalar.valueOf(vector[i]);
@@ -580,7 +580,7 @@ public class Value extends Pio {
      * @param vector Array of numbers to convert to scalars.
      * @return Array of scalars.
      */
-    protected Scalar[] toScalarVector(final Number[] vector) {
+    Scalar[] toScalarVector(final Number[] vector) {
         final Scalar[] scalarVector = new Scalar[vector.length];
         for (int i = 0; i < vector.length; ++i) {
             scalarVector[i] = Scalar.valueOf(vector[i]);
@@ -594,7 +594,7 @@ public class Value extends Pio {
      * @param matrix Array of arrays of strings to convert to scalars.
      * @return Array of arrays of scalars.
      */
-    protected Scalar[][] toScalarMatrix(final String[][] matrix) {
+    Scalar[][] toScalarMatrix(final String[][] matrix) {
         final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
         for (int i = 0; i < matrix.length; ++i) {
             scalarMatrix[i] = new Scalar[matrix[i].length];
@@ -611,7 +611,7 @@ public class Value extends Pio {
      * @param matrix Array of arrays of numbers to convert to scalars.
      * @return Array of arrays of scalars.
      */
-    protected Scalar[][] toScalarMatrix(final Number[][] matrix) {
+    Scalar[][] toScalarMatrix(final Number[][] matrix) {
         final Scalar[][] scalarMatrix = new Scalar[matrix.length][];
         for (int i = 0; i < matrix.length; ++i) {
             scalarMatrix[i] = new Scalar[matrix[i].length];
@@ -663,7 +663,7 @@ public class Value extends Pio {
          * @return List of arrays of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected List<Scalar[]> fromArrayNode(
+        List<Scalar[]> fromArrayNode(
                 final JsonNode jsonNode, final DeserializationContext deserializationContext) throws IOException {
             if (jsonNode.size() == 0) {
                 return Collections.emptyList();
@@ -684,7 +684,7 @@ public class Value extends Pio {
          * @return List of arrays of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected List<Scalar[]> fromList(
+        List<Scalar[]> fromList(
                 final JsonNode jsonNode, DeserializationContext deserializationContext) throws IOException {
             final List<Scalar[]> res = new ArrayList<>(jsonNode.size());
             for (JsonNode i : jsonNode) {
@@ -701,7 +701,7 @@ public class Value extends Pio {
          * @return Array of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected Scalar[] fromVector(final JsonNode jsonNode, final DeserializationContext deserializationContext)
+        Scalar[] fromVector(final JsonNode jsonNode, final DeserializationContext deserializationContext)
                 throws IOException {
             final Scalar[] res = new Scalar[jsonNode.size()];
             final Scalar.Deserializer deserializer = new Scalar.Deserializer();
@@ -741,7 +741,7 @@ public class Value extends Pio {
          * @return List of arrays of arrays of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected List<Scalar[][]> fromArrayNode(
+        List<Scalar[][]> fromArrayNode(
                 final JsonNode jsonNode, final DeserializationContext deserializationContext,
                 final ObjectCodec objectCodec) throws IOException {
             if (jsonNode.size() == 0) {
@@ -767,7 +767,7 @@ public class Value extends Pio {
          * @return List of arrays of arrays of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected List<Scalar[][]> fromList(
+        List<Scalar[][]> fromList(
                 final JsonNode jsonNode, final DeserializationContext deserializationContext,
                 final ObjectCodec objectCodec) throws IOException {
             final List<Scalar[][]> res = new ArrayList<>(jsonNode.size());
@@ -786,7 +786,7 @@ public class Value extends Pio {
          * @return Array of arrays of {@link Scalar} objects.
          * @throws IOException if thrown from within this function.
          */
-        protected Scalar[][] fromMatrix(
+        Scalar[][] fromMatrix(
                 final JsonNode jsonNode, final DeserializationContext deserializationContext,
                 final ObjectCodec objectCodec) throws IOException {
             final JsonParser jsonParser = jsonNode.traverse(objectCodec);

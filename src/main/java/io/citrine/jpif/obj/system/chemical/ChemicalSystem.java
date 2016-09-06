@@ -75,7 +75,7 @@ public class ChemicalSystem extends System {
      * @param composition List of {@link Composition} objects with the composition of this system.
      */
     @JsonSetter(value = "composition")
-    protected void setComposition(final List<Composition> composition) { // Private since only Jackson should use it
+    void setComposition(final List<Composition> composition) { // Private since only Jackson should use it
         this.composition = composition;
     }
 
@@ -85,7 +85,7 @@ public class ChemicalSystem extends System {
      * @param compositions List of {@link Composition} objects with the composition of this system.
      */
     @JsonSetter(value = "compositions")
-    protected void setCompositions(final List<Composition> compositions) { // Private since only Jackson should use it
+    void setCompositions(final List<Composition> compositions) { // Private since only Jackson should use it
         setComposition(compositions);
     }
 
@@ -159,7 +159,7 @@ public class ChemicalSystem extends System {
      * @return List of {@link Composition} objects with composition for this system.
      */
     @JsonGetter(value = "composition")
-    protected List<Composition> getComposition() { // Private since only Jackson should use it
+    List<Composition> getComposition() { // Private since only Jackson should use it
         return this.composition;
     }
 

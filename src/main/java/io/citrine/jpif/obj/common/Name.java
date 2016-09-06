@@ -183,7 +183,7 @@ public class Name extends Pio {
      * @param input String with the value to convert to a name.
      * @return New {@link Name} object with the decomposed input string.
      */
-    protected static Name decomposeName(String input) {
+    static Name decomposeName(String input) {
         final Name name = new Name();
         input = addTitleToName(input, name);
         input = addSuffixToName(input, name);
@@ -198,7 +198,7 @@ public class Name extends Pio {
      * @param name {@link Name} object to save to.
      * @return Modified input string with the title removed.
      */
-    protected static String addTitleToName(String input, final Name name) {
+    static String addTitleToName(String input, final Name name) {
         final Matcher matcher = TITLES_PATTERN.matcher(input);
         while (matcher.find()) {
             name.setTitle(matcher.group().trim());
@@ -214,7 +214,7 @@ public class Name extends Pio {
      * @param name {@link Name} object to save to.
      * @return Modified input string with the suffix removed.
      */
-    protected static String addSuffixToName(String input, final Name name) {
+    static String addSuffixToName(String input, final Name name) {
         final Matcher matcher = SUFFIXES_PATTERN.matcher(input);
         while (matcher.find()) {
             name.setSuffix(matcher.group().trim());
@@ -230,7 +230,7 @@ public class Name extends Pio {
      * @param input String with the name to convert to given and family parts.
      * @param name {@link Name} object to save to.
      */
-    protected static void addGivenAndFamilyNames(String input, final Name name) {
+    static void addGivenAndFamilyNames(String input, final Name name) {
         input = TRAILING_CHAR_PATTERN.matcher(input).replaceAll("").trim();
         final String[] parts = NAME_SPLIT_PATTERN.split(input);
         if (parts.length == 2) {
@@ -248,7 +248,7 @@ public class Name extends Pio {
      * @param input String with the name to convert.
      * @param name {@link Name} object to save to.
      */
-    protected static void splitNameAtSpaces(String input, final Name name) {
+    static void splitNameAtSpaces(String input, final Name name) {
         input = HYPHEN_REGEX.matcher(input).replaceAll("-");
         final String[] partsOfName = input.split("\\s+");
         if (partsOfName.length == 1) {
@@ -271,7 +271,7 @@ public class Name extends Pio {
      * @param partsOfName Array of words in the name.
      * @param name {@link Name} object being built.
      */
-    protected static void identifyPartsOfMultiWordName(final String[] partsOfName, final Name name) {
+    static void identifyPartsOfMultiWordName(final String[] partsOfName, final Name name) {
         int pos = 0;
         for (; pos < partsOfName.length; ++pos) {
             if ((!partsOfName[pos].endsWith(".")) && (partsOfName[pos].length() > 1)) {
@@ -296,7 +296,7 @@ public class Name extends Pio {
      * @param end Index after the last string to join.
      * @return String with the combined values from input string.
      */
-    protected static String join(final String[] strings, final int start, final int end) {
+    static String join(final String[] strings, final int start, final int end) {
         StringBuilder res = new StringBuilder();
         for (int i = start; (i < end) && (i < strings.length); ++i) {
             if (strings[i] != null) {

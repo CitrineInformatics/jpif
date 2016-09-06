@@ -54,7 +54,7 @@ public class Composition extends Pio {
      */
     @JsonSetter(value = "weightPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    protected void setWeightPercent(final Scalar weightPercent) {  // Private since only Jackson should use it
+    void setWeightPercent(final Scalar weightPercent) {  // Private since only Jackson should use it
         setActualWeightPercent(weightPercent);
     }
 
@@ -155,7 +155,7 @@ public class Composition extends Pio {
      */
     @JsonSetter(value = "atomicPercent")
     @JsonDeserialize(using = Scalar.Deserializer.class)
-    protected void setAtomicPercent(final Scalar atomicPercent) {  // Private since only Jackson should use it
+    void setAtomicPercent(final Scalar atomicPercent) {  // Private since only Jackson should use it
         setActualAtomicPercent(atomicPercent);
     }
 

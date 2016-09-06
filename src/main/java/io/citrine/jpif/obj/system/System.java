@@ -82,7 +82,7 @@ public class System extends Rcl {
      * @param names List of strings with the names of this system.
      */
     @JsonSetter(value = "names")
-    protected void setNames(final List<String> names) { // Private since only Jackson should use it
+    void setNames(final List<String> names) { // Private since only Jackson should use it
         this.names = names;
     }
 
@@ -92,7 +92,7 @@ public class System extends Rcl {
      * @param name List of strings with the names of this system.
      */
     @JsonSetter(value = "name")
-    protected void setName(final List<String> name) { // Private since only Jackson should use it
+    void setName(final List<String> name) { // Private since only Jackson should use it
         setNames(name);
     }
 
@@ -174,7 +174,7 @@ public class System extends Rcl {
      * @return List of strings with names for this system.
      */
     @JsonGetter(value = "names")
-    protected List<String> getNames() { // Private since only Jackson should use it
+    List<String> getNames() { // Private since only Jackson should use it
         return this.names;
     }
 
@@ -185,7 +185,7 @@ public class System extends Rcl {
      */
     @JsonSetter(value = "ids")
     @JsonDeserialize(contentUsing = Id.Deserializer.class)
-    protected void setIds(final List<Id> ids) { // Private since only Jackson should use it
+    void setIds(final List<Id> ids) { // Private since only Jackson should use it
         this.ids = ids;
     }
 
@@ -196,7 +196,7 @@ public class System extends Rcl {
      */
     @JsonSetter(value = "id")
     @JsonDeserialize(contentUsing = Id.Deserializer.class)
-    protected void setId(final List<Id> id) { // Private since only Jackson should use it
+    void setId(final List<Id> id) { // Private since only Jackson should use it
         setIds(id);
     }
 
@@ -278,7 +278,7 @@ public class System extends Rcl {
      * @return List of {@link Id} objects with IDs for this system.
      */
     @JsonGetter(value = "ids")
-    protected List<Id> getIds() { // Private since only Jackson should use it
+    List<Id> getIds() { // Private since only Jackson should use it
         return this.ids;
     }
 
@@ -333,7 +333,7 @@ public class System extends Rcl {
      * @param properties List of {@link Property} objects with the properties of this system.
      */
     @JsonSetter(value = "properties")
-    protected void setProperties(final List<Property> properties) { // Private since only Jackson should use it
+    void setProperties(final List<Property> properties) { // Private since only Jackson should use it
         this.properties = properties;
     }
 
@@ -343,7 +343,7 @@ public class System extends Rcl {
      * @param property List of {@link Property} objects with the properties of this system.
      */
     @JsonSetter(value = "property")
-    protected void setProperty(final List<Property> property) { // Private since only Jackson should use it
+    void setProperty(final List<Property> property) { // Private since only Jackson should use it
         setProperties(property);
     }
 
@@ -426,7 +426,7 @@ public class System extends Rcl {
      * @return List of {@link Property} objects with properties for this system.
      */
     @JsonGetter(value = "properties")
-    protected List<Property> getProperties() { // Private since only Jackson should use it
+    List<Property> getProperties() { // Private since only Jackson should use it
         return this.properties;
     }
 
@@ -436,7 +436,7 @@ public class System extends Rcl {
      * @param preparation List of {@link ProcessStep} objects with the processing steps of this system.
      */
     @JsonSetter(value = "preparation")
-    protected void setPreparation(final List<ProcessStep> preparation) { // Private since only Jackson should use it
+    void setPreparation(final List<ProcessStep> preparation) { // Private since only Jackson should use it
         this.preparation = preparation;
     }
 
@@ -446,7 +446,7 @@ public class System extends Rcl {
      * @param preparations List of {@link ProcessStep} objects with the processing steps of this system.
      */
     @JsonSetter(value = "preparations")
-    protected void setPreparations(final List<ProcessStep> preparations) { // Private since only Jackson should use it
+    void setPreparations(final List<ProcessStep> preparations) { // Private since only Jackson should use it
         setPreparation(preparations);
     }
 
@@ -520,7 +520,7 @@ public class System extends Rcl {
      * @return List of {@link ProcessStep} objects with preparation steps for this system.
      */
     @JsonGetter(value = "preparation")
-    protected List<ProcessStep> getPreparation() { // Private since only Jackson should use it
+    List<ProcessStep> getPreparation() { // Private since only Jackson should use it
         return this.preparation;
     }
 
@@ -539,7 +539,7 @@ public class System extends Rcl {
      * @param subSystems List of {@link System} objects with the subsystems of this system.
      */
     @JsonSetter(value = "subSystems")
-    protected void setSubSystems(final List<System> subSystems) { // Private since only Jackson should use it
+    void setSubSystems(final List<System> subSystems) { // Private since only Jackson should use it
         this.subSystems = subSystems;
     }
 
@@ -549,7 +549,7 @@ public class System extends Rcl {
      * @param subSystem List of {@link System} objects with the subsystems of this system.
      */
     @JsonSetter(value = "subSystem")
-    protected void setSubSystem(final List<System> subSystem) { // Private since only Jackson should use it
+    void setSubSystem(final List<System> subSystem) { // Private since only Jackson should use it
         setSubSystems(subSystem);
     }
 
@@ -632,7 +632,7 @@ public class System extends Rcl {
      * @return List of {@link System} objects with subsystems for this system.
      */
     @JsonGetter(value = "subSystems")
-    protected List<System> getSubSystems() { // Private since only Jackson should use it
+    List<System> getSubSystems() { // Private since only Jackson should use it
         return this.subSystems;
     }
 
