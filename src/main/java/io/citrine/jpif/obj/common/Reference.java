@@ -25,6 +25,8 @@ import java.util.List;
  *     <li>volume - Volume in which the work was published.
  *     <li>issue - Issue in which the work was published.
  *     <li>year - Year in which the work was published.
+ *     <li>figure - {@link DisplayItem} for a figure to reference.
+ *     <li>table - {@link DisplayItem} for a table to reference.
  *     <li>pages - {@link Pages} of the work.
  *     <li>authors - List of authors ({@link Name}) of the work.
  *     <li>editors - List of editors ({@link Name}) of the work.
@@ -256,6 +258,50 @@ public class Reference extends Pio {
     @JsonGetter(value = "year")
     public String getYear() {
         return this.year;
+    }
+
+    /**
+     * Set the figure to reference.
+     *
+     * @param figure {@link DisplayItem} with the figure to reference.
+     * @return This object.
+     */
+    @JsonSetter(value = "figure")
+    public Reference setFigure(final DisplayItem figure) {
+        this.figure = figure;
+        return this;
+    }
+
+    /**
+     * Get the figure being referenced.
+     *
+     * @return {@link DisplayItem} with the figure being referenced.
+     */
+    @JsonGetter(value = "figure")
+    public DisplayItem getFigure() {
+        return this.figure;
+    }
+
+    /**
+     * Set the table to reference.
+     *
+     * @param table {@link DisplayItem} with the table to reference.
+     * @return This object.
+     */
+    @JsonSetter(value = "table")
+    public Reference setTable(final DisplayItem table) {
+        this.table = table;
+        return this;
+    }
+
+    /**
+     * Get the table being referenced.
+     *
+     * @return {@link DisplayItem} with the table being referenced.
+     */
+    @JsonGetter(value = "table")
+    public DisplayItem getTable() {
+        return this.table;
     }
 
     /**
@@ -846,6 +892,12 @@ public class Reference extends Pio {
 
     /** Year in which the work was published. */
     private String year;
+
+    /** Figure to reference. */
+    private DisplayItem figure;
+
+    /** Table to reference. */
+    private DisplayItem table;
 
     /** Starting and ending pages for the published work. */
     private Pages pages;
