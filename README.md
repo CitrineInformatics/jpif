@@ -5,17 +5,6 @@ Java tools for working with Physical Information Files (http://www.citrine.io/pi
 This package includes java objects for all items in the Physical Information File (PIF). Files formatted in the PIF
 schema can be serialized and deserialized using included methods.
 
-## Installation
-
-Include the following dependency in your pom.xml file:
-
-```shell
-<dependency>
-    <groupId>io.citrine</groupId>
-    <artifactId>jpif</artifactId>
-    <version>1.0.0</version>
-</dependency>
-```
 
 ## Usages
 
