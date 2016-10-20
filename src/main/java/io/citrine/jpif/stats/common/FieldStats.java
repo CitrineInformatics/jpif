@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Kyle Michel
  */
-public class FieldStatsWrapper extends StatsWrapper {
+public class FieldStats extends StatsWrapper.Stats {
 
     /**
      * Set the number of numeric values found.
@@ -99,7 +99,7 @@ public class FieldStatsWrapper extends StatsWrapper {
      *
      * @author Kyle Michel
      */
-    public static class TermAndCount extends Stats {
+    public static class TermAndCount extends StatsWrapper.Stats {
 
         /**
          * Set the term.
