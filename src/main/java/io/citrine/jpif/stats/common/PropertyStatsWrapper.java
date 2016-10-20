@@ -40,64 +40,64 @@ public class PropertyStatsWrapper extends StatsWrapper {
         /**
          * Set the list of common names.
          *
-         * @param commonNames List of {@link FieldStatsWrapper} objects.
+         * @param commonNames List of {@link FieldStats} objects.
          */
-        public void setCommonNames(final List<FieldStatsWrapper> commonNames) {
+        public void setCommonNames(final List<FieldStats> commonNames) {
             this.commonNames = commonNames;
         }
 
         /**
          * Get the list of common names.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonNames() {
+        public List<FieldStats> getCommonNames() {
             return this.commonNames;
         }
 
         /**
          * Set the list of common values.
          *
-         * @param commonValues List of {@link FieldStatsWrapper} objects.
+         * @param commonValues List of {@link FieldStats} objects.
          */
-        public void setCommonValues(final List<FieldStatsWrapper> commonValues) {
+        public void setCommonValues(final List<FieldStats> commonValues) {
             this.commonValues = commonValues;
         }
 
         /**
          * Get the list of common values.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonValues() {
+        public List<FieldStats> getCommonValues() {
             return this.commonValues;
         }
 
         /**
          * Set the list of common units.
          *
-         * @param commonUnits List of {@link FieldStatsWrapper} objects.
+         * @param commonUnits List of {@link FieldStats} objects.
          */
-        public void setCommonUnits(final List<FieldStatsWrapper> commonUnits) {
+        public void setCommonUnits(final List<FieldStats> commonUnits) {
             this.commonUnits = commonUnits;
         }
 
         /**
          * Get the list of common units.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonUnits() {
+        public List<FieldStats> getCommonUnits() {
             return this.commonUnits;
         }
 
         /** Stats for names of properties. */
-        private List<FieldStatsWrapper> commonNames;
+        private List<FieldStats> commonNames;
 
         /** Stats for the values of properties. */
-        private List<FieldStatsWrapper> commonValues;
+        private List<FieldStats> commonValues;
 
         /** Statis for the units of the properties. */
-        private List<FieldStatsWrapper> commonUnits;
+        private List<FieldStats> commonUnits;
     }
 }

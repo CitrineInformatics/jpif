@@ -1,6 +1,6 @@
 package io.citrine.jpif.stats.system;
 
-import io.citrine.jpif.stats.common.FieldStatsWrapper;
+import io.citrine.jpif.stats.common.FieldStats;
 import io.citrine.jpif.stats.common.PropertyStatsWrapper;
 import io.citrine.jpif.stats.common.StatsWrapper;
 
@@ -44,54 +44,54 @@ public class SystemStatsWrapper extends StatsWrapper {
         /**
          * Set the common categories.
          *
-         * @param commonCategories List of {@link FieldStatsWrapper} objects.
+         * @param commonCategories List of {@link FieldStats} objects.
          */
-        public void setCommonCategories(final List<FieldStatsWrapper> commonCategories) {
+        public void setCommonCategories(final List<FieldStats> commonCategories) {
             this.commonCategories = commonCategories;
         }
 
         /**
          * Get the list of common categories.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonCategories() {
+        public List<FieldStats> getCommonCategories() {
             return this.commonCategories;
         }
 
         /**
          * Set the common names.
          *
-         * @param commonNames List of {@link FieldStatsWrapper} objects.
+         * @param commonNames List of {@link FieldStats} objects.
          */
-        public void setCommonNames(final List<FieldStatsWrapper> commonNames) {
+        public void setCommonNames(final List<FieldStats> commonNames) {
             this.commonNames = commonNames;
         }
 
         /**
          * Get the list of common names.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonNames() {
+        public List<FieldStats> getCommonNames() {
             return this.commonNames;
         }
 
         /**
          * Set the common chemical formulas.
          *
-         * @param commonChemicalFormulas List of {@link FieldStatsWrapper} objects.
+         * @param commonChemicalFormulas List of {@link FieldStats} objects.
          */
-        public void setCommonChemicalFormulas(final List<FieldStatsWrapper> commonChemicalFormulas) {
+        public void setCommonChemicalFormulas(final List<FieldStats> commonChemicalFormulas) {
             this.commonChemicalFormulas = commonChemicalFormulas;
         }
 
         /**
          * Get the list of common chemical formulas.
          *
-         * @return List of {@link FieldStatsWrapper} objects.
+         * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStatsWrapper> getCommonChemicalFormulas() {
+        public List<FieldStats> getCommonChemicalFormulas() {
             return this.commonChemicalFormulas;
         }
 
@@ -114,13 +114,13 @@ public class SystemStatsWrapper extends StatsWrapper {
         }
 
         /** Stats for categories. */
-        private List<FieldStatsWrapper> commonCategories;
+        private List<FieldStats> commonCategories;
 
         /** Stats for names. */
-        private List<FieldStatsWrapper> commonNames;
+        private List<FieldStats> commonNames;
 
         /** Stats for chemical formulas. */
-        private List<FieldStatsWrapper> commonChemicalFormulas;
+        private List<FieldStats> commonChemicalFormulas;
 
         /** Stats for properties. */
         private List<PropertyStatsWrapper> commonProperties;
