@@ -18,7 +18,6 @@ import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
-import io.citrine.jpif.obj.system.chemical.alloy.Alloy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,7 +49,7 @@ import java.util.List;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = System.class),
         @JsonSubTypes.Type(value = ChemicalSystem.class),
-        @JsonSubTypes.Type(value = Alloy.class),
+        @JsonSubTypes.Type(name = "system.chemical.alloy", value = ChemicalSystem.class),  // Legacy support
         @JsonSubTypes.Type(name = "system.chemical.alloy.phase", value = ChemicalSystem.class)})  // Legacy support
 public class System extends Rcl {
 
