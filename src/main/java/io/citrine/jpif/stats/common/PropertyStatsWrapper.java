@@ -10,12 +10,12 @@ import java.util.List;
 public class PropertyStatsWrapper extends StatsWrapper {
 
     /**
-     * Set the list of properties and their counts.
+     * Set the properties stats
      *
-     * @param commonProperties List of {@link PropertyStats} objects.
+     * @param common {@link PropertyStats} objects.
      */
-    public void setCommonProperties(final List<PropertyStats> commonProperties) {
-        this.commonProperties = commonProperties;
+    public void setCommon(final List<PropertyStats> common) {
+        this.common = common;
     }
 
     /**
@@ -23,12 +23,12 @@ public class PropertyStatsWrapper extends StatsWrapper {
      *
      * @return List of {@link PropertyStats} objects.
      */
-    public List<PropertyStats> getCommonProperties() {
-        return this.commonProperties;
+    public List<PropertyStats> getCommon() {
+        return this.common;
     }
 
     /** List of properties and their counts. */
-    private List<PropertyStats> commonProperties;
+    private List<PropertyStats> common;
 
     /**
      * Class to store statistics about a single property and its count.
@@ -38,66 +38,66 @@ public class PropertyStatsWrapper extends StatsWrapper {
     public static class PropertyStats extends Stats {
 
         /**
-         * Set the list of common names.
+         * Set the common names.
          *
-         * @param commonNames List of {@link FieldStats} objects.
+         * @param name {@link FieldStats} object.
          */
-        public void setCommonNames(final List<FieldStats> commonNames) {
-            this.commonNames = commonNames;
+        public void setName(final FieldStats name) {
+            this.name = name;
         }
 
         /**
-         * Get the list of common names.
+         * Get the common names.
          *
-         * @return List of {@link FieldStats} objects.
+         * @return {@link FieldStats} object.
          */
-        public List<FieldStats> getCommonNames() {
-            return this.commonNames;
+        public FieldStats getName() {
+            return this.name;
         }
 
         /**
-         * Set the list of common values.
+         * Set the common values.
          *
-         * @param commonValues List of {@link FieldStats} objects.
+         * @param value {@link FieldStats} object.
          */
-        public void setCommonValues(final List<FieldStats> commonValues) {
-            this.commonValues = commonValues;
+        public void setValue(final FieldStats value) {
+            this.value = value;
         }
 
         /**
-         * Get the list of common values.
+         * Get the common values.
          *
-         * @return List of {@link FieldStats} objects.
+         * @return {@link FieldStats} object.
          */
-        public List<FieldStats> getCommonValues() {
-            return this.commonValues;
+        public FieldStats getValue() {
+            return this.value;
         }
 
         /**
-         * Set the list of common units.
+         * Set the common units.
          *
-         * @param commonUnits List of {@link FieldStats} objects.
+         * @param commonUnits {@link FieldStats} object.
          */
-        public void setCommonUnits(final List<FieldStats> commonUnits) {
-            this.commonUnits = commonUnits;
+        public void setUnits(final FieldStats commonUnits) {
+            this.units = commonUnits;
         }
 
         /**
-         * Get the list of common units.
+         * Get the common units.
          *
-         * @return List of {@link FieldStats} objects.
+         * @return {@link FieldStats} object.
          */
-        public List<FieldStats> getCommonUnits() {
-            return this.commonUnits;
+        public FieldStats getUnits() {
+            return this.units;
         }
 
         /** Stats for names of properties. */
-        private List<FieldStats> commonNames;
+        private FieldStats name;
 
         /** Stats for the values of properties. */
-        private List<FieldStats> commonValues;
+        private FieldStats value;
 
-        /** Statis for the units of the properties. */
-        private List<FieldStats> commonUnits;
+        /** Stats for the units of the properties. */
+        private FieldStats units;
     }
 }
