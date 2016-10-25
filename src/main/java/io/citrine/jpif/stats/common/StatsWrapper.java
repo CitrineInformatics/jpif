@@ -10,10 +10,10 @@ public abstract class StatsWrapper {
     /**
      * Set the total field count.
      *
-     * @param totalCount Total number of terms that have been encountered.
+     * @param count Total number of terms that have been encountered.
      */
-    void setTotalCount(final long totalCount) {
-        this.totalCount = totalCount;
+    public void setCount(final long count) {
+        this.count = count;
     }
 
     /**
@@ -21,12 +21,12 @@ public abstract class StatsWrapper {
      *
      * @return Total count.
      */
-    public long getTotalCount() {
-        return this.totalCount;
+    public long getCount() {
+        return this.count;
     }
 
     /** Total number of non-null and non-empty terms that were found. */
-    private long totalCount;
+    private long count;
 
     /**
      * Base class for objects that store statistics about a field and its count.

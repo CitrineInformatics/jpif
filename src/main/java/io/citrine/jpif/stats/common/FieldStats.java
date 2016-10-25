@@ -67,10 +67,10 @@ public class FieldStats extends StatsWrapper.Stats {
     /**
      * Set the common terms that were found in the field.
      *
-     * @param commonTerms List of {@link TermAndCount} objects that were found.
+     * @param terms List of {@link TermAndCount} objects that were found.
      */
-    public void setCommonTerms(final List<TermAndCount> commonTerms) {
-        this.commonTerms = commonTerms;
+    public void setTerms(final List<TermAndCount> terms) {
+        this.terms = terms;
     }
 
     /**
@@ -78,8 +78,8 @@ public class FieldStats extends StatsWrapper.Stats {
      *
      * @return List of {@link TermAndCount} objects for the most common terms that were found.
      */
-    public List<TermAndCount> getCommonTerms() {
-        return this.commonTerms;
+    public List<TermAndCount> getTerms() {
+        return this.terms;
     }
 
     /** Number of numeric terms that were found. */
@@ -92,7 +92,7 @@ public class FieldStats extends StatsWrapper.Stats {
     private Double max;
 
     /** List of common terms. */
-    private List<TermAndCount> commonTerms;
+    private List<TermAndCount> terms;
 
     /**
      * Class to store statistics about a term and its count.

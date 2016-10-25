@@ -14,25 +14,25 @@ import java.util.List;
 public class SystemStatsWrapper extends StatsWrapper {
 
     /**
-     * Set the list of common systems.
+     * Set the system stats.
      *
-     * @param commonSystems List of {@link SystemStats} objects.
+     * @param common List of {@link SystemStats} objects.
      */
-    public void setCommonSystems(final List<SystemStats> commonSystems) {
-        this.commonSystems = commonSystems;
+    public void setCommon(final List<SystemStats> common) {
+        this.common = common;
     }
 
     /**
-     * Get the list of common systems.
+     * Get the system stats.
      *
      * @return List of {@link SystemStats} objects.
      */
-    public List<SystemStats> getCommonSystems() {
-        return this.commonSystems;
+    public List<SystemStats> getCommon() {
+        return this.common;
     }
 
-    /** List of systems and their counts. */
-    private List<SystemStats> commonSystems;
+    /** System stats. */
+    private List<SystemStats> common;
 
     /**
      * Class to store statistics about a single system.
@@ -42,87 +42,66 @@ public class SystemStatsWrapper extends StatsWrapper {
     public static class SystemStats extends Stats {
 
         /**
-         * Set the common categories.
-         *
-         * @param commonCategories List of {@link FieldStats} objects.
-         */
-        public void setCommonCategories(final List<FieldStats> commonCategories) {
-            this.commonCategories = commonCategories;
-        }
-
-        /**
-         * Get the list of common categories.
-         *
-         * @return List of {@link FieldStats} objects.
-         */
-        public List<FieldStats> getCommonCategories() {
-            return this.commonCategories;
-        }
-
-        /**
          * Set the common names.
          *
-         * @param commonNames List of {@link FieldStats} objects.
+         * @param names List of {@link FieldStats} objects.
          */
-        public void setCommonNames(final List<FieldStats> commonNames) {
-            this.commonNames = commonNames;
+        public void setNames(final FieldStats names) {
+            this.names = names;
         }
 
         /**
-         * Get the list of common names.
+         * Get the common names.
          *
          * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStats> getCommonNames() {
-            return this.commonNames;
+        public FieldStats getNames() {
+            return this.names;
         }
 
         /**
          * Set the common chemical formulas.
          *
-         * @param commonChemicalFormulas List of {@link FieldStats} objects.
+         * @param chemicalFormula List of {@link FieldStats} objects.
          */
-        public void setCommonChemicalFormulas(final List<FieldStats> commonChemicalFormulas) {
-            this.commonChemicalFormulas = commonChemicalFormulas;
+        public void setChemicalFormula(final FieldStats chemicalFormula) {
+            this.chemicalFormula = chemicalFormula;
         }
 
         /**
-         * Get the list of common chemical formulas.
+         * Get the common chemical formulas.
          *
          * @return List of {@link FieldStats} objects.
          */
-        public List<FieldStats> getCommonChemicalFormulas() {
-            return this.commonChemicalFormulas;
+        public FieldStats getChemicalFormula() {
+            return this.chemicalFormula;
         }
 
         /**
          * Set the common properties.
          *
-         * @param commonProperties List of {@link PropertyStatsWrapper} objects.
+         * @param properties {@link PropertyStatsWrapper} object.
          */
-        public void setCommonProperties(final List<PropertyStatsWrapper> commonProperties) {
-            this.commonProperties = commonProperties;
+        public void setProperties(final PropertyStatsWrapper properties) {
+            this.properties = properties;
         }
 
         /**
-         * Get the list of common properties.
+         * Get the common properties.
          *
-         * @return List of {@link PropertyStatsWrapper} objects.
+         * @return {@link PropertyStatsWrapper} object.
          */
-        public List<PropertyStatsWrapper> getCommonProperties() {
-            return this.commonProperties;
+        public PropertyStatsWrapper getProperties() {
+            return this.properties;
         }
 
-        /** Stats for categories. */
-        private List<FieldStats> commonCategories;
-
         /** Stats for names. */
-        private List<FieldStats> commonNames;
+        private FieldStats names;
 
         /** Stats for chemical formulas. */
-        private List<FieldStats> commonChemicalFormulas;
+        private FieldStats chemicalFormula;
 
         /** Stats for properties. */
-        private List<PropertyStatsWrapper> commonProperties;
+        private PropertyStatsWrapper properties;
     }
 }
