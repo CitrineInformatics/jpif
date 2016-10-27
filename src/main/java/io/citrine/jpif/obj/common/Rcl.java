@@ -126,7 +126,7 @@ public class Rcl extends Pio {
      * @param contacts List of {@link Person} objects with the contacts for this item.
      */
     @JsonSetter(value = "contacts")
-    @JsonDeserialize(using = Person.Deserializer.class)
+    @JsonDeserialize(contentUsing = Person.Deserializer.class)
     protected void setContacts(final List<Person> contacts) { // Protected since only Jackson should use it
         this.contacts = contacts;
     }
@@ -137,7 +137,7 @@ public class Rcl extends Pio {
      * @param contact List of {@link Person} objects with the contacts for this item.
      */
     @JsonSetter(value = "contact")
-    @JsonDeserialize(using = Person.Deserializer.class)
+    @JsonDeserialize(contentUsing = Person.Deserializer.class)
     protected void setContact(final List<Person> contact) { // Protected since only Jackson should use it
         setContacts(contact);
     }
