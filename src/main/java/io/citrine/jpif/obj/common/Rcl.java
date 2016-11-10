@@ -231,7 +231,7 @@ public class Rcl extends Pio {
      * @param licenses List of {@link License} objects with licenses for this item.
      */
     @JsonSetter(value = "licenses")
-    @JsonDeserialize(using = License.Deserializer.class)
+    @JsonDeserialize(contentUsing = License.Deserializer.class)
     protected void setLicenses(final List<License> licenses) { // Protected since only Jackson should use it
         this.licenses = licenses;
     }
@@ -242,7 +242,7 @@ public class Rcl extends Pio {
      * @param license List of {@link License} objects with licenses for this item.
      */
     @JsonSetter(value = "license")
-    @JsonDeserialize(using = License.Deserializer.class)
+    @JsonDeserialize(contentUsing = License.Deserializer.class)
     protected void setLicense(final List<License> license) { // Protected since only Jackson should use it
         setLicenses(license);
     }

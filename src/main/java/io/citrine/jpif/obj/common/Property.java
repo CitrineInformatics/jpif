@@ -485,7 +485,7 @@ public class Property extends Value {
      * @param licenses List of {@link License} objects with licenses for this item.
      */
     @JsonSetter(value = "licenses")
-    @JsonDeserialize(using = License.Deserializer.class)
+    @JsonDeserialize(contentUsing = License.Deserializer.class)
     protected void setLicenses(final List<License> licenses) { // Private since only Jackson should use it
         this.rcl.setLicenses(licenses);
     }
@@ -496,7 +496,7 @@ public class Property extends Value {
      * @param license List of {@link License} objects with licenses for this item.
      */
     @JsonSetter(value = "license")
-    @JsonDeserialize(using = License.Deserializer.class)
+    @JsonDeserialize(contentUsing = License.Deserializer.class)
     protected void setLicense(final List<License> license) { // Private since only Jackson should use it
         setLicenses(license);
     }
