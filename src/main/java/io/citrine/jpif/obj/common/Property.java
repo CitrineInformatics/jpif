@@ -745,7 +745,10 @@ public class Property extends Value {
         COMPUTATIONAL(1, "COMPUTATIONAL", "CALCULATED"),
 
         /** Experimental data type. */
-        EXPERIMENTAL(2, "EXPERIMENTAL");
+        EXPERIMENTAL(2, "EXPERIMENTAL"),
+
+        /** A fit to a set of data. */
+        FIT(3, "FIT");
 
         /**
          * Get the name of the data type.
