@@ -219,7 +219,7 @@ public class Value extends Pio {
      * @param vectors List of {@link Scalar} arrays that represent the vectors stored by this value.
      */
     @JsonSetter(value = "vectors")
-    @JsonDeserialize(contentUsing = VectorsDeserializer.class)
+    @JsonDeserialize(using = VectorsDeserializer.class)
     protected void setVectors(final List<Scalar[]> vectors) { // Private since only Jackson should use it
         this.vectors = vectors;
     }
@@ -230,7 +230,7 @@ public class Value extends Pio {
      * @param vector List of {@link Scalar} arrays that represent the vectors stored by this value.
      */
     @JsonSetter(value = "vector")
-    @JsonDeserialize(contentUsing = VectorsDeserializer.class)
+    @JsonDeserialize(using = VectorsDeserializer.class)
     protected void setVector(final List<Scalar[]> vector) { // Private since only Jackson should use it
         setVectors(vector);
     }
@@ -367,7 +367,7 @@ public class Value extends Pio {
      * @param matrices List of {@link Scalar} arrays of arrays that represent the matrices stored by this value.
      */
     @JsonSetter(value = "matrices")
-    @JsonDeserialize(contentUsing = MatricesDeserializer.class)
+    @JsonDeserialize(using = MatricesDeserializer.class)
     protected void setMatrices(final List<Scalar[][]> matrices) { // Private since only Jackson should use it
         this.matrices = matrices;
     }
@@ -378,7 +378,7 @@ public class Value extends Pio {
      * @param matrix List of {@link Scalar} arrays of arrays that represent the matrices stored by this value.
      */
     @JsonSetter(value = "matrix")
-    @JsonDeserialize(contentUsing = MatricesDeserializer.class)
+    @JsonDeserialize(using = MatricesDeserializer.class)
     protected void setMatrix(final List<Scalar[][]> matrix) { // Private since only Jackson should use it
         setMatrices(matrix);
     }
