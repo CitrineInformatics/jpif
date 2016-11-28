@@ -308,7 +308,7 @@ public class Scalar extends Pio {
      * @return Greater than or equal symbol.
      */
     private String greaterOrEqual(final boolean useLatex) {
-        return useLatex ? "$\\gte$" : ">=";
+        return useLatex ? "$\\ge$" : ">=";
     }
 
     /**
@@ -328,7 +328,7 @@ public class Scalar extends Pio {
      * @return Less than or equal symbol.
      */
     private String lessOrEqual(final boolean useLatex) {
-        return useLatex ? "$\\lte$" : ">=";
+        return useLatex ? "$\\le$" : ">=";
     }
 
     /**
