@@ -635,6 +635,10 @@ public class Scalar extends Pio {
                     return Scalar.valueOf(jsonParser.getNumberValue());
                 case START_OBJECT:
                     return PifObjectMapper.getInstance().readValue(jsonParser, Scalar.class);
+                case VALUE_TRUE:
+                    return Scalar.valueOf("True");
+                case VALUE_FALSE:
+                    return Scalar.valueOf("False");
                 default:
                     throw deserializationContext.mappingException(Scalar.class, jsonToken);
             }
