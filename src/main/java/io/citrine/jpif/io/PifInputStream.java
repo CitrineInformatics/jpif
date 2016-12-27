@@ -38,11 +38,11 @@ public class PifInputStream extends InputStream {
     /**
      * Constructor for a stream of PIF objects.
      *
-     * @param pifObjectStream {@link PifObjectStream} to iterate over.
+     * @param pifSystemStream {@link PifSystemStream} to iterate over.
      */
-    public PifInputStream(final PifObjectStream pifObjectStream) {
+    public PifInputStream(final PifSystemStream pifSystemStream) {
         initialize();
-        this.systemIterator = new PifObjectStreamIterator(pifObjectStream);
+        this.systemIterator = new PifSystemStreamIterator(pifSystemStream);
     }
 
     @Override
@@ -206,32 +206,32 @@ public class PifInputStream extends InputStream {
     }
 
     /**
-     * Class for iterator over a {@link PifObjectStream}.
+     * Class for iterator over a {@link PifSystemStream}.
      *
      * @author Kyle Michel
      */
-    private static class PifObjectStreamIterator extends SystemIterator {
+    private static class PifSystemStreamIterator extends SystemIterator {
 
         /**
          * Constructor.
          *
-         * @param pifObjectStream {@link PifObjectStream} to iterate over.
+         * @param pifSystemStream {@link PifSystemStream} to iterate over.
          */
-        PifObjectStreamIterator(final PifObjectStream pifObjectStream) {
-            this.pifObjectStream = pifObjectStream;
+        PifSystemStreamIterator(final PifSystemStream pifSystemStream) {
+            this.pifSystemStream = pifSystemStream;
         }
 
         @Override
         System getNextSystem() throws IOException {
-            return this.pifObjectStream.getNextSystem();
+            return this.pifSystemStream.getNextSystem();
         }
 
         @Override
         void close() throws IOException {
-            this.pifObjectStream.close();
+            this.pifSystemStream.close();
         }
 
         /** Pif object stream being iterated over. */
-        private final PifObjectStream pifObjectStream;
+        private final PifSystemStream pifSystemStream;
     }
 }
