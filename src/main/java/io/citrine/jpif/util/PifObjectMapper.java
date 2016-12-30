@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import io.citrine.jpif.obj.system.System;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -32,6 +33,20 @@ public class PifObjectMapper extends ObjectMapper {
      */
     public ObjectWriter getSystemListWriter() {
         return this.writerWithType(Holder.SYSTEM_LIST_TYPE);
+    }
+
+    /**
+     * Create a deep copy of the input object using the settings in this object mapper.
+     *
+     * @param objectToCopy Object to make a deep copy of.
+     * @param objectClass Class of objectToCopy.
+     * @return A new instance of objectClass type which is a deep copy of objectToCopy.
+     * @throws IOException if the input object cannot be copied.
+     */
+    public static <T> T deepCopy(final T objectToCopy, final Class<T> objectClass) throws IOException {
+        return Holder.PIF_OBJECT_MAPPER.readValue(
+                Holder.PIF_OBJECT_MAPPER.writeValueAsBytes(objectToCopy),
+                objectClass);
     }
 
     /**
