@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jpif.obj.common.Classification;
 import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
@@ -31,6 +32,7 @@ import java.util.List;
  *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
+ *     <li>classifications - List of {@link Classification}s of the system.
  *     <li>source - {@link Source} of the system.
  *     <li>quantity - {@link Quantity} of the system.
  *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
@@ -236,6 +238,18 @@ public class ChemicalSystem extends System {
     @Override
     public ChemicalSystem addId(final int index, final Id id) {
         super.addId(index, id);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addClassification(final Classification classification) {
+        super.addClassification(classification);
+        return this;
+    }
+
+    @Override
+    public ChemicalSystem addClassification(final int index, final Classification classification) {
+        super.addClassification(index, classification);
         return this;
     }
 

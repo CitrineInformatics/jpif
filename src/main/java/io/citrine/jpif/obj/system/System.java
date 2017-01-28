@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import io.citrine.jpif.obj.common.Classification;
 import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
@@ -31,6 +32,7 @@ import java.util.List;
  *     <li>uid - Permanent ID associated with this record.
  *     <li>names - Names of the system.
  *     <li>ids - List of {@link Id}s of the system.
+ *     <li>classifications - List of {@link Classification}s of the system.
  *     <li>source - {@link Source} of the system.
  *     <li>quantity - {@link Quantity} of the system.
  *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
@@ -279,6 +281,113 @@ public class System extends Rcl {
     @JsonGetter(value = "ids")
     protected List<Id> getIds() { // Private since only Jackson should use it
         return this.ids;
+    }
+
+    /**
+     * Set the list of classifications of this system.
+     *
+     * @param classifications List of {@link Classification} objects with the classifications of this system.
+     */
+    @JsonSetter(value = "classifications")
+    @JsonDeserialize(contentUsing = Classification.Deserializer.class)
+    protected void setClassifications(final List<Classification> classifications) { // Private since only Jackson should
+        // use it
+        this.classifications = classifications;
+    }
+
+    /**
+     * Set the list of classifications of this system.
+     *
+     * @param classification List of {@link Classification} objects with the classifications of this system.
+     */
+    @JsonSetter(value = "classification")
+    @JsonDeserialize(contentUsing = Classification.Deserializer.class)
+    protected void setClassification(final List<Classification> classification) { // Private since only Jackson should
+        // use it
+        setClassifications(classification);
+    }
+
+    /**
+     * Add an classification for this system.
+     *
+     * @param classification {@link Classification} object with the classification to add.
+     * @return This object.
+     */
+    public System addClassification(final Classification classification) {
+        if (this.classifications == null) {
+            this.classifications = new ArrayList<>();
+        }
+        this.classifications.add(classification);
+        return this;
+    }
+
+    /**
+     * Insert a single classification for this system.
+     *
+     * @param index Index at which to insert the input classification.
+     * @param classification {@link Classification} object to add to this system.
+     * @return This object.
+     */
+    public System addClassification(final int index, final Classification classification) {
+        if (this.classifications == null) {
+            this.classifications = new ArrayList<>();
+        }
+        this.classifications.add(index, classification);
+        return this;
+    }
+
+    /**
+     * Remove an classification from the system.
+     *
+     * @param classification {@link Classification} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeClassification(final Classification classification) {
+        return (this.classifications != null) && this.classifications.remove(classification);
+    }
+
+    /**
+     * Get the number of classifications for this system.
+     *
+     * @return Number of classifications for this system.
+     */
+    public int numClassifications() {
+        return (this.classifications == null) ? 0 : this.classifications.size();
+    }
+
+    /**
+     * Get an classification for this system at a set index.
+     *
+     * @param index Index of the classification to get.
+     * @return {@link Classification} object with the classification at the input index.
+     * @throws IndexOutOfBoundsException if the index is out of range of the classifications list.
+     */
+    @JsonIgnore
+    public Classification getClassification(final int index) {
+        if (this.classifications == null) {
+            throw new IndexOutOfBoundsException("Attempting to access classification " + index
+                    + " of " + this.numClassifications());
+        }
+        return this.classifications.get(index);
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over classifications of this system.
+     *
+     * @return {@link Iterable} object for iterating over classifications of this system.
+     */
+    public Iterable<Classification> classifications() {
+        return (this.classifications == null) ? Collections.emptyList() : this.classifications;
+    }
+
+    /**
+     * Get the list of classifications for this system.
+     *
+     * @return List of {@link Classification} objects with classifications for this system.
+     */
+    @JsonGetter(value = "classifications")
+    protected List<Classification> getClassifications() { // Private since only Jackson should use it
+        return this.classifications;
     }
 
     /**
@@ -698,6 +807,9 @@ public class System extends Rcl {
 
     /** List of IDs for this system. */
     private List<Id> ids;
+    
+    /** List of classifications for this system. */
+    private List<Classification> classifications;
 
     /** Source of this system. */
     private Source source;
