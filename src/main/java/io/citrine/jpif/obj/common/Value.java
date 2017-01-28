@@ -510,6 +510,109 @@ public class Value extends Pio {
     }
 
     /**
+     * Set the list of files for this property.
+     *
+     * @param files List of {@link FileReference} objects with the files for this property.
+     */
+    @JsonSetter(value = "files")
+    protected void setFiles(final List<FileReference> files) { // Private since only Jackson should use it
+        this.files = files;
+    }
+
+    /**
+     * Set the list of files for this property.
+     *
+     * @param file List of {@link FileReference} objects with the files for this property.
+     */
+    @JsonSetter(value = "file")
+    protected void setFile(final List<FileReference> file) { // Private since only Jackson should use it
+        setFiles(file);
+    }
+
+    /**
+     * Add a file for this property.
+     *
+     * @param file {@link FileReference} object with the file to add.
+     * @return This object.
+     */
+    public Value addFile(final FileReference file) {
+        if (this.files == null) {
+            this.files = new ArrayList<>();
+        }
+        this.files.add(file);
+        return this;
+    }
+
+    /**
+     * Insert a single file for this property.
+     *
+     * @param index Index at which to insert the input file.
+     * @param file {@link FileReference} object to add for the property.
+     * @return This object.
+     */
+    public Value addFile(final int index, final FileReference file) {
+        if (this.files == null) {
+            this.files = new ArrayList<>();
+        }
+        this.files.add(index, file);
+        return this;
+    }
+
+    /**
+     * Remove a file from the property.
+     *
+     * @param file {@link FileReference} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeFile(final FileReference file) {
+        return (this.files != null) && this.files.remove(file);
+    }
+
+    /**
+     * Get the number of files for this property.
+     *
+     * @return Number of files for this property.
+     */
+    public int numFiles() {
+        return (this.files == null) ? 0 : this.files.size();
+    }
+
+    /**
+     * Get a file for this property at a set index.
+     *
+     * @param index Index of the file to get.
+     * @return {@link FileReference} object at the input index.
+     * @throws IndexOutOfBoundsException if the index is out of range of the files list.
+     */
+    @JsonIgnore
+    public FileReference getFile(final int index) {
+        if (this.files == null) {
+            throw new IndexOutOfBoundsException("Attempting to access file " + index + " of "
+                    + this.numFiles());
+        }
+        return this.files.get(index);
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over files of this property.
+     *
+     * @return {@link Iterable} object for iterating over files of this property.
+     */
+    public Iterable<FileReference> files() {
+        return (this.files == null) ? Collections.emptyList() : this.files;
+    }
+
+    /**
+     * Get the list of files for this property.
+     *
+     * @return List of {@link FileReference} objects with files for this property.
+     */
+    @JsonGetter(value = "files")
+    protected List<FileReference> getFiles() { // Private since only Jackson should use it
+        return this.files;
+    }
+
+    /**
      * Set the units of this value.
      *
      * @param units String with the units of this value.
@@ -633,6 +736,9 @@ public class Value extends Pio {
 
     /** List of matrix values. */
     private List<Scalar[][]> matrices;
+
+    /** List of files for the property. */
+    private List<FileReference> files;
 
     /** Units of the value. */
     private String units;
