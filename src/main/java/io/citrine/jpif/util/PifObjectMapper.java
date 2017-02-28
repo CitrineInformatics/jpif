@@ -43,7 +43,7 @@ public class PifObjectMapper extends ObjectMapper {
      * @return A new instance of objectClass type which is a deep copy of objectToCopy.
      * @throws IOException if the input object cannot be copied.
      */
-    public static <T> T deepCopy(final T objectToCopy, final Class<T> objectClass) throws IOException {
+    public static <T, U extends T> U deepCopy(final T objectToCopy, final Class<U> objectClass) throws IOException {
         return Holder.PIF_OBJECT_MAPPER.readValue(
                 Holder.PIF_OBJECT_MAPPER.writeValueAsBytes(objectToCopy),
                 objectClass);
