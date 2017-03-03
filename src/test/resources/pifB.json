@@ -1,0 +1,41 @@
+{
+  "category": "system.chemical",
+  "references": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mercury_sulfide",
+      "title": "Wikipedia: Mercury sulfide"
+    }
+  ],
+  "uid": "pifBUID",
+  "names": [
+    "Mercury sulfide"
+  ],
+  "ids": [
+    {
+      "name": "CAS registry number",
+      "value": "1344-48-5"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Melting Point",
+      "scalars": [
+        {
+          "value": "580"
+        }
+      ],
+      "units": "$^{\\circ}$C",
+      "conditions": [
+        {
+          "name": "note",
+          "scalars": [
+            {
+              "value": "decomposes"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "chemicalFormula": "HgS"
+}

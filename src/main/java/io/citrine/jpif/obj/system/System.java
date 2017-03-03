@@ -12,14 +12,18 @@ import io.citrine.jpif.obj.common.Classification;
 import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
+import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Quantity;
 import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.common.Source;
+import io.citrine.jpif.obj.merge.MergeStrategy;
+import io.citrine.jpif.obj.merge.PioReflection;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,26 +33,26 @@ import java.util.List;
  *
  * <p>Supported fields:
  * <ul>
- *     <li>uid - Permanent ID associated with this record.
- *     <li>names - Names of the system.
- *     <li>ids - List of {@link Id}s of the system.
- *     <li>classifications - List of {@link Classification}s of the system.
- *     <li>source - {@link Source} of the system.
- *     <li>quantity - {@link Quantity} of the system.
- *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
- *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
- *     <li>subSystems - List of sub-systems ({@link System}) of the system.
- *     <li>references - List of {@link Reference}s with information about the system.
- *     <li>contacts - List of contacts ({@link Person}) for information about the system.
- *     <li>licenses - List of {@link License}s that apply to the system.
- *     <li>tags - List of strings with tags that apply to the system.
+ * <li>uid - Permanent ID associated with this record.
+ * <li>names - Names of the system.
+ * <li>ids - List of {@link Id}s of the system.
+ * <li>classifications - List of {@link Classification}s of the system.
+ * <li>source - {@link Source} of the system.
+ * <li>quantity - {@link Quantity} of the system.
+ * <li>properties - List of measured or calculated properties ({@link Property}) of the system.
+ * <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
+ * <li>subSystems - List of sub-systems ({@link System}) of the system.
+ * <li>references - List of {@link Reference}s with information about the system.
+ * <li>contacts - List of contacts ({@link Person}) for information about the system.
+ * <li>licenses - List of {@link License}s that apply to the system.
+ * <li>tags - List of strings with tags that apply to the system.
  * </ul>
  *
  * @author Kyle Michel
  */
 @JsonTypeName("system")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "category")
-@JsonSubTypes({
+@JsonSubTypes( {
         @JsonSubTypes.Type(value = System.class),
         @JsonSubTypes.Type(value = ChemicalSystem.class),
         @JsonSubTypes.Type(name = "system.chemical.alloy", value = ChemicalSystem.class),  // Legacy support
@@ -115,7 +119,7 @@ public class System extends Rcl {
      * Insert a single name for this value.
      *
      * @param index Index at which to insert the input name.
-     * @param name String with the name to add.
+     * @param name  String with the name to add.
      * @return This object.
      */
     public System addName(final int index, final String name) {
@@ -219,7 +223,7 @@ public class System extends Rcl {
      * Insert a single ID for this system.
      *
      * @param index Index at which to insert the input ID.
-     * @param id {@link Id} object to add to this system.
+     * @param id    {@link Id} object to add to this system.
      * @return This object.
      */
     public System addId(final int index, final Id id) {
@@ -324,7 +328,7 @@ public class System extends Rcl {
     /**
      * Insert a single classification for this system.
      *
-     * @param index Index at which to insert the input classification.
+     * @param index          Index at which to insert the input classification.
      * @param classification {@link Classification} object to add to this system.
      * @return This object.
      */
@@ -472,7 +476,7 @@ public class System extends Rcl {
     /**
      * Insert a single property for this system.
      *
-     * @param index Index at which to insert the input property.
+     * @param index    Index at which to insert the input property.
      * @param property {@link Property} object to add to this system.
      * @return This object.
      */
@@ -575,7 +579,7 @@ public class System extends Rcl {
     /**
      * Insert a single preparation step for this system.
      *
-     * @param index Index at which to insert the input preparation step.
+     * @param index       Index at which to insert the input preparation step.
      * @param preparation {@link ProcessStep} object to add to this system.
      * @return This object.
      */
@@ -678,7 +682,7 @@ public class System extends Rcl {
     /**
      * Insert a single subsystem for this system.
      *
-     * @param index Index at which to insert the input subsystem.
+     * @param index     Index at which to insert the input subsystem.
      * @param subSystem {@link System} object to add to this value.
      * @return This object.
      */
@@ -799,30 +803,68 @@ public class System extends Rcl {
         return this;
     }
 
-    /** Permanent ID for this system. */
+    /**
+     * Override merge to ignore certain fields.
+     *
+     * @param reflection      a pre-computed PioReflection for the Pio type being merged.
+     * @param fieldGetterName the getter for the field being merged. (ex. "getComposition").
+     * @param mergeFrom       the Pio instance to mergePio from.
+     * @param strategy        the mergePio strategy to use.
+     * @return the merge result.
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
+    @Override
+    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy) throws InvocationTargetException, IllegalAccessException {
+        if (!fieldGetterName.contains("UnsupportedField")) {
+            return super.merge(reflection, fieldGetterName, mergeFrom, strategy);
+        } else {
+            return this;
+        }
+    }
+
+    /**
+     * Permanent ID for this system.
+     */
     private String uid;
 
-    /** List of names for this system. */
+    /**
+     * List of names for this system.
+     */
     private List<String> names;
 
-    /** List of IDs for this system. */
+    /**
+     * List of IDs for this system.
+     */
     private List<Id> ids;
-    
-    /** List of classifications for this system. */
+
+    /**
+     * List of classifications for this system.
+     */
     private List<Classification> classifications;
 
-    /** Source of this system. */
+    /**
+     * Source of this system.
+     */
     private Source source;
 
-    /** Quantity of this system. */
+    /**
+     * Quantity of this system.
+     */
     private Quantity quantity;
 
-    /** List of properties of this system. */
+    /**
+     * List of properties of this system.
+     */
     private List<Property> properties;
 
-    /** List of processing steps in the preparation of this system. */
+    /**
+     * List of processing steps in the preparation of this system.
+     */
     private List<ProcessStep> preparation;
 
-    /** List of subsystems of this system. */
+    /**
+     * List of subsystems of this system.
+     */
     private List<System> subSystems;
 }
