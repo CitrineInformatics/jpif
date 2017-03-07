@@ -803,15 +803,6 @@ public class System extends Rcl {
         return this;
     }
 
-    /**
-     * Override merge to ignore certain fields.
-     *
-     * @param reflection      a pre-computed PioReflection for the Pio type being merged.
-     * @param fieldGetterName the getter for the field being merged. (ex. "getComposition").
-     * @param mergeFrom       the Pio instance to merge from.
-     * @param strategy        the merge strategy to use.
-     * @return the merge result.
-     */
     @Override
     protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
             throws InvocationTargetException, IllegalAccessException {
