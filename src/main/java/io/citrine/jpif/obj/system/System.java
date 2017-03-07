@@ -20,7 +20,7 @@ import io.citrine.jpif.obj.common.Rcl;
 import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.merge.MergeStrategy;
-import io.citrine.jpif.obj.merge.PioReflection;
+import io.citrine.jpif.obj.merge.PioReflectionJava;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
 
 import java.lang.reflect.InvocationTargetException;
@@ -811,11 +811,10 @@ public class System extends Rcl {
      * @param mergeFrom       the Pio instance to mergePio from.
      * @param strategy        the mergePio strategy to use.
      * @return the merge result.
-     * @throws InvocationTargetException
-     * @throws IllegalAccessException
      */
     @Override
-    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy) throws InvocationTargetException, IllegalAccessException {
+    protected Pio merge(PioReflectionJava reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
+            throws InvocationTargetException, IllegalAccessException {
         if (!fieldGetterName.contains("UnsupportedField")) {
             return super.merge(reflection, fieldGetterName, mergeFrom, strategy);
         } else {

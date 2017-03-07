@@ -12,7 +12,8 @@ import java.util.List;
  */
 public enum MergeStrategy {
 
-    // Conflicting objects are replaced if the mergePio source is non-null and all objects in matching lists are appended
+    // Conflicting objects are replaced if the mergePio source
+    // is non-null and all objects in matching lists are appended
     REPLACE_NON_NULL_AND_APPEND {
         /**
          * Merge two lists.

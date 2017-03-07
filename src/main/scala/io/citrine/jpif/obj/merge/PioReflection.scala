@@ -33,7 +33,7 @@ class PioReflection(instance: Pio) {
   }
 
   def getGetterFieldKeys(): java.util.List[String] = {
-    getters.keys.toList
+    getters.keys.toList.sorted
   }
 
   lazy val getters: Map[String, Method] = getAllMethods(instance.getClass, "get.*")
@@ -46,6 +46,10 @@ class PioReflection(instance: Pio) {
 
   lazy val listGetters: Seq[Method] = getters.filter(v => isList(v._2)).map(_._2).toList
   lazy val pioGetters: Seq[Method] = getters.filterNot(v => isList(v._2)).map(_._2).toList
+
+  def isList(method: String): Boolean = {
+    getters(method).getReturnType.getCanonicalName == "java.util.List"
+  }
 
   def isList(method: Method): Boolean = {
     method.getReturnType.getCanonicalName == "java.util.List"

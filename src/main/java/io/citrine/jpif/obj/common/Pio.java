@@ -6,10 +6,9 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.merge.MergeStrategy;
-import io.citrine.jpif.obj.merge.PioReflection;
+import io.citrine.jpif.obj.merge.PioReflectionJava;
 import io.citrine.jpif.util.PifObjectMapper;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -222,13 +221,14 @@ public abstract class Pio {
      * @param strategy        the mergePio strategy to use.
      * @return the merged Pio instance.
      */
-    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
+    protected Pio merge(PioReflectionJava reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
             throws InvocationTargetException, IllegalAccessException {
-        java.lang.reflect.Method getter = reflection.getters().apply(fieldGetterName);
-        java.lang.reflect.Method setter = reflection.setters().apply(fieldGetterName.replace("get", "set"));
+
+        java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
+        java.lang.reflect.Method setter = reflection.getSetters().get(fieldGetterName.replace("get", "set"));
 
         // If the type to mergePio is a List
-        if (reflection.getters().apply(fieldGetterName).getReturnType().getCanonicalName().equals("java.util.List")) {
+        if (reflection.isList(fieldGetterName)) {
             List<Object> thisList = (List<Object>) getter.invoke(this);
             List<Object> mergeFromList = (List<Object>) getter.invoke(mergeFrom);
             List<Object> result = strategy.mergeLists(thisList, mergeFromList);
@@ -244,43 +244,55 @@ public abstract class Pio {
     }
 
     /**
-     * Merge another Pio object into `this`, using a specified mergePio strategy.
+     * Merge another Pio object into `this`, using a specified mergePio strategy. This passes a default list of
+     * ignored fields along if none are set.
      *
      * @param mergeFrom Pio object to mergePio into `this`.
+     * @param strategy  the merge strategy.
      * @return the result of the mergePio as a new Pio object.
-     * @throws IOException if jackson fails to de/serialize the Pio instance during deep copy.
+     * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
      */
     public Pio merge(Pio mergeFrom, MergeStrategy strategy) throws Exception {
+        return merge(mergeFrom, strategy, Arrays.asList("getClass"));
+    }
+
+    /**
+     * Merge another Pio object into `this`, using a specified mergePio strategy.
+     *
+     * @param mergeFrom     Pio object to mergePio into `this`.
+     * @param strategy      the merge strategy.
+     * @param ignoredFields a list of fields to ignore when merging.
+     * @return the result of the mergePio as a new Pio object.
+     * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
+     */
+    public Pio merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
         assert (mergeFrom.getClass() == this.getClass());
 
         Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
-        PioReflection reflection = new PioReflection(this);
-
-        List<String> ignoredFields = Arrays.asList("getClass");
+        PioReflectionJava reflection = new PioReflectionJava(this);
 
         // Iterate over getter/setter pairs and mergePio each field.
-        reflection.getGetterFieldKeys()
-                .stream()
+        reflection.getGetters().keySet().stream()
 
                 // Skip ignored fields
                 .filter(getter -> {
                     java.lang.reflect.Method method = reflection.getMethod(getter);
                     return !ignoredFields.stream()
-                            .map(k -> method.getName().equalsIgnoreCase(k)).reduce((a, b) -> a || b)
+                            .map(key -> method.getName().equalsIgnoreCase(key))
+                            .reduce((first, second) -> first || second)
                             .orElse(false);
                 })
 
                 // Merge each remaining field
                 .forEach(getter -> {
-                            try {
-                                mergeResult.merge(reflection, getter, mergeFrom, strategy);
-                            } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                );
+                    try {
+                        mergeResult.merge(reflection, getter, mergeFrom, strategy);
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
         return mergeResult;
     }
 
