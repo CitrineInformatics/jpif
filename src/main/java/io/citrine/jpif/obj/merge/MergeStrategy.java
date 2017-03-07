@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An enumeration of supported mergePio strategies.
+ * An enumeration of supported merge strategies.
  *
  * @author Sean Paradiso
  */
 public enum MergeStrategy {
 
-    // Conflicting objects are replaced if the mergePio source
+    // Conflicting objects are replaced if the merge source
     // is non-null and all objects in matching lists are appended
     REPLACE_NON_NULL_AND_APPEND {
         /**

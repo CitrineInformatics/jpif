@@ -808,8 +808,8 @@ public class System extends Rcl {
      *
      * @param reflection      a pre-computed PioReflection for the Pio type being merged.
      * @param fieldGetterName the getter for the field being merged. (ex. "getComposition").
-     * @param mergeFrom       the Pio instance to mergePio from.
-     * @param strategy        the mergePio strategy to use.
+     * @param mergeFrom       the Pio instance to merge from.
+     * @param strategy        the merge strategy to use.
      * @return the merge result.
      */
     @Override

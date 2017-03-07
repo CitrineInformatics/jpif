@@ -213,12 +213,12 @@ public abstract class Pio {
     }
 
     /**
-     * Default mergePio behavior on a field-by-field basis.
+     * Default merge behavior on a field-by-field basis.
      *
      * @param reflection      a pre-computed PioReflection for the Pio type being merged.
      * @param fieldGetterName the getter for the field being merged. (ex. "getComposition").
-     * @param mergeFrom       the Pio instance to mergePio from.
-     * @param strategy        the mergePio strategy to use.
+     * @param mergeFrom       the Pio instance to merge from.
+     * @param strategy        the merge strategy to use.
      * @return the merged Pio instance.
      */
     protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
@@ -227,7 +227,7 @@ public abstract class Pio {
         java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
         java.lang.reflect.Method setter = reflection.getSetters().get(fieldGetterName.replace("get", "set"));
 
-        // If the type to mergePio is a List
+        // If the type to merge is a List
         if (reflection.isList(fieldGetterName)) {
             List<Object> thisList = (List<Object>) getter.invoke(this);
             List<Object> mergeFromList = (List<Object>) getter.invoke(mergeFrom);
@@ -244,12 +244,12 @@ public abstract class Pio {
     }
 
     /**
-     * Merge another Pio object into `this`, using a specified mergePio strategy. This passes a default list of
+     * Merge another Pio object into `this`, using a specified merge strategy. This passes a default list of
      * ignored fields along if none are set.
      *
-     * @param mergeFrom Pio object to mergePio into `this`.
+     * @param mergeFrom Pio object to merge into `this`.
      * @param strategy  the merge strategy.
-     * @return the result of the mergePio as a new Pio object.
+     * @return the result of the merge as a new Pio object.
      * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
      */
     public Pio merge(Pio mergeFrom, MergeStrategy strategy) throws Exception {
@@ -257,12 +257,12 @@ public abstract class Pio {
     }
 
     /**
-     * Merge another Pio object into `this`, using a specified mergePio strategy.
+     * Merge another Pio object into `this`, using a specified merge strategy.
      *
-     * @param mergeFrom     Pio object to mergePio into `this`.
+     * @param mergeFrom     Pio object to merge into `this`.
      * @param strategy      the merge strategy.
      * @param ignoredFields a list of fields to ignore when merging.
-     * @return the result of the mergePio as a new Pio object.
+     * @return the result of the merge as a new Pio object.
      * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
      */
     public Pio merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
@@ -271,7 +271,7 @@ public abstract class Pio {
         Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
         PioReflection reflection = new PioReflection(this);
 
-        // Iterate over getter/setter pairs and mergePio each field.
+        // Iterate over getter/setter pairs and merge each field.
         reflection.getGetters().keySet().stream()
 
                 // Skip ignored fields

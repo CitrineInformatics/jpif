@@ -54,7 +54,7 @@ public class MergingPifSystemStream extends PifSystemStream {
     /**
      * Constructor.
      *
-     * @param pifSystemStreams One or more {@link PifSystemStream}s to mergePio.
+     * @param pifSystemStreams One or more {@link PifSystemStream}s to merge.
      */
     public MergingPifSystemStream(final PifSystemStream... pifSystemStreams) {
         if (pifSystemStreams == null) {
@@ -70,6 +70,6 @@ public class MergingPifSystemStream extends PifSystemStream {
     /** Current stream being operated on. */
     private int currentStream;
 
-    /** List of streams to mergePio. */
+    /** List of streams to merge. */
     private final List<PifSystemStream> pifSystemStreams;
 }
