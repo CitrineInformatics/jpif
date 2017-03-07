@@ -81,7 +81,8 @@ public class PioReflection {
      * @return true if the Method has a return type of List.
      */
     public boolean isList(String method) {
-        return getters.get(method).getReturnType().getCanonicalName().equals("java.util.List");
+        return getters.get(method).getReturnType()
+                .isAssignableFrom(java.util.List.class);
     }
 
     /**
