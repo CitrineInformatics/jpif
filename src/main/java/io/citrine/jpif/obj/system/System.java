@@ -803,16 +803,6 @@ public class System extends Rcl {
         return this;
     }
 
-    @Override
-    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
-            throws InvocationTargetException, IllegalAccessException {
-        if (!fieldGetterName.contains("UnsupportedField")) {
-            return super.merge(reflection, fieldGetterName, mergeFrom, strategy);
-        } else {
-            return this;
-        }
-    }
-
     /** Permanent ID for this system. */
     private String uid;
 

@@ -230,14 +230,21 @@ public abstract class Pio {
         java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
         java.lang.reflect.Method setter = reflection.getSetters().get(fieldGetterName.replace("get", "set"));
 
+        if (fieldGetterName.equals("getUnsupportedFields")) {
+            Object thisObj = getter.invoke(this);
+            Object fromObj = getter.invoke(mergeFrom);
+            this.unsupportedFields = (Map<String, Object>) strategy.merge(thisObj, fromObj);
+        }
         // If the type to merge is a List
-        if (reflection.isList(fieldGetterName)) {
+        else if (reflection.isList(fieldGetterName)) {
             List<Object> thisList = (List<Object>) getter.invoke(this);
             List<Object> mergeFromList = (List<Object>) getter.invoke(mergeFrom);
             List<Object> result = strategy.mergeLists(thisList, mergeFromList);
 
             setter.invoke(this, result);
-        } else {
+        }
+        // Else merge objects
+        else {
             Object thisObj = getter.invoke(this);
             Object fromObj = getter.invoke(mergeFrom);
             setter.invoke(this, strategy.merge(thisObj, fromObj));
@@ -299,6 +306,7 @@ public abstract class Pio {
                         e.printStackTrace();
                     }
                 });
+
         return mergeResult;
     }
 
