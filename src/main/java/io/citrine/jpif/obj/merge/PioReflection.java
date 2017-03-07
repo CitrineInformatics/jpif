@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * A reflection utility class for Pio instances.
@@ -21,16 +22,13 @@ public class PioReflection {
      * @param instance the Pio instance whose fields are parsed.
      */
     public PioReflection(Pio instance) {
-        Map<String, Method> gettersTmp = getAllMethods(instance.getClass(), "get.*");
-        Map<String, Method> settersTmp = getAllMethods(instance.getClass(), "set.*");
+        this.getters = getAllMethods(instance.getClass(), "get.*").entrySet().stream()
+                .filter(entry -> entry.getValue().getParameterCount() == 0)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
-        gettersTmp.keySet().stream()
-                .filter(key -> gettersTmp.get(key).getParameterCount() == 0)
-                .forEach(key -> getters.put(key, gettersTmp.get(key)));
-
-        settersTmp.keySet().stream()
-                .filter(key -> settersTmp.get(key).getParameterCount() == 1)
-                .forEach(key -> setters.put(key, settersTmp.get(key)));
+        this.setters = getAllMethods(instance.getClass(), "set.*").entrySet().stream()
+                .filter(entry -> entry.getValue().getParameterCount() == 1)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         getters.values().stream().forEach(method -> method.setAccessible(true));
         setters.values().stream().forEach(method -> method.setAccessible(true));
@@ -115,6 +113,6 @@ public class PioReflection {
         return methodMap;
     }
 
-    private Map<String, Method> getters = new HashMap<>();
-    private Map<String, Method> setters = new HashMap<>();
+    private Map<String, Method> getters;
+    private Map<String, Method> setters;
 }
