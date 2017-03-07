@@ -822,48 +822,30 @@ public class System extends Rcl {
         }
     }
 
-    /**
-     * Permanent ID for this system.
-     */
+    /** Permanent ID for this system. */
     private String uid;
 
-    /**
-     * List of names for this system.
-     */
+    /** List of names for this system. */
     private List<String> names;
 
-    /**
-     * List of IDs for this system.
-     */
+    /** List of IDs for this system. */
     private List<Id> ids;
 
-    /**
-     * List of classifications for this system.
-     */
+    /** List of classifications for this system. */
     private List<Classification> classifications;
 
-    /**
-     * Source of this system.
-     */
+    /** Source of this system. */
     private Source source;
 
-    /**
-     * Quantity of this system.
-     */
+    /** Quantity of this system. */
     private Quantity quantity;
 
-    /**
-     * List of properties of this system.
-     */
+    /** List of properties of this system. */
     private List<Property> properties;
 
-    /**
-     * List of processing steps in the preparation of this system.
-     */
+    /** List of processing steps in the preparation of this system. */
     private List<ProcessStep> preparation;
 
-    /**
-     * List of subsystems of this system.
-     */
+    /** List of subsystems of this system. */
     private List<System> subSystems;
 }
