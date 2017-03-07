@@ -221,7 +221,10 @@ public abstract class Pio {
      * @param strategy        the merge strategy to use.
      * @return the merged Pio instance.
      */
-    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
+    protected Pio merge(final PioReflection reflection,
+                        final String fieldGetterName,
+                        final Pio mergeFrom,
+                        final MergeStrategy strategy)
             throws InvocationTargetException, IllegalAccessException {
 
         java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
@@ -252,7 +255,8 @@ public abstract class Pio {
      * @return the result of the merge as a new Pio object.
      * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
      */
-    public Pio merge(Pio mergeFrom, MergeStrategy strategy) throws Exception {
+    public Pio merge(final Pio mergeFrom,
+                     final MergeStrategy strategy) throws Exception {
         return merge(mergeFrom, strategy, Arrays.asList("getClass"));
     }
 
@@ -265,7 +269,9 @@ public abstract class Pio {
      * @return the result of the merge as a new Pio object.
      * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
      */
-    public Pio merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
+    public Pio merge(final Pio mergeFrom,
+                     final MergeStrategy strategy,
+                     final List<String> ignoredFields) throws Exception {
         assert (mergeFrom.getClass() == this.getClass());
 
         Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
