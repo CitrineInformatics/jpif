@@ -13,14 +13,14 @@ import java.util.Map;
  *
  * @author Sean Paradiso
  */
-public class PioReflectionJava {
+public class PioReflection {
 
     /**
      * The constructor parses and caches all getter and setter methods for future work.
      *
      * @param instance the Pio instance whose fields are parsed.
      */
-    public PioReflectionJava(Pio instance) {
+    public PioReflection(Pio instance) {
         Map<String, Method> gettersTmp = getAllMethods(instance.getClass(), "get.*");
         Map<String, Method> settersTmp = getAllMethods(instance.getClass(), "set.*");
 

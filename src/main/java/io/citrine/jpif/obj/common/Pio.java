@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.merge.MergeStrategy;
-import io.citrine.jpif.obj.merge.PioReflectionJava;
+import io.citrine.jpif.obj.merge.PioReflection;
 import io.citrine.jpif.util.PifObjectMapper;
 
 import java.lang.reflect.InvocationTargetException;
@@ -221,7 +221,7 @@ public abstract class Pio {
      * @param strategy        the mergePio strategy to use.
      * @return the merged Pio instance.
      */
-    protected Pio merge(PioReflectionJava reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
+    protected Pio merge(PioReflection reflection, String fieldGetterName, Pio mergeFrom, MergeStrategy strategy)
             throws InvocationTargetException, IllegalAccessException {
 
         java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
@@ -269,7 +269,7 @@ public abstract class Pio {
         assert (mergeFrom.getClass() == this.getClass());
 
         Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
-        PioReflectionJava reflection = new PioReflectionJava(this);
+        PioReflection reflection = new PioReflection(this);
 
         // Iterate over getter/setter pairs and mergePio each field.
         reflection.getGetters().keySet().stream()
