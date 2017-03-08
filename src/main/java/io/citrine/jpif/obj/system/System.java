@@ -803,6 +803,38 @@ public class System extends Rcl {
         return this;
     }
 
+    @Override
+    public Pio merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
+        Pio mergeResult = super.merge(mergeFrom, strategy, ignoredFields);
+
+        // Add all fields that don't exist in `this` as unsupported fields
+        PioReflection fromReflection = new PioReflection(mergeFrom);
+        PioReflection thisReflection = new PioReflection(this);
+
+        fromReflection.getGetters().keySet().stream()
+
+                // Filter for only fields that exist in `mergeFrom` and _not_ in `this`
+                .filter(methodName -> !thisReflection.getGetters().keySet().contains(methodName))
+                .forEach(methodName -> {
+                            String fieldName = methodName.replace("get", "");
+                            String fixedFieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
+
+                            try {
+                                mergeResult.addUnsupportedField(
+                                        fixedFieldName,
+                                        fromReflection.getMethod("get" + fieldName).invoke(mergeFrom)
+                                );
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (InvocationTargetException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                );
+
+        return mergeResult;
+    }
+
     /** Permanent ID for this system. */
     private String uid;
 

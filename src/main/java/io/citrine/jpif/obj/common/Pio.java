@@ -231,15 +231,15 @@ public abstract class Pio {
         java.lang.reflect.Method setter = reflection.getSetters().get(fieldGetterName.replace("get", "set"));
 
         if (fieldGetterName.equals("getUnsupportedFields")) {
-            Object thisObj = getter.invoke(this);
-            Object fromObj = getter.invoke(mergeFrom);
-            this.unsupportedFields = (Map<String, Object>) strategy.merge(thisObj, fromObj);
+            Map<String, Object> thisObj = (Map<String, Object>) getter.invoke(this);
+            Map<String, Object> fromObj = (Map<String, Object>) getter.invoke(mergeFrom);
+            this.unsupportedFields = strategy.merge(thisObj, fromObj);
         }
         // If the type to merge is a List
         else if (reflection.isList(fieldGetterName)) {
             List<Object> thisList = (List<Object>) getter.invoke(this);
             List<Object> mergeFromList = (List<Object>) getter.invoke(mergeFrom);
-            List<Object> result = strategy.mergeLists(thisList, mergeFromList);
+            List<Object> result = strategy.merge(thisList, mergeFromList);
 
             setter.invoke(this, result);
         }
@@ -279,7 +279,6 @@ public abstract class Pio {
     public Pio merge(final Pio mergeFrom,
                      final MergeStrategy strategy,
                      final List<String> ignoredFields) throws Exception {
-        assert (mergeFrom.getClass() == this.getClass());
 
         Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
         PioReflection reflection = new PioReflection(this);

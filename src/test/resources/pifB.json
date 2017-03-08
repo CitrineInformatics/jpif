@@ -37,5 +37,7 @@
       ]
     }
   ],
-  "chemicalFormula": "HgS"
+  "chemicalFormula": "HgS",
+  "unsupportedB": "B",
+  "unsupportedA": "B"
 }

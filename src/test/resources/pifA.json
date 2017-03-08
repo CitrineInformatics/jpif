@@ -1,5 +1,5 @@
 {
-  "category": "system.chemical",
+  "category": "system",
   "references": [
     {
       "url": "https://en.wikipedia.org/wiki/Mercury_sulfide",
@@ -27,5 +27,6 @@
       "units": "g/mL$"
     }
   ],
-  "chemicalFormula": "HgS"
+  "unsupportedA": "A",
+  "unsupportedAOnly": "A"
 }
