@@ -10,11 +10,13 @@ import io.citrine.jpif.obj.common.Classification;
 import io.citrine.jpif.obj.common.Id;
 import io.citrine.jpif.obj.common.License;
 import io.citrine.jpif.obj.common.Person;
+import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.common.ProcessStep;
 import io.citrine.jpif.obj.common.Property;
 import io.citrine.jpif.obj.common.Quantity;
 import io.citrine.jpif.obj.common.Reference;
 import io.citrine.jpif.obj.common.Source;
+import io.citrine.jpif.obj.merge.MergeStrategy;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.common.Composition;
 
@@ -27,21 +29,21 @@ import java.util.List;
  *
  * <p>Supported fields:
  * <ul>
- *     <li>uid - Permanent ID associated with this record.
- *     <li>chemicalFormula - Chemical formula of the system.
- *     <li>composition - List of {@link Composition} objects defining the composition vector of the system.
- *     <li>names - Names of the system.
- *     <li>ids - List of {@link Id}s of the system.
- *     <li>classifications - List of {@link Classification}s of the system.
- *     <li>source - {@link Source} of the system.
- *     <li>quantity - {@link Quantity} of the system.
- *     <li>properties - List of measured or calculated properties ({@link Property}) of the system.
- *     <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
- *     <li>subSystems - List of sub-systems ({@link System}) of the system.
- *     <li>references - List of {@link Reference}s with information about the system.
- *     <li>contacts - List of contacts ({@link Person}) for information about the system.
- *     <li>licenses - List of {@link License}s that apply to the system.
- *     <li>tags - List of strings with tags that apply to the system.
+ * <li>uid - Permanent ID associated with this record.
+ * <li>chemicalFormula - Chemical formula of the system.
+ * <li>composition - List of {@link Composition} objects defining the composition vector of the system.
+ * <li>names - Names of the system.
+ * <li>ids - List of {@link Id}s of the system.
+ * <li>classifications - List of {@link Classification}s of the system.
+ * <li>source - {@link Source} of the system.
+ * <li>quantity - {@link Quantity} of the system.
+ * <li>properties - List of measured or calculated properties ({@link Property}) of the system.
+ * <li>preparation - List of preparation steps ({@link ProcessStep}) describing the making of the system.
+ * <li>subSystems - List of sub-systems ({@link System}) of the system.
+ * <li>references - List of {@link Reference}s with information about the system.
+ * <li>contacts - List of contacts ({@link Person}) for information about the system.
+ * <li>licenses - List of {@link License}s that apply to the system.
+ * <li>tags - List of strings with tags that apply to the system.
  * </ul>
  *
  * @author Kyle Michel
@@ -108,7 +110,7 @@ public class ChemicalSystem extends System {
     /**
      * Insert a single composition for this system.
      *
-     * @param index Index at which to insert the input composition.
+     * @param index       Index at which to insert the input composition.
      * @param composition {@link Composition} object to add to this system.
      * @return This object.
      */
@@ -321,6 +323,16 @@ public class ChemicalSystem extends System {
     public ChemicalSystem addUnsupportedField(final String key, final Object value) {
         super.addUnsupportedField(key, value);
         return this;
+    }
+
+    @Override
+    public ChemicalSystem merge(Pio mergeFrom, MergeStrategy strategy) throws Exception {
+        return (ChemicalSystem) super.merge(mergeFrom, strategy);
+    }
+
+    @Override
+    public ChemicalSystem merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
+        return (ChemicalSystem) super.merge(mergeFrom, strategy, ignoredFields);
     }
 
     /** Chemical formula. */

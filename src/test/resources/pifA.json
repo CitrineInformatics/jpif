@@ -1,0 +1,32 @@
+{
+  "category": "system",
+  "references": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mercury_sulfide",
+      "title": "Wikipedia: Mercury sulfide"
+    }
+  ],
+  "uid": "pifAUID",
+  "names": [
+    "Mercury sulfide"
+  ],
+  "ids": [
+    {
+      "name": "CAS registry number",
+      "value": "1344-48-5"
+    }
+  ],
+  "properties": [
+    {
+      "name": "Density",
+      "scalars": [
+        {
+          "value": "10.10"
+        }
+      ],
+      "units": "g/mL$"
+    }
+  ],
+  "unsupportedA": "A",
+  "unsupportedAOnly": "A"
+}

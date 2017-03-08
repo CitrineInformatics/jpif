@@ -5,8 +5,13 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jpif.obj.merge.MergeStrategy;
+import io.citrine.jpif.obj.merge.PioReflection;
+import io.citrine.jpif.util.PifObjectMapper;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +21,7 @@ import java.util.Map;
  * Base class for all Physical Information Objects.
  *
  * @author Kyle Michel
+ * @author Sean Paradiso
  */
 public abstract class Pio {
 
@@ -57,7 +63,7 @@ public abstract class Pio {
      * Insert a tag at the set index.
      *
      * @param index Index at which to input the tag.
-     * @param tag String with the tag to add.
+     * @param tag   String with the tag to add.
      * @return This object.
      */
     public Pio addTag(final int index, final String tag) {
@@ -124,7 +130,7 @@ public abstract class Pio {
     /**
      * Add an unsupported field to this object.
      *
-     * @param key String with the key of the field.
+     * @param key   String with the key of the field.
      * @param value Object with the value of the field.
      * @return This object.
      */
@@ -206,9 +212,110 @@ public abstract class Pio {
         }
     }
 
-    /** List of tags for the object. */
+    /**
+     * Default merge behavior on a field-by-field basis.
+     *
+     * @param reflection      a pre-computed PioReflection for the Pio type being merged.
+     * @param fieldGetterName the getter for the field being merged. (ex. "getComposition").
+     * @param mergeFrom       the Pio instance to merge from.
+     * @param strategy        the merge strategy to use.
+     * @return the merged Pio instance.
+     */
+    protected Pio merge(final PioReflection reflection,
+                        final String fieldGetterName,
+                        final Pio mergeFrom,
+                        final MergeStrategy strategy)
+            throws InvocationTargetException, IllegalAccessException {
+
+        java.lang.reflect.Method getter = reflection.getGetters().get(fieldGetterName);
+        java.lang.reflect.Method setter = reflection.getSetters().get(fieldGetterName.replace("get", "set"));
+
+        if (fieldGetterName.equals("getUnsupportedFields")) {
+            Map<String, Object> thisObj = (Map<String, Object>) getter.invoke(this);
+            Map<String, Object> fromObj = (Map<String, Object>) getter.invoke(mergeFrom);
+            this.unsupportedFields = strategy.merge(thisObj, fromObj);
+        }
+        // If the type to merge is a List
+        else if (reflection.isList(fieldGetterName)) {
+            List<Object> thisList = (List<Object>) getter.invoke(this);
+            List<Object> mergeFromList = (List<Object>) getter.invoke(mergeFrom);
+            List<Object> result = strategy.merge(thisList, mergeFromList);
+
+            setter.invoke(this, result);
+        }
+        // Else merge objects
+        else {
+            Object thisObj = getter.invoke(this);
+            Object fromObj = getter.invoke(mergeFrom);
+            setter.invoke(this, strategy.merge(thisObj, fromObj));
+        }
+
+        return this;
+    }
+
+    /**
+     * Merge another Pio object into `this`, using a specified merge strategy. This passes a default list of
+     * ignored fields along if none are set.
+     *
+     * @param mergeFrom Pio object to merge into `this`.
+     * @param strategy  the merge strategy.
+     * @return the result of the merge as a new Pio object.
+     * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
+     */
+    public Pio merge(final Pio mergeFrom,
+                     final MergeStrategy strategy) throws Exception {
+        return merge(mergeFrom, strategy, Arrays.asList("getClass"));
+    }
+
+    /**
+     * Merge another Pio object into `this`, using a specified merge strategy.
+     *
+     * @param mergeFrom     Pio object to merge into `this`.
+     * @param strategy      the merge strategy.
+     * @param ignoredFields a list of fields to ignore when merging.
+     * @return the result of the merge as a new Pio object.
+     * @throws Exception if jackson fails to de/serialize the Pio instance during deep copy.
+     */
+    public Pio merge(final Pio mergeFrom,
+                     final MergeStrategy strategy,
+                     final List<String> ignoredFields) throws Exception {
+
+        Pio mergeResult = PifObjectMapper.deepCopy(this, this.getClass());
+        PioReflection reflection = new PioReflection(this);
+
+        // Iterate over getter/setter pairs and merge each field.
+        reflection.getGetters().keySet().stream()
+
+                // Skip ignored fields
+                .filter(getter -> {
+                    java.lang.reflect.Method method = reflection.getMethod(getter);
+                    return !ignoredFields.stream()
+                            .map(key -> method.getName().equalsIgnoreCase(key))
+                            .reduce((first, second) -> first || second)
+                            .orElse(false);
+                })
+
+                // Merge each remaining field
+                .forEach(getter -> {
+                    try {
+                        mergeResult.merge(reflection, getter, mergeFrom, strategy);
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        return mergeResult;
+    }
+
+    /**
+     * List of tags for the object.
+     */
     private List<String> tags;
 
-    /** Map of unsupported field names to their values. */
+    /**
+     * Map of unsupported field names to their values.
+     */
     private Map<String, Object> unsupportedFields;
 }
