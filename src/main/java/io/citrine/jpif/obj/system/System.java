@@ -804,8 +804,13 @@ public class System extends Rcl {
     }
 
     @Override
-    public Pio merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
-        Pio mergeResult = super.merge(mergeFrom, strategy, ignoredFields);
+    public System merge(Pio mergeFrom, MergeStrategy strategy) throws Exception {
+        return (System) super.merge(mergeFrom, strategy);
+    }
+
+    @Override
+    public System merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
+        System mergeResult = (System) super.merge(mergeFrom, strategy, ignoredFields);
 
         // Add all fields that don't exist in `this` as unsupported fields
         PioReflection fromReflection = new PioReflection(mergeFrom);

@@ -24,7 +24,7 @@ public class MergeStrategyTest {
 
             System pifA = PifObjectMapper.getInstance().readerFor(System.class).readValue(streamA);
             ChemicalSystem pifB = PifObjectMapper.getInstance().readerFor(ChemicalSystem.class).readValue(streamB);
-            System merged = (System) pifA.merge(pifB, MergeStrategy.REPLACE_NON_NULL_AND_APPEND);
+            System merged = pifA.merge(pifB, MergeStrategy.REPLACE_NON_NULL_AND_APPEND);
 
             // Make sure pifB properties are appended
             assertEquals(2, merged.numProperties());
