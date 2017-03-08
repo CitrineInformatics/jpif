@@ -30,9 +30,15 @@ public class MergeStrategyTest {
             assertEquals(2, merged.numProperties());
             assertEquals("pifBUID", merged.getUid());
             assertEquals(2, merged.numReferences());
+
+            // Test that non-null unsupported fields in pifB overwrite the values in pifA
             assertEquals("B", merged.getUnsupportedFieldValue("unsupportedA"));
             assertEquals("B", merged.getUnsupportedFieldValue("unsupportedB"));
+
+            // Test that existing unsupported fields in pifA are not destroyed by merging in pifB
             assertEquals("A", merged.getUnsupportedFieldValue("unsupportedAOnly"));
+
+            // Test that merging ChemicalSystem into System will add chemicalFormula as an unsupported value.
             assertEquals("HgS", merged.getUnsupportedFieldValue("chemicalFormula"));
             assertEquals(null, merged.getUnsupportedFieldValue("composition"));
 
