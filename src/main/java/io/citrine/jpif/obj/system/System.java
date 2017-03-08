@@ -816,21 +816,20 @@ public class System extends Rcl {
                 // Filter for only fields that exist in `mergeFrom` and _not_ in `this`
                 .filter(methodName -> !thisReflection.getGetters().keySet().contains(methodName))
                 .forEach(methodName -> {
-                            String fieldName = methodName.replace("get", "");
-                            String fixedFieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
+                    String fieldName = methodName.replace("get", "");
+                    String fixedFieldName = fieldName.substring(0, 1).toLowerCase() + fieldName.substring(1);
 
-                            try {
-                                mergeResult.addUnsupportedField(
-                                        fixedFieldName,
-                                        fromReflection.getMethod("get" + fieldName).invoke(mergeFrom)
-                                );
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                );
+                    try {
+                        mergeResult.addUnsupportedField(
+                                fixedFieldName,
+                                fromReflection.getMethod("get" + fieldName).invoke(mergeFrom)
+                        );
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    }
+                });
 
         return mergeResult;
     }
