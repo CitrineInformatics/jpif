@@ -92,7 +92,7 @@ public class Validator {
             }
         }
         if (count == 0) {
-            throw new IllegalArgumentException("File does not contain any records");
+            throw new IllegalArgumentException("Stream does not contain any records");
         }
         return true;
     }
