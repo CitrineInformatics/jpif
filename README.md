@@ -5,6 +5,14 @@ Java tools for working with Physical Information Files (http://www.citrine.io/pi
 This package includes java objects for all items in the Physical Information File (PIF). Files formatted in the PIF
 schema can be serialized and deserialized using included methods.
 
+## Compilation
+
+It is possible to build a jar for this package using `mvn clean install`.
+
+An uber jar containing all of the dependencies can be created using `mvn clean install -Pvalidator`. This jar can in 
+turn be executed using `java -jar jpif-validator.jar path/to/pif [max records to validate]` in order to validate the 
+content of a file that contains PIF records.
+
 
 ## Usages
 
