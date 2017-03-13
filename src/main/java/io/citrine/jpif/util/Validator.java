@@ -20,7 +20,12 @@ public class Validator {
      */
     public static void main(String[] args) {
         if (checkArgs(args)) {
-            validate(args[0]);
+            if (args.length == 1) {
+                validate(args[0]);
+            }
+            else {
+                validate(args[0], Integer.valueOf(args[1]));
+            }
         }
     }
 
@@ -57,8 +62,18 @@ public class Validator {
      * @param path Path to the file to validate.
      */
     private static void validate(final String path) {
+        validate(path, Integer.MAX_VALUE);
+    }
+
+    /**
+     * Validate the input file.
+     *
+     * @param path Path to the file to validate.
+     * @param maxToCheck Maximum number of PIFs to check.
+     */
+    private static void validate(final String path, final int maxToCheck) {
         try {
-            validate(new JsonDeserializingPifSystemStream(new FileInputStream(path)));
+            validate(new JsonDeserializingPifSystemStream(new FileInputStream(path)), maxToCheck);
             java.lang.System.out.println("File is valid");
         }
         catch (Exception e) {
@@ -81,6 +96,7 @@ public class Validator {
      * Try to validate the input file. This throws an exception if there are any errors in processing the file.
      *
      * @param pifSystemStream {@link PifSystemStream} to validate.
+     * @param maxToCheck Maximum number of PIFs to check.
      * @return True if the stream is valid.
      * @throws Exception if thrown while validating the stream.
      */
