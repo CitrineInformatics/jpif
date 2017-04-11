@@ -144,26 +144,133 @@ public class Property extends Value {
     }
 
     /**
-     * Set the method used to measure this property.
+     * Set the list of methods for this property.
      *
-     * @param method {@link Method} object with information about how this property was measured.
-     * @return This object.
+     * @param methods List of {@link Method} objects with the methods for this property.
+     */
+    @JsonSetter(value = "methods")
+    @JsonDeserialize(contentUsing = Method.Deserializer.class)
+    protected void setMethods(final List<Method> methods) { // Private since only Jackson should use it
+        this.methods = methods;
+    }
+
+    /**
+     * Set the list of methods for this property.
+     *
+     * @param method List of {@link Method} objects with the methods for this property.
      */
     @JsonSetter(value = "method")
-    @JsonDeserialize(using = Method.Deserializer.class)
+    @JsonDeserialize(contentUsing = Method.Deserializer.class)
+    protected void setMethod(final List<Method> method) { // Private since only Jackson should use it
+        setMethods(method);
+    }
+
+    /**
+     * Set the method that was used.
+     *
+     * @param method {@link Method} for this property.
+     * @return This object
+     */
+    @JsonIgnore
+    @Deprecated
     public Property setMethod(final Method method) {
-        this.method = method;
+        setMethod(new ArrayList<>(Collections.singletonList(method)));
         return this;
     }
 
     /**
-     * Get the method used to measure this property.
+     * Add a method for this property.
      *
-     * @return {@link Method} object with information about how the property was measured.
+     * @param method {@link Method} object with the method to add.
+     * @return This object.
      */
-    @JsonGetter(value = "method")
+    public Property addMethod(final Method method) {
+        if (this.methods == null) {
+            this.methods = new ArrayList<>();
+        }
+        this.methods.add(method);
+        return this;
+    }
+
+    /**
+     * Insert a single method for this property.
+     *
+     * @param index Index at which to insert the input method.
+     * @param method {@link Method} object to add for the property.
+     * @return This object.
+     */
+    public Property addMethod(final int index, final Method method) {
+        if (this.methods == null) {
+            this.methods = new ArrayList<>();
+        }
+        this.methods.add(index, method);
+        return this;
+    }
+
+    /**
+     * Remove a method from the property.
+     *
+     * @param method {@link Method} object to delete.
+     * @return True if the object was removed.
+     */
+    public boolean removeMethod(final Method method) {
+        return (this.methods != null) && this.methods.remove(method);
+    }
+
+    /**
+     * Get the number of methods for this property.
+     *
+     * @return Number of methods for this property.
+     */
+    public int numMethods() {
+        return (this.methods == null) ? 0 : this.methods.size();
+    }
+
+    /**
+     * Get the method that was used.
+     *
+     * @return {@link Method} that was used.
+     */
+    @JsonIgnore
+    @Deprecated
     public Method getMethod() {
-        return this.method;
+        return (this.numMethods() > 0)
+                ? this.getMethod(0)
+                : null;
+    }
+
+    /**
+     * Get a method for this property at a set index.
+     *
+     * @param index Index of the method to get.
+     * @return {@link Method} object at the input index.
+     * @throws IndexOutOfBoundsException if the index is out of range of the methods list.
+     */
+    @JsonIgnore
+    public Method getMethod(final int index) {
+        if (this.methods == null) {
+            throw new IndexOutOfBoundsException("Attempting to access method " + index + " of " + this.numMethods());
+        }
+        return this.methods.get(index);
+    }
+
+    /**
+     * Get an {@link Iterable} object to iterate over methods of this property.
+     *
+     * @return {@link Iterable} object for iterating over methods of this property.
+     */
+    public Iterable<Method> methods() {
+        return (this.methods == null) ? Collections.emptyList() : this.methods;
+    }
+
+    /**
+     * Get the list of methods for this property.
+     *
+     * @return List of {@link Method} objects with methods for this property.
+     */
+    @JsonGetter(value = "methods")
+    protected List<Method> getMethods() { // Private since only Jackson should use it
+        return this.methods;
     }
 
     /**
@@ -629,7 +736,7 @@ public class Property extends Value {
     private List<Value> conditions;
 
     /** Method used to obtain the property. */
-    private Method method;
+    private List<Method> methods;
 
     /** Type of the data represented by the property. */
     private DataType dataType;
