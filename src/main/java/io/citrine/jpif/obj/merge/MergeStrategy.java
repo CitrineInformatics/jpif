@@ -20,11 +20,9 @@ public enum MergeStrategy {
         @Override
         public List<Object> merge(List<Object> mergeInto, List<Object> mergeFrom) {
             List<Object> result = new ArrayList<>();
-
             if (mergeInto != null) {
                 result.addAll(mergeInto);
             }
-
             if (mergeFrom != null) {
                 result.addAll(mergeFrom);
             }
@@ -42,8 +40,12 @@ public enum MergeStrategy {
         @Override
         public Map<String, Object> merge(Map<String, Object> mergeInto, Map<String, Object> mergeFrom) {
             Map<String, Object> result = new HashMap<>();
-            result.putAll(mergeInto);
-            result.putAll(mergeFrom);
+            if (mergeInto != null) {
+                result.putAll(mergeInto);
+            }
+            if (mergeFrom != null) {
+                result.putAll(mergeFrom);
+            }
             return result;
         }
 
