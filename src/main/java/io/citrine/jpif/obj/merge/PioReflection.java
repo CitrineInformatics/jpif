@@ -63,16 +63,6 @@ public class PioReflection {
     }
 
     /**
-     * Check whether a particular Method discovered through reflection is a getter with a List type.
-     *
-     * @param method the method to check.
-     * @return true if the Method has a return type of List.
-     */
-    public boolean isList(Method method) {
-        return method.getReturnType().getCanonicalName().equals("java.util.List");
-    }
-
-    /**
      * Check whether a particular Method name discovered through reflection is a getter with a List type.
      *
      * @param method the name of the method to check.
