@@ -10,11 +10,11 @@ schema can be serialized and deserialized using included methods.
 It is possible to build a jar for this package using `mvn clean install`.
 
 An uber jar containing all of the dependencies can be created using `mvn clean install -Pvalidator`. This jar can in 
-turn be executed using `java -jar jpif-validator.jar path/to/pif [max records to validate]` in order to validate the 
+turn be executed using `java -jar target/jpif-validator.jar path/to/pif [max records to validate]` in order to validate the 
 content of a file that contains PIF records.
 
 An uber jar containing all of the dependencies can be created using `mvn clean install -Pparser`. This jar can in 
-turn be executed using `java -jar jpif-parser.jar path/to/pif` in order to read the content of a PIF file, convert to
+turn be executed using `java -jar target/jpif-parser.jar path/to/pif` in order to read the content of a PIF file, convert to
  a rigid schema, and print to standard out.
 
 
