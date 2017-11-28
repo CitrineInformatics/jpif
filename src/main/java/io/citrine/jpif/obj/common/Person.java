@@ -21,6 +21,7 @@ import java.io.IOException;
  * <ul>
  *     <li>name - {@link Name} of the person.
  *     <li>email - Email address of the person.
+ *     <li>url - URL with information about the person.
  *     <li>orcid - <a href="http://orcid.org">ORCID</a> identifier of the person.
  *     <li>tags - List of tags that apply to the person.
  * </ul>
@@ -72,6 +73,28 @@ public class Person extends Pio {
     @JsonGetter(value = "email")
     public String getEmail() {
         return this.email;
+    }
+
+    /**
+     * Set the URL of the person.
+     *
+     * @param url String with the URL of the person.
+     * @return This object.
+     */
+    @JsonSetter(value = "url")
+    public Person setUrl(final String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * Get the URL of the person.
+     *
+     * @return String with the URL of the person.
+     */
+    @JsonGetter(value = "url")
+    public String getUrl() {
+        return this.url;
     }
 
     /**
@@ -175,6 +198,9 @@ public class Person extends Pio {
 
     /** Email address of the person. */
     private String email;
+
+    /** URL of the person. */
+    private String url;
 
     /** ORCID identifier of the person. */
     private String orcid;
