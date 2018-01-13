@@ -7,6 +7,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jpif.obj.common.Pio;
 import io.citrine.jpif.obj.common.Scalar;
+import io.citrine.jpif.util.PifSerializationUtil;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 
 /**
  * Information about an element in a composition vector using weight or atomic percents.
@@ -23,7 +30,7 @@ import io.citrine.jpif.obj.common.Scalar;
  *
  * @author Kyle Michel
  */
-public class Composition extends Pio {
+public class Composition extends Pio implements Serializable {
 
     /**
      * Set the element of the composition.
@@ -267,6 +274,36 @@ public class Composition extends Pio {
         super.addUnsupportedField(key, value);
         return this;
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 1164305075479090343L;
 
     /** Element this composition represents. */
     private String element;

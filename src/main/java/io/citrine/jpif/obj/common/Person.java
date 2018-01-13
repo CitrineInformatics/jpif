@@ -10,9 +10,14 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.citrine.jpif.util.Orcid;
 import io.citrine.jpif.util.PifObjectMapper;
+import io.citrine.jpif.util.PifSerializationUtil;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 
 /**
  * Information about a person.
@@ -28,7 +33,7 @@ import java.io.IOException;
  *
  * @author Kyle Michel
  */
-public class Person extends Pio {
+public class Person extends Pio implements Serializable {
 
     /**
      * Set the name of the person.
@@ -192,6 +197,36 @@ public class Person extends Pio {
         input = input.trim();
         return Orcid.isValid(input);
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 6898080417547546195L;
 
     /** Name of the person. */
     private Name name;

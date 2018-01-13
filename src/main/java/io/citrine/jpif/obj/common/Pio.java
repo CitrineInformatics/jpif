@@ -8,7 +8,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import io.citrine.jpif.obj.merge.MergeStrategy;
 import io.citrine.jpif.obj.merge.PioReflection;
 import io.citrine.jpif.util.PifObjectMapper;
+import io.citrine.jpif.util.PifSerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +29,7 @@ import java.util.Map;
  * @author Kyle Michel
  * @author Sean Paradiso
  */
-public abstract class Pio {
+public abstract class Pio implements Serializable {
 
     /**
      * Set the tags for this object.
@@ -299,9 +305,7 @@ public abstract class Pio {
                 .forEach(getter -> {
                     try {
                         mergeResult.merge(reflection, getter, mergeFrom, strategy);
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
+                    } catch (InvocationTargetException | IllegalAccessException e) {
                         e.printStackTrace();
                     }
                 });
@@ -310,12 +314,38 @@ public abstract class Pio {
     }
 
     /**
-     * List of tags for the object.
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
      */
-    private List<String> tags;
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
 
     /**
-     * Map of unsupported field names to their values.
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
      */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 8298361482995229987L;
+
+    /** List of tags for the object. */
+    private List<String> tags;
+
+    /** Map of unsupported field names to their values. */
     private Map<String, Object> unsupportedFields;
 }

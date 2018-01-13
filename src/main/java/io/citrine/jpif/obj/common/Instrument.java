@@ -3,6 +3,13 @@ package io.citrine.jpif.obj.common;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import io.citrine.jpif.util.PifSerializationUtil;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 
 /**
  * Description of an instrument used in an experimental measurement.
@@ -18,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
  *
  * @author Kyle Michel
  */
-public class Instrument extends Pio {
+public class Instrument extends Pio implements Serializable {
 
     /**
      * Set the name of the instrument.
@@ -126,6 +133,36 @@ public class Instrument extends Pio {
         super.addUnsupportedField(key, value);
         return this;
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -8087377907149738714L;
 
     /** Name of the instrument. */
     private String name;

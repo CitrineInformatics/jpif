@@ -22,7 +22,13 @@ import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.merge.MergeStrategy;
 import io.citrine.jpif.obj.merge.PioReflection;
 import io.citrine.jpif.obj.system.chemical.ChemicalSystem;
+import io.citrine.jpif.util.PifSerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,7 +63,7 @@ import java.util.List;
         @JsonSubTypes.Type(value = ChemicalSystem.class),
         @JsonSubTypes.Type(name = "system.chemical.alloy", value = ChemicalSystem.class),  // Legacy support
         @JsonSubTypes.Type(name = "system.chemical.alloy.phase", value = ChemicalSystem.class)})  // Legacy support
-public class System extends Rcl {
+public class System extends Rcl implements Serializable {
 
     /**
      * Set the unique ID for this system.
@@ -829,15 +835,43 @@ public class System extends Rcl {
                                 fixedFieldName,
                                 fromReflection.getMethod("get" + fieldName).invoke(mergeFrom)
                         );
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
+                    } catch (IllegalAccessException | InvocationTargetException e) {
                         e.printStackTrace();
                     }
                 });
 
         return mergeResult;
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = 8264725922709755726L;
 
     /** Permanent ID for this system. */
     private String uid;

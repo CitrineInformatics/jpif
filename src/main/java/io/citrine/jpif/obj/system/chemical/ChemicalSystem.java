@@ -19,7 +19,13 @@ import io.citrine.jpif.obj.common.Source;
 import io.citrine.jpif.obj.merge.MergeStrategy;
 import io.citrine.jpif.obj.system.System;
 import io.citrine.jpif.obj.system.chemical.common.Composition;
+import io.citrine.jpif.util.PifSerializationUtil;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,7 +55,7 @@ import java.util.List;
  * @author Kyle Michel
  */
 @JsonTypeName("system.chemical")
-public class ChemicalSystem extends System {
+public class ChemicalSystem extends System implements Serializable {
 
     /**
      * Set the chemical formula for this system.
@@ -334,6 +340,36 @@ public class ChemicalSystem extends System {
     public ChemicalSystem merge(Pio mergeFrom, MergeStrategy strategy, List<String> ignoredFields) throws Exception {
         return (ChemicalSystem) super.merge(mergeFrom, strategy, ignoredFields);
     }
+
+    /**
+     * Write this object to the output output stream.
+     *
+     * @param out {@link ObjectOutputStream} to write to.
+     * @throws IOException if this object cannot be written.
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        PifSerializationUtil.write(out, this);
+    }
+
+    /**
+     * Read into this object from the input stream.
+     *
+     * @param in {@link ObjectInputStream} to read from.
+     * @throws IOException if thrown while reading the stream.
+     * @throws ClassNotFoundException if thrown while reading the stream.
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        PifSerializationUtil.read(in, this);
+    }
+
+    /**
+     * Read an object with no data.
+     *
+     * @throws ObjectStreamException if thrown while reading the stream.
+     */
+    private void readObjectNoData() throws ObjectStreamException {}
+
+    private static final long serialVersionUID = -240125429691780502L;
 
     /** Chemical formula. */
     private String chemicalFormula;
