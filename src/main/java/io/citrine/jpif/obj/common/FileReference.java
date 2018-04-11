@@ -55,6 +55,28 @@ public class FileReference extends Pio implements Serializable {
     }
 
     /**
+     * Set the url pointing to the file.
+     *
+     * @param url String with the url pointing to the file.
+     * @return This object.
+     */
+    @JsonSetter(value = "url")
+    public FileReference setUrl(final String url) {
+        this.url = url;
+        return this;
+    }
+
+    /**
+     * Get the url string value.
+     *
+     * @return String with the url pointing to the file.
+     */
+    @JsonGetter(value = "url")
+    public String getUrl() {
+        return this.url;
+    }
+
+    /**
      * Set the mime type of the file.
      *
      * @param mimeType String with the mime type of the file.
@@ -193,6 +215,9 @@ public class FileReference extends Pio implements Serializable {
 
     /** String with the MD5 hash of the file. */
     private String md5;
+
+    /** String with the url pointing to the file reference */
+    private String url;
 
     /**
      * Class used to deserialize a JSON value into a {@link FileReference} object. If the input value is a string,
