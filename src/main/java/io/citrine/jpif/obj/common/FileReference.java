@@ -216,7 +216,7 @@ public class FileReference extends Pio implements Serializable {
     /** String with the MD5 hash of the file. */
     private String md5;
 
-    /** String with the url pointing to the file reference */
+    /** String with the url pointing to the file reference. */
     private String url;
 
     /**
